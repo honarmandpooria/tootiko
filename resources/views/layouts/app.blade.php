@@ -16,8 +16,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-<div dir="rtl" id="app">
+<body dir="rtl" class="text-right">
+<div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-success shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -31,8 +31,15 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a href="{{route('order')}}" class="nav-link {{Request::is('order') ? 'active' : ''}}">ثبت
+                            سفارش</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('my-orders')}}" class="nav-link {{Request::is('my-orders') ? 'active' : ''}}">سفارش
+                            های من</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

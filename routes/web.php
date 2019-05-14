@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Route::get('/order', function () {
     return view('app.order');
-});
+})->name('order');
+
+Route::get('/my-orders', function () {
+    return view('app.my-orders');
+})->name('my-orders');
 
 Auth::routes();
 

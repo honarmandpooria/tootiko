@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container text-right">
+    <div class="container">
 
 
         <div class="bg-white shadow rounded p-4">
 
-            <form method="POST" action="/profile">
+            <form method="POST" action="/">
                 @csrf
 
                 {{--language and category--}}
