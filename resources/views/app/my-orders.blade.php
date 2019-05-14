@@ -5,7 +5,7 @@
 
 
         <div dir="rtl" class="card">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-primary text-white">
                 <div class="card-title">کد سفارش :۱۲۴</div>
             </div>
             <div class="card-body">
@@ -40,7 +40,7 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <a href="" class="btn btn-success">دانلود فایل ترجمه شده</a>
+                        <a href="" class="btn btn-outline-success">دانلود فایل ترجمه شده</a>
                     </div>
                 </div>
 

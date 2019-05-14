@@ -15,11 +15,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-{{--    <link href="{{ asset('css/rtl-bootstrap.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/rtl-bootstrap.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div id="app">
-    <nav dir="rtl" class="navbar navbar-expand-md navbar-dark bg-success shadow-sm">
+    <nav dir="rtl" class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand ml-auto" href="{{ url('/') }}">
                 هنرمند ترنس
@@ -33,14 +33,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav m-auto">
-                    <li class="nav-item">
-                        <a href="{{route('home')}}" class="nav-link {{Request::is('home') ? 'active' : ''}}">ثبت
-                            سفارش</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('my-orders')}}" class="nav-link {{Request::is('my-orders') ? 'active' : ''}}">سفارش
-                            های من</a>
-                    </li>
+
+                    @guest
+                    @else
+                        <li class="nav-item">
+                            <a href="{{route('home')}}" class="nav-link {{Request::is('home') ? 'active' : ''}}">ثبت
+                                سفارش</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('my-orders')}}"
+                               class="nav-link {{Request::is('my-orders') ? 'active' : ''}}">سفارش
+                                های من</a>
+                        </li>
+                    @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -62,7 +67,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-left text-right" style="overflow: hidden" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('home') }}">
                                     پنل کاربری
                                 </a>

@@ -20,7 +20,7 @@
 <body>
 
 
-<nav dir="rtl" class="navbar navbar-expand-lg fixed-top navbar-dark bg-success">
+<nav dir="rtl" class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="#">هنرمند ترنس</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
@@ -56,7 +56,7 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-left text-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('home') }}">
                                 پنل کاربری
                             </a>
