@@ -15,12 +15,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/rtl-bootstrap.css') }}" rel="stylesheet">--}}
 </head>
-<body dir="rtl" class="text-right">
+<body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-success shadow-sm">
+    <nav dir="rtl" class="navbar navbar-expand-md navbar-dark bg-success shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand ml-auto" href="{{ url('/') }}">
                 هنرمند ترنس
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -33,7 +34,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
-                        <a href="{{route('order')}}" class="nav-link {{Request::is('order') ? 'active' : ''}}">ثبت
+                        <a href="{{route('home')}}" class="nav-link {{Request::is('home') ? 'active' : ''}}">ثبت
                             سفارش</a>
                     </li>
                     <li class="nav-item">
@@ -61,7 +62,10 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('home') }}">
+                                    پنل کاربری
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

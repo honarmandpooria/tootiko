@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div dir="rtl" class="card">
                     <div class="card-header text-right">ورود</div>
 
                     <div class="card-body">
@@ -43,20 +43,24 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="custom-control custom-checkbox">
-                                        <input class="custom-control-input" type="checkbox" name="remember"
-                                               id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                        <label class="custom-control-label" for="remember">
-                                            من را به خاطر بسپار
-                                        </label>
+                            <div class="container">
+                                <div class="row ">
+                                    <div class="col-md-6 offset-md-6">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" name="remember"
+                                                   id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                            <label class="custom-control-label" for="remember">
+                                                من را به خاطر بسپار
+                                            </label>
+                                        </div>
                                     </div>
-
-
                                 </div>
+
                             </div>
+
+
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">

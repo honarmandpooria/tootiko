@@ -4,7 +4,7 @@
     <div class="container">
 
 
-        <div class="card">
+        <div dir="rtl" class="card">
             <div class="card-header bg-success text-white">
                 <div class="card-title">کد سفارش :۱۲۴</div>
             </div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer bg-white">
 
                 <div class="row">
                     <div class="col-sm-4">
