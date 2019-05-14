@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>هنرمند ترنس</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -56,7 +56,7 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-left text-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-left text-right overflow-hidden" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('home') }}">
                                 پنل کاربری
                             </a>
