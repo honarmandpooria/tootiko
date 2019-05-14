@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-success shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                هنرمند ترنس
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -58,7 +58,7 @@
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    خروج
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
