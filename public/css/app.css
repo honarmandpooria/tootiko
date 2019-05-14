@@ -10667,3 +10667,13 @@ a.text-dark:focus {
   src: url("/fonts/IRANSansWeb.woff");
 }
 
+.custom-control-label::after {
+  left: unset;
+  right: -1.5rem;
+}
+
+.custom-control-label::before {
+  left: unset;
+  right: -1.5rem;
+}
+

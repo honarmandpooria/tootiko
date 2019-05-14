@@ -3,3 +3,18 @@
     src: url('/fonts/IRANSansWeb.woff');
 }
 
+
+
+
+// bootstrap rtl overrides
+.custom-control-label::after {
+    left:unset;
+    right: -1.5rem;
+
+}
+
+
+.custom-control-label::before {
+    left: unset;
+    right: -1.5rem;
+}
