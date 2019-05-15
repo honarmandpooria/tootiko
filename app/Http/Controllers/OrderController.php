@@ -16,9 +16,8 @@ class OrderController extends Controller
     public function index()
     {
 
-        $orders = Auth::user()->orders()->get();
+        $orders = Auth::user()->orders()->latest()->get();
         return view('app.customer.orders')->with('orders', $orders);
-
 
     }
 
@@ -43,8 +42,15 @@ class OrderController extends Controller
 
 
         $request['status_id'] = 1;
-        $request['user_id']= Auth::user()->id;
-        Order::create($request->all());
+
+//        save file
+//        $file = $request->file('translation_file');
+        $path = $request->file('translation_file')->store('translate-files');
+
+
+
+
+        Auth::user()->orders()->create($request->all());
         return redirect('/customer-orders');
 
 

@@ -10,7 +10,7 @@
 
 
                 <div class="bg-white shadow rounded p-4">
-                    <form method="POST" action="{{route('customer-orders.store')}}">
+                    <form method="POST" enctype="multipart/form-data" action="{{route('customer-orders.store')}}">
                         @csrf
 
                         {{--language and category--}}
@@ -29,7 +29,6 @@
                                 </select>
 
                             </div>
-
 
 
                             <div class="form-group col-md-6 ">

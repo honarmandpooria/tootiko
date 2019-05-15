@@ -5,7 +5,7 @@
 
         @foreach($orders as $order)
 
-            <div dir="rtl" class="card mb-2">
+            <div dir="rtl" class="card mb-4 border border-primary">
                 <div class="card-header bg-primary text-white">
                     <div class="card-title">کد سفارش :۱۲۴</div>
                 </div>
