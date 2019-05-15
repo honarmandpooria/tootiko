@@ -17,8 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('status_id');
-            $table->unsignedInteger('start_language_id');
-            $table->unsignedInteger('target_language_id');
+            $table->unsignedInteger('operation_id');
             $table->unsignedInteger('category_id');
             $table->string('translation_file');
             $table->string('quality_id');

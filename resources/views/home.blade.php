@@ -22,10 +22,10 @@
 
                             <div class="form-group col-md-6">
                                 {{--                {!! Form::select('start_lang_id', [1=>'انگلیسی',2=>'فارسی'], 'انگلیسی', ['class'=>'custom-select']) !!}--}}
-                                <select name="start_language_id" class="custom-select">
+                                <select name="operation_id" class="custom-select">
                                     {{--                                    <option value="">زبان مبدا</option>--}}
-                                    <option value="2">انگلیسی به فارسی</option>
-                                    <option value="1">فارسی به انگلیسی</option>
+                                    <option value="1">انگلیسی به فارسی</option>
+                                    <option value="2">فارسی به انگلیسی</option>
                                 </select>
 
                             </div>

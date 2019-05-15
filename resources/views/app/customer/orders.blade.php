@@ -12,12 +12,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 my-2">
-                            زبان مبدا:
-                            {{$order->startLanguage->name}}
-                        </div>
-                        <div class="col-md-6 my-2">
-                            زبان مقصد:
-                            {{$order->targetLanguage->name}}
+                            زبان:
+                            {{$order->operation->name}}
                         </div>
                         <div class="col-md-6 my-2">
                             زمینه کلی:

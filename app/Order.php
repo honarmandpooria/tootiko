@@ -24,4 +24,9 @@ class Order extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function operation()
+    {
+        return $this->belongsTo(Operation::class);
+    }
+
 }
