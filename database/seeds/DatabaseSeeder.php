@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
 
 
 //         removing the current seeds
-        DB::table('languages')->truncate();
+        DB::table('operations')->truncate();
         DB::table('statuses')->truncate();
         DB::table('roles')->truncate();
         DB::table('users')->truncate();
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(QualitiesTableSeeder::class);
-        $this->call(LanguagesTableSeeder::class);
+        $this->call(OperationsTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
 
 

@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('quality_id');
             $table->unsignedInteger('is_secret');
             $table->unsignedInteger('remaining_days');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

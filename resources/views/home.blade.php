@@ -10,7 +10,7 @@
 
 
                 <div class="bg-white shadow rounded p-4">
-                    <form method="POST" action="/">
+                    <form method="POST" action="{{route('customer-orders.store')}}">
                         @csrf
 
                         {{--language and category--}}
@@ -22,29 +22,20 @@
 
                             <div class="form-group col-md-6">
                                 {{--                {!! Form::select('start_lang_id', [1=>'انگلیسی',2=>'فارسی'], 'انگلیسی', ['class'=>'custom-select']) !!}--}}
-                                <select name="start_lang_id" class="custom-select">
-                                    <option value="">زبان مبدا</option>
-                                    <option value="1">انگلیسی</option>
-                                    <option value="2">فارسی</option>
+                                <select name="start_language_id" class="custom-select">
+                                    {{--                                    <option value="">زبان مبدا</option>--}}
+                                    <option value="2">انگلیسی به فارسی</option>
+                                    <option value="1">فارسی به انگلیسی</option>
                                 </select>
 
                             </div>
 
-
-                            <div class="form-group col-md-6 ">
-                                {{--                {!! Form::select('target_lang_id', [2=>'فارسی',1=>'انگلیسی'], 'فارسی', ['class'=>'custom-select']) !!}--}}
-                                <select name="start_lang_id" class="custom-select">
-                                    <option value="">زبان مقصد</option>
-                                    <option value="1">انگلیسی</option>
-                                    <option value="2">فارسی</option>
-                                </select>
-                            </div>
 
 
                             <div class="form-group col-md-6 ">
                                 {{--            {!! Form::select('category_id', [1=>'عمومی',2=>'مهندسی',3=>'پزشکی',4=>'انسانی'], null, ['class'=>'custom-select w-50']) !!}--}}
                                 <select name="category_id" class="custom-select">
-                                    <option value="">زمینه کلی</option>
+                                    {{--                                    <option value="">زمینه کلی</option>--}}
                                     <option value="1">عمومی</option>
                                     <option value="2">مهندسی</option>
                                     <option value="3">پزشکی</option>
@@ -68,9 +59,10 @@
 
                         <div dir="rtl" class="custom-file">
                             {{--            {!! Form::file('filepath', ['class'=>'custom-file-input','style'=>'cursor:pointer']) !!}--}}
-                            <input name="translate-file" type="file" class="custom-file-input" style="cursor:pointer">
+                            <input id="file-upload" name="translation_file" type="file" class="custom-file-input"
+                                   style="cursor:pointer">
                             {{--            {!! Form::label('filepath','لطفا فایل ترجمه را انتخاب کنید', ['class'=>'custom-file-label']) !!}--}}
-                            <label for="translate-file" class="custom-file-label text-left">فایل ترجمه</label>
+                            <label for="file-upload" class="custom-file-label text-left">فایل ترجمه</label>
                         </div>
 
 
@@ -94,7 +86,7 @@
                             <div class="custom-control form-control-lg custom-radio custom-control-inline">
                                 {{--            {!! Form::radio('quality_id', 2, true,['id'=>'radio2','class'=>'custom-control-input']) !!}--}}
                                 <input type="radio" name="quality_id" value="2" id="radio2"
-                                       class="custom-control-input">
+                                       class="custom-control-input" checked>
                                 {{--            {!! Form::label('radio2','کیفیت خوب', ['class'=>'custom-control-label']) !!}--}}
                                 <label for="radio2" class="custom-control-label">کیفیت خوب</label>
                             </div>
@@ -121,7 +113,8 @@
                         <div dir="rtl" class="text-center">
                             <div class="custom-control custom-radio form-control-lg custom-control-inline">
                                 {{--            {!! Form::radio('is_secret', 0, true,['id'=>'radio4','class'=>'custom-control-input']) !!}--}}
-                                <input type="radio" name="is_secret" value="0" id="radio4" class="custom-control-input">
+                                <input type="radio" name="is_secret" value="0" id="radio4" class="custom-control-input"
+                                       checked>
                                 {{--            {!! Form::label('radio4','آزاد', ['class'=>'custom-control-label']) !!}--}}
                                 <label for="radio4" class="custom-control-label">آزاد</label>
                             </div>
@@ -147,7 +140,7 @@
                         <div dir="rtl" class="clearfix">
                             <div class="form-group">
                                 {{--                {!! Form::number('deadline', 7 ,['class'=>'form-control w-25 float-right']) !!}--}}
-                                <input type="number" name="deadline" value="7" class="form-control float-right"
+                                <input type="number" name="remaining_days" value="7" class="form-control float-right"
                                        style="max-width: 100px">
                             </div>
                             <span class="float-right mr-3 py-1">روز</span>

@@ -19,6 +19,18 @@ Route::get('/my-orders', function () {
     return view('app.my-orders');
 })->name('my-orders');
 
+
+
+// App Routes
+
+    //Customer Routes
+
+Route::resource('/customer-orders', 'OrderController');
+Route::resource('/admin-orders', 'AdminOrderController');
+
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

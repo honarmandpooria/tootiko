@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class AdminOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +13,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-
-        $orders = Auth::user()->orders()->get();
-        return view('app.customer.orders')->with('orders', $orders);
-
-
+        //
     }
 
     /**
@@ -29,34 +23,27 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('home');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
-
-        $request['status_id'] = 1;
-        $request['user_id']= Auth::user()->id;
-        Order::create($request->all());
-        return redirect('/customer-orders');
-
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Order $order
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
         //
     }
@@ -64,10 +51,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Order $order
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
         //
     }
@@ -75,11 +62,11 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Order $order
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -87,10 +74,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Order $order
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
         //
     }

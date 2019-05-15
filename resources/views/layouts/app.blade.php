@@ -41,8 +41,8 @@
                                 سفارش</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('my-orders')}}"
-                               class="nav-link {{Request::is('my-orders') ? 'active' : ''}}">سفارش
+                            <a href="{{route('customer-orders.index')}}"
+                               class="nav-link {{Request::is('customer-orders.index') ? 'active' : ''}}">سفارش
                                 های من</a>
                         </li>
                     @endguest
