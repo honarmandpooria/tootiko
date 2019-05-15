@@ -5,13 +5,32 @@
 
         @foreach($orders as $order)
 
-            <div dir="rtl" class="card mb-4 border border-primary">
-                <div class="card-header bg-primary text-white">
-                    <div class="card-title">کد سفارش :۱۲۴</div>
+            <div class="card mb-4 border border-primary">
+                <div class="card-header text-white bg-primary">
+                    <div class="card-title">
+
+                        <div dir="rtl" class="row">
+                            <div class="col-md-6 order-md-2">
+                                <i class="far fa-2x fa-clipboard ml-2"></i>
+                                شماره سفارش:
+                                {{$order->id}}
+                            </div>
+                            <div class="col-md-6 order-md-2">
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div dir="rtl" class="row">
                         <div class="col-md-6 my-2">
+                            <i class="fas fa-2x fa-bell text-warning mx-2"></i>
+                            وضعیت سفارش:
+                            {{$order->status->name}}
+                        </div>
+                        <div class="col-md-6 my-2">
+                            <i class="fas fa-2x fa-language mx-2"></i>
                             زبان:
                             {{$order->operation->name}}
                         </div>
@@ -20,7 +39,10 @@
                             {{$order->category->name}}
                         </div>
                         <div class="col-md-6 my-2">
-                            فایل مبدا: <a href="" class="btn btn-primary">دانلود</a>
+                            فایل مبدا: <a download="فایل مبدا {{$order->id}}"
+                                          href="{{Storage::url($order->translation_file)}}"
+                                          class="btn  btn-outline-primary"><i
+                                    class="fas fa-download mx-2"></i>دانلود</a>
                         </div>
                         <div class="col-md-6 my-2">
                             کیفیت ترجمه:
@@ -40,13 +62,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-white">
+                <div dir="rtl" class="card-footer bg-white">
 
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a href="" class="btn btn-outline-success">دانلود فایل ترجمه شده</a>
+                    @if($order->status_id == 1)
+
+                        <p class="card-text">سفارش شما در حال محاسبه تعداد کلمات و یافتن مترجم مناسب است.</p>
+
+                    @elseif ($order->status_id ==2)
+
+                        <div class="row">
+                            <div class="col-md-6 order-md-2">
+
+
+                            </div>
+                            <div class="col-md-6 order-md-2">
+                                مبلغ پرداختی:
+
+                                ۱۰۰/۰۰۰ تومان
+
+
+                                <a download="#"
+                                   href="#"
+                                   class="btn p-3  btn-outline-success"><i class="fas fa-money-check mx-2"></i>پرداخت
+                                    مبلغ</a>
+
+                            </div>
                         </div>
-                    </div>
+
+
+
+                    @endif
 
                 </div>
             </div>
