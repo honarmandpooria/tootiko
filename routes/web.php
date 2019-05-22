@@ -20,17 +20,21 @@ Route::get('/my-orders', function () {
 })->name('my-orders');
 
 
-
 // App Routes
 
-    //Customer Routes
+//Customer Routes
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::resource('/customer-orders', 'OrderController');
 Route::resource('/admin-orders', 'AdminOrderController');
 
 
 
+//Admin Routes
+Route::get('/admin-home','HomeController@admin')->middleware('admin');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
