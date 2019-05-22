@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::latest()->get();
-        return view('app.admin.orders')->with('orders',$orders);
+        return view('app.admin.order.index')->with('orders', $orders);
     }
 
     /**
@@ -59,7 +59,11 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $order = Order::findOrFail($id);
+        return view('app.admin.order.edit')->with('order', $order);
+
+
     }
 
     /**
@@ -71,7 +75,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $order = Order::findOrFail($id);
+        $order->update($request->all());
+        return redirect()->back();
+
+
     }
 
     /**

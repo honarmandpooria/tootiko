@@ -16,7 +16,7 @@ class StatusesTableSeeder extends Seeder
             'name'=>'در انتظار مترجم'
         ]);
         DB::table('statuses')->insert([
-            'name'=>'در انتظار پرداخت مشتری'
+            'name'=>'در انتظار پرداخت'
         ]);
         DB::table('statuses')->insert([
             'name'=>'در حال ترجمه'

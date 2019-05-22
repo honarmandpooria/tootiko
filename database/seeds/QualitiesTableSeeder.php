@@ -13,13 +13,13 @@ class QualitiesTableSeeder extends Seeder
     {
 
         DB::table('qualities')->insert([
-            'name' => 'طلایی'
+            'name' => 'عالی'
         ]);
         DB::table('qualities')->insert([
-            'name' => 'نقره ای'
+            'name' => 'خوب'
         ]);
         DB::table('qualities')->insert([
-            'name' => 'عادی'
+            'name' => 'معمولی'
         ]);
 
 

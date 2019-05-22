@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
 
         $orders = Auth::user()->orders()->latest()->get();
-        return view('app.customer.orders')->with('orders', $orders);
+        return view('app.customer.order.index')->with('orders', $orders);
 
     }
 

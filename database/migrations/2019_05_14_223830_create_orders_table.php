@@ -17,9 +17,11 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('status_id');
+            $table->unsignedInteger('words')->nullable();
             $table->unsignedInteger('operation_id');
             $table->unsignedInteger('category_id');
             $table->string('translation_file');
+            $table->string('translated_file')->nullable();
             $table->string('quality_id');
             $table->unsignedInteger('is_secret');
             $table->unsignedInteger('remaining_days');

@@ -65,35 +65,34 @@
                 </div>
                 <div dir="rtl" class="card-footer bg-white">
 
-                    @if($order->status_id == 1)
+                    <div class="row">
+                        @if($order->status_id == 1)
 
-                        <p class="card-text">سفارش شما در حال محاسبه تعداد کلمات و یافتن مترجم مناسب است.</p>
-
-                    @elseif ($order->status_id ==2)
-
-                        <div class="row">
                             <div class="col-md-6 order-md-2">
 
+                                <p class="card-text">منتظر شمارش کلمات</p>
 
                             </div>
+
+                        @elseif ($order->status_id ==2)
+
+
                             <div class="col-md-6 order-md-2">
                                 مبلغ پرداختی:
 
                                 ۱۰۰/۰۰۰ تومان
 
-
-                                <a download="#"
-                                   href="#"
-                                   class="btn p-3  btn-outline-success"><i class="fas fa-money-check mx-2"></i>پرداخت
-                                    مبلغ</a>
-
                             </div>
+
+
+
+
+                        @endif
+
+                        <div class="col-md-6 order-md-1">
+                            <a href="{{route('admin-orders.edit',$order->id)}}" class="btn btn-primary rounded">تغییر وضعیت</a>
                         </div>
-
-
-
-                    @endif
-
+                    </div>
                 </div>
             </div>
 
