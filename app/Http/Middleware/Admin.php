@@ -22,7 +22,7 @@ class Admin
 
         } else {
 
-            return view('welcome');
+            return redirect('/');
 
         }
 

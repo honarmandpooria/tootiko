@@ -33,8 +33,13 @@ Route::resource('/customer-orders', 'OrderController');
 Route::resource('/admin-orders', 'AdminOrderController');
 
 
-
 //Admin Routes
-Route::get('/admin-home','HomeController@admin')->middleware('admin');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/admin-home', 'HomeController@admin')->name('admin-home');
+    Route::resource('/admin-orders', 'Admin\OrderController');
+
+});
 
 
