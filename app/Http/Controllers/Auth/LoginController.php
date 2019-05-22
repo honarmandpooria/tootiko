@@ -45,7 +45,7 @@ class LoginController extends Controller
 
         if (Auth::user()->role->id == 1 && Auth::check() && Auth::user()->role->name == 'boss') {
 
-            return view('app.admin.home');
+            return redirect('/admin-home');
 
         } elseif (Auth::user()->role->id == 2) {
 
