@@ -1,7 +1,7 @@
 <nav dir="rtl" class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
     <div class="container">
         <a class="navbar-brand ml-auto" href="{{ url('/') }}">
-            هنرمند ترنس
+            طوطیکو
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"

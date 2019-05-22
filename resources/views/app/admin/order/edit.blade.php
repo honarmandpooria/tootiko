@@ -100,7 +100,7 @@
         </div>
 
 
-        <div class="bg-white shadow p-4">
+        <div class="bg-white rounded shadow p-4">
             <h3 class="text-muted">تغییرات</h3>
             <hr class="my-5 border-primary">
 
