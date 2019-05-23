@@ -77,7 +77,9 @@
                             </div>
                             <div class="col-md-6 order-md-2">
                                 مبلغ پرداختی:
+                                <span class="persian-price">
                                 {{$order->words * ($order->status_id ==1 ? '20' : ($order->status_id ==2 ? '25' : '30'))}}
+                                </span>
                                 تومان
 
 
@@ -110,4 +112,29 @@
 
         @endforeach
     </div>
+@endsection
+
+
+
+
+
+@section('scripts')
+
+
+    <script>
+
+        var priceTags = $('.persian-price');
+
+
+        [].slice.call(priceTags).forEach(function (priceTags) {
+            priceText = priceTags.innerHTML;
+            priceNum = parseInt(priceText);
+            priceLocale = priceNum.toLocaleString('ar-EG');
+            priceTags.innerHTML = priceLocale;
+        });
+
+
+    </script>
+
+
 @endsection
