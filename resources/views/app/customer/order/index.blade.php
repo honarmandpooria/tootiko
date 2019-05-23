@@ -77,14 +77,26 @@
                             </div>
                             <div class="col-md-6 order-md-2">
                                 مبلغ پرداختی:
-
-                                ۱۰۰/۰۰۰ تومان
+                                {{$order->words * ($order->status_id ==1 ? '20' : ($order->status_id ==2 ? '25' : '30'))}}
+                                تومان
 
 
                                 <a download="#"
                                    href="#"
-                                   class="btn p-3  btn-outline-success"><i class="fas fa-money-check mx-2"></i>پرداخت
-                                    مبلغ</a>
+                                   class="btn p-3  btn-outline-success"
+                                   onclick="event.preventDefault();
+                                       document.getElementById('payment-form{{$order->id}}').submit();">
+                                    <i class="fas fa-money-check mx-2"></i>
+                                    پرداخت
+                                    مبلغ
+                                </a>
+
+
+                                <form id="payment-form{{$order->id}}" method="post" action="{{route('payment')}}">
+                                    @csrf
+                                    <input name="order" type="hidden" value="{{$order->id}}">
+
+                                </form>
 
                             </div>
                         </div>

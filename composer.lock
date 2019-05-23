@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c00fd05a77b62f0ab97c4aa31f1bc611",
+    "content-hash": "5069919b4a5a09e0b7389ded36f37a4d",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -213,6 +213,56 @@
                 "schedule"
             ],
             "time": "2019-03-31T00:38:28+00:00"
+        },
+        {
+            "name": "econea/nusoap",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/econea/nusoap.git",
+                "reference": "d58fb0c48732c90bc8d0fa5e193e9fff28b06842"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/econea/nusoap/zipball/d58fb0c48732c90bc8d0fa5e193e9fff28b06842",
+                "reference": "d58fb0c48732c90bc8d0fa5e193e9fff28b06842",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "~1.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-0.9.x": "0.9.7.x-dev",
+                    "dev-develop": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Milan Felix Šulc",
+                    "homepage": "https://f3l1x.io"
+                }
+            ],
+            "description": "NuSOAP fixed for PHP 5.4 - 7.1",
+            "homepage": "https://github.com/econea/nusoap",
+            "keywords": [
+                "nusoap",
+                "soap"
+            ],
+            "time": "2019-02-21T05:43:46+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -5038,7 +5088,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "econea/nusoap": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
