@@ -4,8 +4,11 @@
 /storage/*.key
 /vendor
 .env
+.env2
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+tootiko.zip
+public/public.zip
