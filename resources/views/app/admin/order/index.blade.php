@@ -53,7 +53,7 @@
                             حق دسترسی:
                             {{$order->is_secret == 0 ? 'آزاد' : 'محرمانه'}}
                         </div>
-                        <div class="col-md-6 my-2">
+                        <div class="col-md-6 my-2 translate">
                             زمان ثبت سفارش:
                             {{$order->created_at->diffForHumans()}}
                         </div>
@@ -107,27 +107,3 @@
 @endsection
 
 
-
-
-
-
-@section('scripts')
-
-
-    <script>
-
-        var priceTags = $('.persian-num');
-
-
-        [].slice.call(priceTags).forEach(function (priceTags) {
-            priceText = priceTags.innerHTML;
-            priceNum = parseInt(priceText);
-            priceLocale = priceNum.toLocaleString('ar-EG');
-            priceTags.innerHTML = priceLocale;
-        });
-
-
-    </script>
-
-
-@endsection
