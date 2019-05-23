@@ -45,8 +45,10 @@ class OrderController extends Controller
         $input['status_id'] = 1;
 
 //        save file
+
         $path = $request->file('translation_file')->store('public/translate-files');
         $input['translation_file'] = $path;
+
 
         Auth::user()->orders()->create($input);
         return redirect('/customer-orders');

@@ -76,12 +76,17 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $input = $request->all();
 
-        // save file
-        $path = $request->file('translated_file')->store('public/translated-files');
-        $input['translated_file'] = $path;
 
+        if ($request->file) {
+// save file
+            $path = $request->file('translated_file')->store('public/translated-files');
+            $input['translated_file'] = $path;
+        } else {
+
+        }
 
         Order::findOrFail($id)->update($input);
         return redirect()->back();
