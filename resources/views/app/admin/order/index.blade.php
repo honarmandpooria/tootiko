@@ -55,11 +55,14 @@
                         </div>
                         <div class="col-md-6 my-2">
                             زمان ثبت سفارش:
-                            {{$order->created_at}}
+                            {{$order->created_at->diffForHumans()}}
                         </div>
                         <div class="col-md-6 my-2">
                             مهلت:
+                            <span class="persian-num">
                             {{$order->remaining_days}}
+                            </span>
+                            روز
                         </div>
                     </div>
                 </div>
@@ -79,8 +82,10 @@
 
                             <div class="col-md-6 order-md-2">
                                 مبلغ پرداختی:
-
-                                ۱۰۰/۰۰۰ تومان
+                                <span class="persian-num">
+                                {{$order->words * ($order->status_id ==1 ? '20' : ($order->status_id ==2 ? '25' : '30'))}}
+                                </span>
+                                تومان
 
                             </div>
 
@@ -90,7 +95,8 @@
                         @endif
 
                         <div class="col-md-6 order-md-1">
-                            <a href="{{route('admin-orders.edit',$order->id)}}" class="btn btn-primary rounded">تغییر وضعیت</a>
+                            <a href="{{route('admin-orders.edit',$order->id)}}" class="btn btn-primary rounded">تغییر
+                                وضعیت</a>
                         </div>
                     </div>
                 </div>
@@ -98,4 +104,30 @@
 
         @endforeach
     </div>
+@endsection
+
+
+
+
+
+
+@section('scripts')
+
+
+    <script>
+
+        var priceTags = $('.persian-num');
+
+
+        [].slice.call(priceTags).forEach(function (priceTags) {
+            priceText = priceTags.innerHTML;
+            priceNum = parseInt(priceText);
+            priceLocale = priceNum.toLocaleString('ar-EG');
+            priceTags.innerHTML = priceLocale;
+        });
+
+
+    </script>
+
+
 @endsection

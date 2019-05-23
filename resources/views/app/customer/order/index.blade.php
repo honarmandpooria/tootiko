@@ -54,11 +54,14 @@
                         </div>
                         <div class="col-md-6 my-2">
                             زمان ثبت سفارش:
-                            {{$order->created_at}}
+                            {{$order->created_at->diffForHumans()}}
                         </div>
                         <div class="col-md-6 my-2">
                             مهلت:
+                            <span class="persian-num">
                             {{$order->remaining_days}}
+                            </span>
+                            روز
                         </div>
                     </div>
                 </div>
@@ -77,7 +80,7 @@
                             </div>
                             <div class="col-md-6 order-md-2">
                                 مبلغ پرداختی:
-                                <span class="persian-price">
+                                <span class="persian-num">
                                 {{$order->words * ($order->status_id ==1 ? '20' : ($order->status_id ==2 ? '25' : '30'))}}
                                 </span>
                                 تومان
@@ -123,7 +126,7 @@
 
     <script>
 
-        var priceTags = $('.persian-price');
+        var priceTags = $('.persian-num');
 
 
         [].slice.call(priceTags).forEach(function (priceTags) {
