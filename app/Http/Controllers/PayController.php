@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use App\lib\zarinpal;
 use App\Order;
+use App\Transaction;
 use Illuminate\Http\Request;
 use nusoap_client;
 
 class PayController extends Controller
 {
 
-    public function order(Request $request)
+    public function order(Request $request, $id)
     {
 
 
         $MerchantID = '416137cc-2f9e-11e9-9245-005056a205be';
         $Authority = $request->get('Authority');
 
+        $transaction = Transaction::findOrFail($id);
+
         //ما در اینجا مبلغ مورد نظر را بصورت دستی نوشتیم اما در پروژه های واقعی باید از دیتابیس بخوانیم
-        $Amount = 125000;
+        $Amount = $transaction->price;
         if ($request->get('Status') == 'OK') {
 //            $client = new nusoap_client('https://www.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
             $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
@@ -50,11 +53,14 @@ class PayController extends Controller
     public function addOrder(Request $request)
     {
 
-        $order = Order::findOrFail($request->order);
-        $price = $order->words * ($order->status_id == 1 ? '20' : ($order->status_id == 2 ? '25' : '30'));
 
+//        get transaction
+        $transaction = Transaction::findOrFail($request->transaction_id);
+
+        $CallbackURL = url('/order/' . $transaction->id); // Required
+//        send user to zarinpal
         $order = new zarinpal();
-        $res = $order->pay($price, $request->email, "0912111111");
+        $res = $order->pay($transaction->price, $transaction->order->user->email, "0912111111", $CallbackURL);
 //        return redirect('https://www.zarinpal.com/pg/StartPay/' . $res);
         return redirect('https://sandbox.zarinpal.com/pg/StartPay/' . $res);
 

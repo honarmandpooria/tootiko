@@ -83,7 +83,7 @@
                             <div class="col-md-6 order-md-2">
                                 مبلغ پرداختی:
                                 <span class="persian-num">
-                                {{$order->words * ($order->status_id ==1 ? '20' : ($order->status_id ==2 ? '25' : '30'))}}
+                                {{$order->transaction->price}}
                                 </span>
                                 تومان
 
@@ -97,11 +97,14 @@
                                 </button>
 
 
-                                <form id="payment-form{{$order->id}}" method="post" action="{{route('payment')}}">
+                                <form id="payment-form{{$order->id}}" method="post"
+                                      action="{{route('payment')}}">
                                     @csrf
-                                    <input name="order" type="hidden" value="{{$order->id}}">
+
+                                    <input type="hidden" name="transaction_id" value="{{$order->transaction->id}}">
 
                                 </form>
+
 
                             </div>
                         </div>

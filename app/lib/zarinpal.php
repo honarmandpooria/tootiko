@@ -16,10 +16,10 @@ class zarinpal
         $this->MerchantID = "416137cc-2f9e-11e9-9245-005056a205be";
     }
 
-    public function pay($Amount, $Email, $Mobile)
+    public function pay($Amount, $Email, $Mobile,$CallbackURL)
     {
         $Description = 'سفارش ترجمه';  // Required
-        $CallbackURL = url('/order'); // Required
+
 
 
 //        $client = new nusoap_client('https://www.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');

@@ -45,7 +45,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 // payment Routes
-Route::get('order', 'PayController@order');
+Route::get('order/{id}', 'PayController@order');
 Route::post('payment', 'PayController@addOrder')->name('payment');
 Route::get('paid-success', 'PayController@paid')->name('paid-success');
 
