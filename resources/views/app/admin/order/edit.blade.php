@@ -158,6 +158,7 @@
 
 
                     <p>ایجاد صورت حساب با توجه به تعداد کلمات و کیفیت درخواستی</p>
+                    <input name="order_id" type="hidden" value="{{$order->id}}">
                     <button class="btn btn-success my-3" type="submit">ایجاد</button>
                 </form>
             </div>
