@@ -135,13 +135,32 @@
                         <div class="form-group">
 
                             <label class="col-form-label" for="words">تعداد کلمات</label>
-                            <input id="words" class="form-control" type="number" name="words" value="{{old('words',$order->words)}}">
+                            <input id="words" class="form-control" type="number" name="words"
+                                   value="{{old('words',$order->words)}}">
 
                         </div>
                     </div>
                 </div>
                 <button class="btn btn-primary my-3" type="submit">ثبت تغییرات</button>
             </form>
+        </div>
+
+
+        <div class="card my-3">
+            <div class="card-header bg-success text-white">
+                <h4>ایجاد صورت حساب</h4>
+            </div>
+            <div class="card-body">
+
+                <form method="post" action="{{route('payment',$order->id)}}" enctype="multipart/form-data">
+
+                    @csrf
+
+
+                    <p>ایجاد صورت حساب با توجه به تعداد کلمات و کیفیت درخواستی</p>
+                    <button class="btn btn-success my-3" type="submit">ایجاد</button>
+                </form>
+            </div>
         </div>
 
 
