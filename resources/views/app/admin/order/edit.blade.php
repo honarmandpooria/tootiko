@@ -75,14 +75,15 @@
 
                     @elseif ($order->status_id ==2)
 
-
                         <div class="col-md-6 order-md-2">
                             مبلغ پرداختی:
-
-                            ۱۰۰/۰۰۰ تومان
-
+                            <span class="persian-num">
+                                {{$order->transaction->price}}
+                                </span>
+                            تومان
 
                         </div>
+
 
 
 
@@ -92,7 +93,9 @@
                     <div class="col-md-6 order-md-1">
 
                         تعداد کلمات:
+                        <span class="persian-num">
                         {{$order->words}}
+                        </span>
 
                     </div>
                 </div>
@@ -152,7 +155,7 @@
             </div>
             <div class="card-body">
 
-                <form method="post" action="{{route('payment',$order->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('transactions.store',$order->id)}}" enctype="multipart/form-data">
 
                     @csrf
 

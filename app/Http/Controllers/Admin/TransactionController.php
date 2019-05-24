@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Order;
 use App\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TransactionController extends Controller
 {
@@ -36,20 +37,26 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-//
-//        $order = Order::findOrFail($request->order_id);
-//
-//        //calculate price
-//        $price = $order *
-//
-//
-//        $transaction = [];
-//        $transaction['']
-//
-//
-//        $order->transaction()->create();
-//        return view('app.admin.order.index');
 
+
+        $order = Order::findOrFail($request->order_id);
+
+
+        if ($order->words) {
+
+            //calculate price
+            $price = $order->words * ($order->quality->price_per_word);
+
+
+            $transaction = [];
+            $transaction['price'] = $price;
+
+
+            $order->transaction()->create($transaction);
+            return redirect('/admin-orders');
+        } else {
+            return 'تعداد کلمات در سفارش هنوز مشخص نشده اند';
+        }
 
     }
 

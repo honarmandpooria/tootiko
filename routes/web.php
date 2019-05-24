@@ -39,6 +39,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/admin-home', 'HomeController@admin')->name('admin-home');
     Route::resource('/admin-orders', 'Admin\OrderController');
+    Route::resource('/transactions', 'Admin\TransactionController');
 
 });
 

@@ -88,15 +88,13 @@
                                 تومان
 
 
-                                <a download="#"
-                                   href="#"
-                                   class="btn p-3  btn-outline-success"
-                                   onclick="event.preventDefault();
-                                       document.getElementById('payment-form{{$order->id}}').submit();">
+                                <button class="btn p-3  btn-outline-success"
+                                        onclick="event.preventDefault();
+                                            document.getElementById('payment-form{{$order->id}}').submit();">
                                     <i class="fas fa-money-check mx-2"></i>
                                     پرداخت
                                     مبلغ
-                                </a>
+                                </button>
 
 
                                 <form id="payment-form{{$order->id}}" method="post" action="{{route('payment')}}">

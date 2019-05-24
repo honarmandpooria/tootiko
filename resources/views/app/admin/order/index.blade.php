@@ -83,7 +83,7 @@
                             <div class="col-md-6 order-md-2">
                                 مبلغ پرداختی:
                                 <span class="persian-num">
-                                {{$order->words * ($order->status_id ==1 ? '20' : ($order->status_id ==2 ? '25' : '30'))}}
+                                {{$order->transaction->price}}
                                 </span>
                                 تومان
 
