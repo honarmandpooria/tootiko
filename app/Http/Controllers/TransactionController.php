@@ -36,19 +36,19 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-
-        $order = Order::findOrFail($request->order_id);
-
-        //calculate price
-        $price = $order *
-
-
-        $transaction = [];
-        $transaction['']
-
-
-        $order->transaction()->create();
-        return view('app.admin.order.index');
+//
+//        $order = Order::findOrFail($request->order_id);
+//
+//        //calculate price
+//        $price = $order *
+//
+//
+//        $transaction = [];
+//        $transaction['']
+//
+//
+//        $order->transaction()->create();
+//        return view('app.admin.order.index');
 
 
     }
