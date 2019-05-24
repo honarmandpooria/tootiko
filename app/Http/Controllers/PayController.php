@@ -14,9 +14,8 @@ class PayController extends Controller
     {
 
 
-
         $MerchantID = '416137cc-2f9e-11e9-9245-005056a205be';
-        $Authority =$request->get('Authority') ;
+        $Authority = $request->get('Authority');
 
         //ما در اینجا مبلغ مورد نظر را بصورت دستی نوشتیم اما در پروژه های واقعی باید از دیتابیس بخوانیم
         $Amount = 125000;
@@ -29,24 +28,21 @@ class PayController extends Controller
             $result = $client->call('PaymentVerification', [
                 [
                     //این مقادیر را به سایت زرین پال برای دریافت تاییدیه نهایی ارسال می کنیم
-                    'MerchantID'     => $MerchantID,
-                    'Authority'      => $Authority,
-                    'Amount'         => $Amount,
+                    'MerchantID' => $MerchantID,
+                    'Authority' => $Authority,
+                    'Amount' => $Amount,
                 ],
             ]);
 
             if ($result['Status'] == 100) {
-                return 'پرداخت با موفقیت انجام شد.';
+                return redirect('/paid-success');
 
             } else {
                 return 'خطا در انجام عملیات';
             }
-        }
-        else
-        {
+        } else {
             return 'خطا در انجام عملیات';
         }
-
 
 
     }
@@ -63,6 +59,12 @@ class PayController extends Controller
         return redirect('https://sandbox.zarinpal.com/pg/StartPay/' . $res);
 
 
+    }
+
+
+    public function paid()
+    {
+        return view('app.customer.order.paid-success');
     }
 
 
