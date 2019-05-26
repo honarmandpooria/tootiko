@@ -1,26 +1,35 @@
-<nav dir="rtl" class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
+
+
+<nav dir="rtl" class="navbar navbar-expand navbar-dark bg-primary shadow-sm">
     <div class="container">
-        <a class="navbar-brand ml-auto" href="{{ url('/') }}">
+        <a class="navbar-brand ml-auto d-none d-md-block" href="{{ url('/') }}">
             طوطیکو
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        {{--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"--}}
+        {{--                aria-controls="navbarSupportedContent" aria-expanded="false"--}}
+        {{--                aria-label="{{ __('Toggle navigation') }}">--}}
+        {{--            <span class="navbar-toggler-icon"></span>--}}
+        {{--        </button>--}}
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class=" navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav m-auto">
 
                 @guest
                 @else
                     <li class="nav-item">
-                        <a href="{{route('admin-home')}}" class="nav-link {{Request::is('admin-home') ? 'active' : ''}}">داشبورد</a>
+                        <a href="{{route('admin-home')}}"
+                           class="nav-link {{Request::is('admin-home') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-tachometer-alt"></i>
+                            </div>
+                            <span class="d-none d-md-block">داشبورد</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('admin-orders.index')}}" class="nav-link {{Request::is('admin-orders') ? 'active' : ''}}">سفارش
-                            ها</a>
+                        <a href="{{route('admin-orders.index')}}"
+                           class="nav-link {{Request::is('admin-orders') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-folder-open"></i></div>
+                            <span class="d-none d-md-block">سفارشها</span>
+                        </a>
                     </li>
 
                 @endguest
@@ -42,7 +51,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            <i class="fas fa-user"></i><span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-left text-right" style="overflow: hidden"

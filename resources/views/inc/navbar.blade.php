@@ -1,6 +1,6 @@
-<nav dir="rtl" class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
+<nav dir="rtl" class="navbar navbar-expand navbar-dark bg-primary shadow-sm">
     <div class="container">
-        <a class="navbar-brand ml-auto" href="{{ url('/') }}">
+        <a class="navbar-brand ml-auto d-none d-md-block" href="{{ url('/') }}">
             طوطیکو
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -11,22 +11,37 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav m-auto">
+            <ul class="navbar-nav m-auto p-0">
 
                 @guest
                 @else
+
+
                     <li class="nav-item">
-                        <a href="{{route('home')}}" class="nav-link {{Request::is('home') ? 'active' : ''}}">داشبورد</a>
+                        <a href="{{route('home')}}"
+                           class="nav-link {{Request::is('home') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-tachometer-alt"></i>
+                            </div>
+                            <span class="d-none d-md-block">داشبورد</span></a>
                     </li>
+
+
                     <li class="nav-item">
-                        <a href="{{route('customer-orders.create')}}" class="nav-link {{Request::is('customer-orders/create') ? 'active' : ''}}">ثبت
-                            سفارش</a>
+                        <a href="{{route('customer-orders.create')}}"
+                           class="nav-link {{Request::is('customer-orders/create') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-plus"></i>
+                            </div>
+                            <span class="d-none d-md-block">ثبت سفارش</span></a>
                     </li>
+
                     <li class="nav-item">
                         <a href="{{route('customer-orders.index')}}"
-                           class="nav-link {{Request::is('customer-orders') ? 'active' : ''}}">سفارش
-                            های من</a>
+                           class="nav-link {{Request::is('customer-orders') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-open"></i>
+                            </div>
+                            <span class="d-none d-md-block">سفارش های من</span></a>
                     </li>
+
                 @endguest
             </ul>
 
@@ -46,7 +61,12 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+
+
+                            <div class="d-flex justify-content-center"><i class="fas fa-user"></i>
+                            </div>
+                            <span class="d-none d-md-block"> {{ Auth::user()->name }}</span></a>
+                            <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-left text-right" style="overflow: hidden"

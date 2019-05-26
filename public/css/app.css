@@ -16519,3 +16519,7 @@ body {
   border-bottom-right-radius: 0;
 }
 
+.border-3 {
+  border-bottom: 3px solid #fff !important;
+}
+
