@@ -14,13 +14,24 @@ class LoginTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->postJson('/login',[
-            'email'=> $user->email,
-            'password'=> 'wrong_password'
+        $this->postJson('/login', [
+            'email' => $user->email,
+            'password' => 'wrong_password'
         ])->assertStatus(422)
-        ->assertJson([
-            'message' => 'The given data was invalid.'
-        ]);
+            ->assertJson([
+                'message' => 'The given data was invalid.'
+            ]);
+    }
+
+    public function test_correct_redirect_after_user_logs_in()
+    {
+        $user = factory(User::class)->create();
+
+        $this->postJson('/login', [
+            'email' => $user->email,
+            'password' => 'password'
+        ])->assertRedirect('home');
+
     }
 
 }
