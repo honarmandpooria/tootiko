@@ -28,7 +28,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('home');
+        return view('app.customer.order.create');
     }
 
     /**

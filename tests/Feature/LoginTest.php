@@ -34,4 +34,20 @@ class LoginTest extends TestCase
 
     }
 
+    public function test_customer_see_correct_page_after_login()
+    {
+        $user = factory(User::class)->create();
+
+        $this->postJson('/login', [
+            'email' => $user->email,
+            'password' => 'password'
+        ])->assertRedirect('home');
+
+
+        $this->actingAs($user);
+        $response = $this->get('/home');
+        $response->assertSeeTextInOrder(['ثبت سفارش ترجمه']);
+
+    }
+
 }

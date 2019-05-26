@@ -16,7 +16,10 @@
                 @guest
                 @else
                     <li class="nav-item">
-                        <a href="{{route('home')}}" class="nav-link {{Request::is('home') ? 'active' : ''}}">ثبت
+                        <a href="{{route('home')}}" class="nav-link {{Request::is('home') ? 'active' : ''}}">داشبورد</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('customer-orders.create')}}" class="nav-link {{Request::is('customer-orders/create') ? 'active' : ''}}">ثبت
                             سفارش</a>
                     </li>
                     <li class="nav-item">

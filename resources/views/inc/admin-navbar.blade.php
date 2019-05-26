@@ -16,7 +16,10 @@
                 @guest
                 @else
                     <li class="nav-item">
-                        <a href="{{route('admin-orders.index')}}" class="nav-link {{Request::is('home') ? 'active' : ''}}">سفارش
+                        <a href="{{route('admin-home')}}" class="nav-link {{Request::is('admin-home') ? 'active' : ''}}">داشبورد</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin-orders.index')}}" class="nav-link {{Request::is('admin-orders') ? 'active' : ''}}">سفارش
                             ها</a>
                     </li>
 
