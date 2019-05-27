@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -37,7 +39,7 @@ class OrderController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
 
 
@@ -45,9 +47,12 @@ class OrderController extends Controller
         $input['status_id'] = 1;
 
 //        save file
-
-        $path = $request->file('translation_file')->store('public/translate-files');
+        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
+//        $path = $request->file('translation_file')->store('public/translation-files');
         $input['translation_file'] = $path;
+
+
+
 
 
         Auth::user()->orders()->create($input);
