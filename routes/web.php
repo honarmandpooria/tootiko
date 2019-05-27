@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/prices', function () {
+    return view('prices');
+})->name('prices');
 
 Route::get('/my-orders', function () {
     return view('app.my-orders');

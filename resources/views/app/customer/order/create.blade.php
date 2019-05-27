@@ -63,7 +63,8 @@
                             {{--            {!! Form::label('filepath','لطفا فایل ترجمه را انتخاب کنید', ['class'=>'custom-file-label']) !!}--}}
                             <label for="file-upload" class="custom-file-label text-left">فایل ترجمه</label>
                         </div>
-
+                        <p dir="rtl" class="blockquote-footer mt-2">در صورتی که <span class="text-danger"> بیش از یک فایل</span>
+                            برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
 
                         <hr class=" border-primary my-5">
 
@@ -99,6 +100,8 @@
                             </div>
 
                         </div>
+
+
                         <hr class=" border-primary my-5">
 
 
@@ -127,6 +130,8 @@
 
                         </div>
 
+                        <p dir="rtl" class="blockquote-footer mt-2 mb-0">این بخش مربوط به کسانی است که میخواهند متن ترجمه آن ها فاش نشود. </p>
+                        <p dir="rtl" class="blockquote-footer">این نوع ترجمه فقط توسط <span class="text-success">مترجمین مورد اعتماد طوطیکو</span> انجام خواهد شد.</p>
                         <hr class=" border-primary my-5">
 
 
@@ -178,4 +183,21 @@
         </div>
 
     </div>
+
+
+@endsection
+
+
+
+@section('scripts')
+
+    <script>
+        $('#file-upload').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html('<span class="text-success d-xm-block d-sm-none">انتخاب شد!</span><span class="text-success d-none d-sm-block">فایل شما با موفقیت انتخاب شد!</span>');
+        })
+    </script>
+
 @endsection

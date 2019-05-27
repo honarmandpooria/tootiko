@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.2",
+        "blueimp-file-upload": "^9.31.0",
         "node-notifier": "^5.4.0"
     }
 }

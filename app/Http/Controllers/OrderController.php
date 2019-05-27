@@ -39,7 +39,7 @@ class OrderController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CustomerRequest $request)
+    public function store(Request $request)
     {
 
 
@@ -47,11 +47,15 @@ class OrderController extends Controller
         $input['status_id'] = 1;
 
 //        save file
-        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
+//        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
+        $file = $request->file('translation_file');
+
+
+        $ext =$file->getClientOriginalExtension();
+
+        $path = $file->storeAs('public/translation-files',time().'.'.$ext);
+
         $input['translation_file'] = $path;
-
-
-
 
 
         Auth::user()->orders()->create($input);
