@@ -38,7 +38,14 @@ class PayController extends Controller
             ]);
 
             if ($result['Status'] == 100) {
+
+                $order = $transaction->order;
+
+                $order->update(['status_id' => 3]);
+
+
                 return redirect('/paid-success');
+
 
             } else {
                 return 'خطا در انجام عملیات';

@@ -110,6 +110,10 @@
                         </div>
 
 
+                    @elseif($order->status_id == 4)
+
+                        <a download="فایل ترجمه شده" href="{{Storage::url($order->translated_file)}}"
+                           class="btn btn-success">دانلود فایل ترجمه شده</a>
 
                     @endif
 

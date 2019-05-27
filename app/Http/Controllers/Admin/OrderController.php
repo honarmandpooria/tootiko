@@ -6,6 +6,7 @@ use App\Http\Requests\AdminOrderRequest;
 use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -82,10 +83,14 @@ class OrderController extends Controller
         $input = $request->all();
 
 
-        if ($request->file) {
+        if ($request->translated_file) {
             // save file
-            $path = $request->file('translated_file')->store('public/translated-files');
+            $path = Storage::putFile('public/translated-files', $request->file('translated_file'));
             $input['translated_file'] = $path;
+            $input['status_id'] = 4;
+
+
+
         } else {
 
         }
