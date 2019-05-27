@@ -32,6 +32,14 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{route('transactions.index')}}"
+                           class="nav-link {{Request::is('transactions') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-folder-open"></i></div>
+                            <span class="d-none d-md-block">فاکتورها</span>
+                        </a>
+                    </li>
+
                 @endguest
             </ul>
 
@@ -59,6 +67,10 @@
                             <a class="dropdown-item"
                                href="{{Auth::user()->role_id==1 ? route('admin-home') : route('home')}}">
                                 پنل کاربری
+                            </a>
+                            <a class="dropdown-item"
+                               href="{{Auth::user()->role_id==1 ? route('home') : route('home')}}">
+                                پنل مشتری
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

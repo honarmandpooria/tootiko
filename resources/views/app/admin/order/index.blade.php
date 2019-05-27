@@ -10,14 +10,20 @@
                     <div class="card-title">
 
                         <div dir="rtl" class="row">
-                            <div class="col-md-6 order-md-2">
+                            <div class="col-md-4 order-md-2">
                                 <i class="far fa-2x fa-clipboard ml-2"></i>
                                 شماره سفارش:
                                 {{$order->id}}
                             </div>
-                            <div class="col-md-6 order-md-2">
+                            <div class="col-md-4 order-md-2">
                                 کاربر:
                                 {{$order->user->name}}
+
+
+                            </div>
+                            <div class="col-md-4 order-md-2">
+
+
                             </div>
                         </div>
 
@@ -73,7 +79,7 @@
 
                             <div class="col-md-6 order-md-2">
 
-                                <p class="card-text">منتظر شمارش کلمات</p>
+                                <a class="card-text">منتظر شمارش کلمات</a>
 
                             </div>
 
@@ -95,8 +101,7 @@
                         @endif
 
                         <div class="col-md-6 order-md-1">
-                            <a href="{{route('admin-orders.edit',$order->id)}}" class="btn btn-primary rounded">تغییر
-                                وضعیت</a>
+                            <a href="{{route('admin-orders.edit',$order->id)}}" class="btn btn-warning"><i class="fas fa-edit mx-2"></i>آماده سازی سفارش</a>
                         </div>
                     </div>
                 </div>

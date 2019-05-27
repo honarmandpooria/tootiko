@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\AdminOrderRequest;
 use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,7 +49,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -61,6 +62,8 @@ class OrderController extends Controller
     {
 
         $order = Order::findOrFail($id);
+
+
         return view('app.admin.order.edit')->with('order', $order);
 
     }
@@ -72,7 +75,7 @@ class OrderController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminOrderRequest $request, $id)
     {
 
 
@@ -87,7 +90,12 @@ class OrderController extends Controller
 
         }
 
-        Order::findOrFail($id)->update($input);
+
+        $order = Order::findOrFail($id);
+
+        $order->update($input);
+
+
         return redirect()->back();
 
 

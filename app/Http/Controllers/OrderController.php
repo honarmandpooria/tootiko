@@ -48,7 +48,6 @@ class OrderController extends Controller
 
 //        save file
         $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
-//        $path = $request->file('translation_file')->store('public/translation-files');
         $input['translation_file'] = $path;
 
 

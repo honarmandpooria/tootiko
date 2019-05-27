@@ -16,7 +16,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+
+        $transactions = Transaction::latest()->get();
+        return view('app.admin.transaction.index')->with('transactions',$transactions);
     }
 
     /**
@@ -53,7 +55,10 @@ class TransactionController extends Controller
 
 
             $order->transaction()->create($transaction);
-            return redirect('/admin-orders');
+
+            $order->update(['status_id'=>2]);
+
+            return redirect('/transactions');
         } else {
             return 'تعداد کلمات در سفارش هنوز مشخص نشده اند';
         }
