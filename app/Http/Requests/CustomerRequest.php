@@ -24,7 +24,7 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'translation_file' => 'required|mimes:docx,doc,pdf,zip,rar,jpg,png,jpeg'
         ];
     }
 }
