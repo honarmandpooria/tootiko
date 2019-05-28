@@ -15,8 +15,25 @@
 
                     <form method="post" action="{{route('transactions.store')}}" enctype="multipart/form-data">
                         @csrf
-                        <p>ایجاد صورت حساب با توجه به تعداد کلمات و کیفیت درخواستی</p>
+                        <p>ایجاد صورت حساب با توجه به تعداد کلمات و کیفیت درخواستی
+
+                            <span class="persian-num">
+                            {{$order->words * ($order->quality->price_factor) * ($order->operation->price_factor)}}
+                            </span>
+                            تومان شده است.
+
+                        </p>
                         <input name="order_id" type="hidden" value="{{$order->id}}">
+
+                        <div class="form-group">
+                            <label for="custom_price">تغییر قیمت انتخابی</label>
+                            <input style="width: 200px;" id="custom_price" name="price" type="number"
+                                   class="form-control"
+                                   value="{{$order->words * ($order->quality->price_factor) * ($order->operation->price_factor)}}">
+
+
+                        </div>
+
                         <button class="btn btn-success my-3" type="submit">ایجاد صورت حساب</button>
                     </form>
                 </div>
@@ -44,44 +61,10 @@
                 </div>
             </div>
             <div class="card-body">
-                <div dir="rtl" class="row">
-                    <div class="col-md-6 my-2">
-                        <i class="fas fa-2x fa-bell text-warning mx-2"></i>
-                        وضعیت سفارش:
-                        {{$order->status->name}}
-                    </div>
-                    <div class="col-md-6 my-2">
-                        <i class="fas fa-2x fa-language mx-2"></i>
-                        زبان:
-                        {{$order->operation->name}}
-                    </div>
-                    <div class="col-md-6 my-2">
-                        زمینه کلی:
-                        {{$order->category->name}}
-                    </div>
-                    <div class="col-md-6 my-2">
-                        فایل مبدا: <a download="فایل مبدا {{$order->id}}"
-                                      href="{{Storage::url($order->translation_file)}}"
-                                      class="btn  btn-outline-warning"><i
-                                class="fas fa-download mx-2"></i>دانلود</a>
-                    </div>
-                    <div class="col-md-6 my-2">
-                        کیفیت ترجمه:
-                        {{$order->quality->name}}
-                    </div>
-                    <div class="col-md-6 my-2">
-                        حق دسترسی:
-                        {{$order->is_secret == 0 ? 'آزاد' : 'محرمانه'}}
-                    </div>
-                    <div class="col-md-6 my-2">
-                        زمان ثبت سفارش:
-                        {{$order->created_at}}
-                    </div>
-                    <div class="col-md-6 my-2">
-                        مهلت:
-                        {{$order->remaining_days}}
-                    </div>
-                </div>
+
+                @include('inc.order-body')
+
+
             </div>
             <div dir="rtl" class="card-footer bg-white">
 
@@ -170,8 +153,6 @@
                 <button class="btn btn-warning my-3" type="submit">ثبت تغییرات</button>
             </form>
         </div>
-
-
 
 
     </div>

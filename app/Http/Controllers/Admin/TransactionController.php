@@ -18,7 +18,7 @@ class TransactionController extends Controller
     {
 
         $transactions = Transaction::latest()->get();
-        return view('app.admin.transaction.index')->with('transactions',$transactions);
+        return view('app.admin.transaction.index')->with('transactions', $transactions);
     }
 
     /**
@@ -44,24 +44,21 @@ class TransactionController extends Controller
         $order = Order::findOrFail($request->order_id);
 
 
-        if ($order->words) {
 
-            //calculate price
-            $price = $order->words * ($order->quality->price_factor) * ($order->operation->price_factor);
-
-
-            $transaction = [];
-            $transaction['price'] = $price;
+        
+        //calculate price
+        $price = $request->price;
 
 
-            $order->transaction()->create($transaction);
+        $transaction = [];
+        $transaction['price'] = $price;
 
-            $order->update(['status_id'=>2]);
 
-            return redirect('/transactions');
-        } else {
-            return 'تعداد کلمات در سفارش هنوز مشخص نشده اند';
-        }
+        $order->transaction()->create($transaction);
+
+        $order->update(['status_id' => 2]);
+
+        return redirect('/transactions');
 
     }
 

@@ -5,8 +5,8 @@
 
         @foreach($orders as $order)
 
-            <div class="card mb-4 border border-primary">
-                <div class="card-header text-white bg-primary">
+            <div class="card mb-4 border">
+                <div class="card-header bg-primary text-white">
                     <div class="card-title">
 
                         <div dir="rtl" class="row">
@@ -23,51 +23,11 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div dir="rtl" class="row">
-                        <div class="col-md-6 my-2">
-                            <i class="fas fa-2x fa-bell text-warning mx-2"></i>
-                            وضعیت سفارش:
-                            {{$order->status->name}}
-                        </div>
-                        <div class="col-md-6 my-2">
-                            <i class="fas fa-2x fa-language mx-2"></i>
-                            زبان:
-                            {{$order->operation->name}}
-                        </div>
-                        <div class="col-md-6 my-2">
-                            زمینه کلی:
-                            {{$order->category->name}}
-                        </div>
-                        <div class="col-md-6 my-2">
-                            فایل مبدا: <a download="فایل مبدا {{$order->id}}"
-                                          href="{{Storage::url($order->translation_file)}}"
-                                          class="btn  btn-outline-primary"><i
-                                    class="fas fa-download mx-2"></i>دانلود</a>
-                        </div>
-                        <div class="col-md-6 my-2">
-                            کیفیت ترجمه:
-                            {{$order->quality->name}}
-                        </div>
-                        <div class="col-md-6 my-2">
-                            حق دسترسی:
-                            {{$order->is_secret == 0 ? 'آزاد' : 'محرمانه'}}
-                        </div>
-                        <div class="col-md-6 my-2">
-                            زمان ثبت سفارش:
-                            <span class="translate">
-                            {{$order->created_at->diffForHumans()}}
-                            </span>
-                        </div>
-                        <div class="col-md-6 my-2">
-                            مهلت:
-                            <span class="persian-num">
-                            {{$order->remaining_days}}
-                            </span>
-                            روز
-                        </div>
-                    </div>
+
+                    @include('inc.order-body')
+
                 </div>
-                <div dir="rtl" class="card-footer bg-white">
+                <div class="card-footer bg-white">
 
                     @if($order->status_id == 1)
 
@@ -112,8 +72,20 @@
 
                     @elseif($order->status_id == 4)
 
-                        <a download="فایل ترجمه شده" href="{{Storage::url($order->translated_file)}}"
-                           class="btn btn-success">دانلود فایل ترجمه شده</a>
+
+                        <div class="row">
+                            <div class="col-md-6 order-md-2">
+
+                                <a download="فایل ترجمه شده" href="{{Storage::url($order->translated_file)}}"
+                                   class="btn btn-success">دانلود فایل ترجمه شده</a>
+
+
+                            </div>
+                            <div class="col-md-6 order-md-2">
+
+                            </div>
+                        </div>
+
 
                     @endif
 
