@@ -37,12 +37,13 @@
                         <button class="btn btn-success my-3" type="submit">ایجاد صورت حساب</button>
                     </form>
                 </div>
+
             </div>
 
 
 
         @endif
-        <div class="card mb-4 border border-warning">
+        <div class="card mb-4">
             <div class="card-header text-white bg-warning text-dark">
                 @include('inc.order.header')
             </div>
@@ -50,6 +51,14 @@
 
                 @include('inc.order.body')
 
+
+            </div>
+
+
+            <div class="card-footer">
+
+                توضیحات مشتری:
+                {{$order->description}}
 
             </div>
         </div>

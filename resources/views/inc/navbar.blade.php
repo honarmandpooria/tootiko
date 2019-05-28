@@ -61,14 +61,8 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-
-
-                            <div class="d-flex justify-content-center"><i class="fas fa-user"></i>
-                            </div>
-                            <span class="d-none d-md-block"> {{ Auth::user()->name }}</span></a>
-                            <span class="caret"></span>
+                            <i class="fas fa-user"></i><span class="caret"></span>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-left text-right" style="overflow: hidden"
                              aria-labelledby="navbarDropdown">
                             <a class="dropdown-item"

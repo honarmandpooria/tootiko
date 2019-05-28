@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,7 +29,9 @@ class HomeController extends Controller
 
 
     public function admin(){
-        return view('app.admin.home');
+
+        $orders = Order::all();
+        return view('app.admin.home')->with('orders',$orders);
     }
 
 
