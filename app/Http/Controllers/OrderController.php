@@ -53,7 +53,7 @@ class OrderController extends Controller
 
         $ext = $file->getClientOriginalExtension();
 
-        $path = $file->storeAs('public/translation-files', time() . '.' . $ext);
+        $path = $file->store('public/translation-files');
 
         $input['translation_file'] = $path;
 

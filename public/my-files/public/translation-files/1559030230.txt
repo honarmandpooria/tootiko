@@ -1,0 +1,7 @@
+check for currect index 2 directories.
+check for php version on host.
+delete cache.
+delete all files on laravel folder again and unzip again solved it.... wierd.
+again error after changing .env file but fixed after re-unzipping again. wierd ...
+not working after a few minutes...
+just not working because of time passing.
