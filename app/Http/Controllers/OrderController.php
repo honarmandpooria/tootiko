@@ -6,7 +6,9 @@ use App\Http\Requests\CustomerRequest;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -46,19 +48,20 @@ class OrderController extends Controller
         $input = $request->all();
         $input['status_id'] = 1;
 
+
+//        this will check the incoming file type based on its content!
+//        dd($request->file('translation_file')->getMimeType());
+
+
 //        save file
 //        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
-        $file = $request->file('translation_file');
 
+        $ext= $request->file('translation_file')->getClientOriginalExtension();
+        $hash = Str::random(40);
+        $path = $request->file('translation_file')->storeAs('public/translation-files',$hash .'.'.$ext);
 
-        $ext = $file->getClientOriginalExtension();
-
-        $path = $file->store('public/translation-files');
-
+//        save file path in db
         $input['translation_file'] = $path;
-
-
-
 
 
         Auth::user()->orders()->create($input);
