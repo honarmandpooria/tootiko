@@ -1,6 +1,6 @@
 
 
-<nav dir="rtl" class="navbar navbar-expand navbar-dark bg-primary shadow-sm">
+<nav dir="rtl" class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand ml-auto d-none d-md-block" href="{{ url('/') }}">
             طوطیکو

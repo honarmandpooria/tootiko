@@ -16,7 +16,7 @@ class CreateQualitiesTable extends Migration
         Schema::create('qualities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedInteger('price_per_word');
+            $table->unsignedInteger('price_factor');
             $table->timestamps();
         });
     }

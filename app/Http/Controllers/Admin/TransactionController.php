@@ -47,7 +47,7 @@ class TransactionController extends Controller
         if ($order->words) {
 
             //calculate price
-            $price = $order->words * ($order->quality->price_per_word);
+            $price = $order->words * ($order->quality->price_factor) * ($order->operation->price_factor);
 
 
             $transaction = [];

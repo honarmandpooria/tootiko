@@ -39,6 +39,8 @@ class PayController extends Controller
 
             if ($result['Status'] == 100) {
 
+                $transaction -> update(['isPaid'=>1]);
+
                 $order = $transaction->order;
 
                 $order->update(['status_id' => 3]);

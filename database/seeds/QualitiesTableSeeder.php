@@ -14,15 +14,15 @@ class QualitiesTableSeeder extends Seeder
 
         DB::table('qualities')->insert([
             'name' => 'عالی',
-            'price_per_word' => '30'
+            'price_factor' => '30'
         ]);
         DB::table('qualities')->insert([
             'name' => 'خوب',
-            'price_per_word' => '25'
+            'price_factor' => '25'
         ]);
         DB::table('qualities')->insert([
             'name' => 'معمولی',
-            'price_per_word' => '20'
+            'price_factor' => '20'
         ]);
 
 

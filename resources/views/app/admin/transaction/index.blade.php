@@ -30,7 +30,20 @@
                     <div dir="rtl" class="row">
                         <div class="col-md-4 order-md-2">
                             وضعیت فاکتور:
-                            {{$transaction->idPaid == 0 ? 'پرداخت نشده' : 'پرداخت شده'}}
+
+                            @if($transaction->isPaid == 0)
+
+                                <span class="text-danger">پرداخت نشده</span> <i class="fas fa-times text-danger mx-2"></i>
+
+                                @else
+
+                                <span class="text-success">پرداخت شده</span><i class="fas fa-check text-success mx-2"></i>
+
+                            @endif
+
+
+
+
                         </div>
                     </div>
                 </div>
