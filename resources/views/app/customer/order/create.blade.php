@@ -36,7 +36,7 @@
                                 <select name="operation_id"
                                         class="custom-select {{$errors->has('operation_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
                                     <option value="">انتخاب زبان</option>
-                                    <option value="1" selected {{(old("operation_id") == 1 ? "selected":"")}}>انگلیسی به فارسی
+                                    <option value="1" {{(old("operation_id") == 1 ? "selected":"")}}>انگلیسی به فارسی
                                     </option>
                                     <option value="2" {{(old("operation_id") == 2 ? "selected":"")}}>فارسی به انگلیسی
                                     </option>
@@ -57,7 +57,7 @@
                                 <select name="category_id"
                                         class="custom-select {{$errors->has('category_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
                                     <option value="">انتخاب زمینه</option>
-                                    <option value="1" selected {{(old("category_id") == 1 ? "selected":"")}}>عمومی
+                                    <option value="1" {{(old("category_id") == 1 ? "selected":"")}}>عمومی
                                     </option>
                                     <option value="2" {{(old("category_id") == 2 ? "selected":"")}}>مهندسی</option>
                                     <option value="3" {{(old("category_id") == 3 ? "selected":"")}}>پزشکی</option>

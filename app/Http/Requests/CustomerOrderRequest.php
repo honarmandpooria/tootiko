@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CustomerRequest extends FormRequest
+class CustomerOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -60,6 +60,4 @@ class CustomerRequest extends FormRequest
             'remaining_days.required' => 'مهلت ترجمه نمیتواند خالی باشد.',
         ];
     }
-
-
 }
