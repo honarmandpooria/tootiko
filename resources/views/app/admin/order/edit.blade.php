@@ -44,65 +44,13 @@
         @endif
         <div class="card mb-4 border border-warning">
             <div class="card-header text-white bg-warning text-dark">
-                <div class="card-title">
-
-                    <div dir="rtl" class="row">
-                        <div class="col-md-6 order-md-2">
-                            <i class="far fa-2x fa-clipboard ml-2"></i>
-                            شماره سفارش:
-                            {{$order->id}}
-                        </div>
-                        <div class="col-md-6 order-md-2">
-                            کاربر:
-                            {{$order->user->name}}
-                        </div>
-                    </div>
-
-                </div>
+                @include('inc.order.header')
             </div>
             <div class="card-body">
 
-                @include('inc.order-body')
+                @include('inc.order.body')
 
 
-            </div>
-            <div dir="rtl" class="card-footer bg-white">
-
-                <div class="row">
-                    @if($order->status_id == 1)
-
-                        <div class="col-md-6 order-md-2">
-
-                            <p class="card-text">منتظر شمارش کلمات</p>
-
-                        </div>
-
-                    @elseif ($order->status_id ==2)
-
-                        <div class="col-md-6 order-md-2">
-                            مبلغ پرداختی:
-                            <span class="persian-num">
-                                {{$order->transaction->price}}
-                                </span>
-                            تومان
-
-                        </div>
-
-
-
-
-
-                    @endif
-
-                    <div class="col-md-6 order-md-1">
-
-                        تعداد کلمات:
-                        <span class="persian-num">
-                        {{$order->words}}
-                        </span>
-
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -139,15 +87,21 @@
 
                         </div>
                     </div>
-                    <div class="col-md-6 ">
 
-                        <p>انتخاب فایل نهایی ترجمه</p>
-                        <div class="custom-file form-group">
-                            <label class="custom-file-label text-left" for="file-upload">انتخاب فایل</label>
-                            <input id="file-upload" name="translated_file" class="custom-file-input" type="file">
+
+                    @if($order->status_id == 3 or $order->status_id == 4)
+
+                        <div class="col-md-6 ">
+
+                            <p>انتخاب فایل نهایی ترجمه</p>
+                            <div class="custom-file form-group">
+                                <label class="custom-file-label text-left" for="file-upload">انتخاب فایل</label>
+                                <input id="file-upload" name="translated_file" class="custom-file-input" type="file">
+                            </div>
+
                         </div>
 
-                    </div>
+                    @endif
 
                 </div>
                 <button class="btn btn-warning my-3" type="submit">ثبت تغییرات</button>

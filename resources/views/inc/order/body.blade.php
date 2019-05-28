@@ -26,25 +26,28 @@
         <hr>
     </div>
     <div class="col-md-4 col-sm-6 my-2">
-        {{--        <i class="fas fa-2x fa-language mx-2"></i>--}}
+        <i class="fas fa-language"></i>
         زبان:
         {{$order->operation->name}}
     </div>
     <div class="col-md-4 col-sm-6 my-2">
+        <i class="fas fa-clipboard-list"></i>
         زمینه کلی:
         {{$order->category->name}}
     </div>
     <div class="col-md-4 col-sm-6 my-2">
-        فایل مبدا: <a download="فایل مبدا {{$order->id}}"
-                      href="{{Storage::url($order->translation_file)}}"
-                      class="btn  btn-outline-primary"><i
-                class="fas fa-download mx-2"></i>دانلود</a>
+        <a download="فایل مبدا {{$order->id}}"
+           href="{{Storage::url($order->translation_file)}}"
+           class="btn  btn-outline-primary"><i
+                class="fas fa-download mx-2"></i>دانلود فایل مبدا</a>
     </div>
     <div class="col-md-4 col-sm-6 my-2">
+        <i class="fas fa-poll"></i>
         کیفیت ترجمه:
         {{$order->quality->name}}
     </div>
     <div class="col-md-4 col-sm-6 my-2">
+        <i class="fas fa-book-reader"></i>
         حق دسترسی:
         {{$order->is_secret == 0 ? 'آزاد' : 'محرمانه'}}
     </div>
@@ -61,16 +64,32 @@
 
     </div>
     <div class="col-md-4 col-sm-6 my-2">
+        <i class="fas fa-calendar-check"></i>
         زمان ثبت سفارش:
         <span class="translate">
                             {{$order->created_at->diffForHumans()}}
                             </span>
     </div>
     <div class="col-md-4 col-sm-6 my-2">
+        <i class="fas fa-hourglass-start"></i>
         مهلت:
         <span class="persian-num">
                             {{$order->remaining_days}}
                             </span>
         روز
+    </div>
+    <div class="col-md-4 col-sm-6 my-2">
+
+
+        @if($order->status_id == 4)
+
+
+            <a download="فایل ترجمه شده" href="{{Storage::url($order->translated_file)}}"
+               class="btn btn-success">
+                <i class="fas fa-download mx-2"></i>
+                دانلود فایل ترجمه شده</a>
+
+        @endif
+
     </div>
 </div>
