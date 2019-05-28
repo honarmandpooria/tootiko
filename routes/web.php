@@ -51,5 +51,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('order/{id}', 'PayController@order');
 Route::post('payment', 'PayController@addOrder')->name('payment');
 Route::get('paid-success', 'PayController@paid')->name('paid-success');
+Route::get('paid-failure', 'PayController@failed')->name('paid-failure');
 
 

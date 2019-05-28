@@ -55,7 +55,7 @@
             </div>
 
 
-            <div class="card-footer">
+            <div dir="rtl" class="card-footer">
 
                 توضیحات مشتری:
                 {{$order->description}}

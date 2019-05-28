@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
 
-            'name' => 'مترجم',
+            'name' => 'نیلوفر',
             'role_id' => 2,
             'email' => 'translator@tootiko.com',
             'email_verified_at' => now(),
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
 
-            'name' => 'مشتری',
+            'name' => 'مهسا',
             'role_id' => 3,
             'email' => 'tyrant.71p@gmail.com',
             'email_verified_at' => now(),

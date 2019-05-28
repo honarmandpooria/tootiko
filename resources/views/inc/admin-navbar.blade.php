@@ -35,7 +35,7 @@
                     <li class="nav-item">
                         <a href="{{route('transactions.index')}}"
                            class="nav-link {{Request::is('transactions') ? 'active border-3' : ''}}">
-                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-folder-open"></i></div>
+                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-clipboard-list"></i></div>
                             <span class="d-none d-md-block">فاکتورها</span>
                         </a>
                     </li>

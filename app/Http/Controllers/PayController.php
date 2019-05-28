@@ -39,7 +39,7 @@ class PayController extends Controller
 
             if ($result['Status'] == 100) {
 
-                $transaction -> update(['isPaid'=>1]);
+                $transaction->update(['isPaid' => 1]);
 
                 $order = $transaction->order;
 
@@ -50,10 +50,10 @@ class PayController extends Controller
 
 
             } else {
-                return 'خطا در انجام عملیات';
+                return redirect('/paid-failure');
             }
         } else {
-            return 'خطا در انجام عملیات';
+            return redirect('/paid-failure');
         }
 
 
@@ -80,6 +80,11 @@ class PayController extends Controller
     public function paid()
     {
         return view('app.customer.order.paid-success');
+    }
+
+    public function failed()
+    {
+        return view('app.customer.order.paid-failure');
     }
 
 
