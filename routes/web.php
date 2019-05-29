@@ -27,13 +27,25 @@ Route::get('/my-orders', function () {
 
 //Customer Routes
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['verify' => true]);
 
 
-Route::resource('/customer-orders', 'OrderController');
-Route::resource('/admin-orders', 'AdminOrderController');
+//users auth and verified
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('/customer-orders', 'OrderController');
+
+
+    // payment Routes
+    Route::get('order/{id}', 'PayController@order');
+    Route::post('payment', 'PayController@addOrder')->name('payment');
+    Route::get('paid-success', 'PayController@paid')->name('paid-success');
+    Route::get('paid-failure', 'PayController@failed')->name('paid-failure');
+
+
+});
 
 
 //Admin Routes
@@ -45,12 +57,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/transactions', 'Admin\TransactionController');
 
 });
-
-
-// payment Routes
-Route::get('order/{id}', 'PayController@order');
-Route::post('payment', 'PayController@addOrder')->name('payment');
-Route::get('paid-success', 'PayController@paid')->name('paid-success');
-Route::get('paid-failure', 'PayController@failed')->name('paid-failure');
 
 
