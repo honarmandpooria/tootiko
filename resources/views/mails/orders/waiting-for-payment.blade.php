@@ -4,7 +4,7 @@
 لطفا به لینک زیر مراجعه کنید و وضعیت سفارش خود را بررسی کنید.
 
 @component('mail::button', ['url' => route('customer-orders.show',$order->id)])
-لینک موردنظر
+لینک سفارش شما
 @endcomponent
 
 با تشکر,<br>

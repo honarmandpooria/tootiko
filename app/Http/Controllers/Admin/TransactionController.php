@@ -61,7 +61,7 @@ class TransactionController extends Controller
         $order->update(['status_id' => 2]);
 
 //        Send Email After status changed
-        Mail::to($request->user())->send(new OrderWaitingForPayment($order));
+        Mail::to($order->user->email)->send(new OrderWaitingForPayment($order));
 
 
         return redirect('/transactions');

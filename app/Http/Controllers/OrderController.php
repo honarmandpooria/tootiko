@@ -84,7 +84,11 @@ class OrderController extends Controller
     public function show($id)
     {
 
+
         $order = Order::findOrFail($id);
+
+        $this->authorize('view', $order);
+
         return view('app.customer.order.show')->with('order', $order);
 
     }

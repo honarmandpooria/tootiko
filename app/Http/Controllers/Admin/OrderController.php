@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AdminOrderRequest;
+use App\Mail\OrderTranslated;
 use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
@@ -65,7 +67,6 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
 
-
         return view('app.admin.order.edit')->with('order', $order);
 
     }
@@ -82,7 +83,7 @@ class OrderController extends Controller
 
 
         $input = $request->all();
-
+        $order = Order::findOrFail($id);
 
         if ($request->translated_file) {
             // save file
@@ -90,13 +91,13 @@ class OrderController extends Controller
             $input['translated_file'] = $path;
             $input['status_id'] = 4;
 
+            Mail::to($order->user->email)->send(new OrderTranslated($order));
+
 
         } else {
 
         }
 
-
-        $order = Order::findOrFail($id);
 
         $order->update($input);
 
