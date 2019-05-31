@@ -32,6 +32,7 @@ class OrderController extends Controller
      */
     public function create()
     {
+//        $this->authorize('create');
         return view('app.customer.order.create');
     }
 
@@ -59,8 +60,6 @@ class OrderController extends Controller
         $ext = $request->file('translation_file')->getClientOriginalExtension();
         $hash = Str::random(40);
         $path = $request->file('translation_file')->storeAs('public/translation-files', $hash . '.' . $ext);
-
-//        save file path in db
         $input['translation_file'] = $path;
 
 
