@@ -31,6 +31,6 @@ class OrderTranslated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.orders.translated');
+        return $this->markdown('mails.orders.translated')->subject('ترجمه شما آماده است!');
     }
 }
