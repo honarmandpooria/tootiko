@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderSubmited extends Mailable
+class OrderWaitingForPayment extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,12 +18,10 @@ class OrderSubmited extends Mailable
      * @return void
      */
 
-
     public $order;
-
     public function __construct(Order $order)
     {
-        $this->order = $order;
+        $this->order =$order;
     }
 
     /**
@@ -33,6 +31,6 @@ class OrderSubmited extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.orders.submited')->subject('سفارش شما ثبت شد!');
+        return $this->markdown('mails.orders.waiting-for-payment')->subject('مترجمی برای شما پیدا شد!');
     }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\OrderWaitingForPayment;
 use App\Order;
 use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
@@ -45,7 +47,7 @@ class TransactionController extends Controller
 
 
 
-        
+
         //calculate price
         $price = $request->price;
 
@@ -57,6 +59,10 @@ class TransactionController extends Controller
         $order->transaction()->create($transaction);
 
         $order->update(['status_id' => 2]);
+
+//        Send Email After status changed
+        Mail::to($request->user())->send(new OrderWaitingForPayment($order));
+
 
         return redirect('/transactions');
 

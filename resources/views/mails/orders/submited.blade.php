@@ -1,14 +1,12 @@
 @component('mail::message')
-    سفارش شما با موفقیت ثبت شد!
+پروژه ی شما ثبت شد.
 
+از لینک زیر می توانید وضعیت سفارش خود را بررسی کنید.
 
-    به زودی تعداد کلمات شمارش میشوند.
-    می توانید از طریق لینک زیر سفارش خود را پیگیری کنید، یا منتظر ایمیل باشید.
+@component('mail::button', ['url' => route('customer-orders.show',$order->id)])
+لینک بررسی وضعیت سفارش
+@endcomponent
 
-    @component('mail::button', ['url' => route('customer-orders.show',$order_id)])
-        صفحه نمایش سفارش
-    @endcomponent
-
-    با تشکر,<br>
-    {{ config('app.name') }}
+با تشکر,<br>
+{{ config('app.name') }}
 @endcomponent

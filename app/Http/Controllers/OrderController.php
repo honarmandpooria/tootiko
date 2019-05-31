@@ -67,8 +67,8 @@ class OrderController extends Controller
         $order = Auth::user()->orders()->create($input);
 
 //        send email to user and admin
-        $order_id = $order->id;
-        Mail::to($request->user())->send(new OrderSubmited($order_id));
+
+        Mail::to($request->user())->send(new OrderSubmited($order));
 
         return redirect('/customer-orders');
 

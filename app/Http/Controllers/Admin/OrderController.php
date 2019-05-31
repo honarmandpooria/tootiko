@@ -65,6 +65,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
 
+
         return view('app.admin.order.edit')->with('order', $order);
 
     }
