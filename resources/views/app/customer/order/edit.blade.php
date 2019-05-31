@@ -1,3 +1,4 @@
+{{--
 @extends('layouts.app')
 
 @section('content')
@@ -26,7 +27,9 @@
                   action="{{route('customer-orders.store')}}">
                 @csrf
 
-                {{--language and category--}}
+                --}}
+{{--language and category--}}{{--
+
 
                 <h4 dir="rtl" class="text-right mb-4 text-muted"><span
                         class="font-weight-bold text-primary">۱)</span>
@@ -81,7 +84,9 @@
                 <hr class=" border-primary my-5">
 
 
-                {{--upload file--}}
+                --}}
+{{--upload file--}}{{--
+
 
 
                 <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
@@ -114,7 +119,9 @@
 
                 <hr class=" border-primary my-5">
 
-                {{--quality radio--}}
+                --}}
+{{--quality radio--}}{{--
+
 
 
                 <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
@@ -145,7 +152,9 @@
                 <hr class=" border-primary my-5">
 
 
-                {{--Access Rights--}}
+                --}}
+{{--Access Rights--}}{{--
+
 
 
                 <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
@@ -176,7 +185,9 @@
                 <hr class=" border-primary my-5">
 
 
-                {{--Time--}}
+                --}}
+{{--Time--}}{{--
+
 
 
                 <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
@@ -209,7 +220,9 @@
                 <hr class="border-primary my-5">
 
 
-                {{--Description--}}
+                --}}
+{{--Description--}}{{--
+
 
 
                 <h4 dir="rtl" class=" text-right mb-4 text-muted mb-0"><span
@@ -239,3 +252,4 @@
 
     </div>
 @endsection
+--}}

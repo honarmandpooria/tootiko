@@ -1,4 +1,4 @@
-<nav dir="rtl" class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+<nav dir="rtl" class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="#">طوطیکو</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"

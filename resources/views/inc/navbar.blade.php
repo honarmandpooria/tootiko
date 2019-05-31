@@ -13,35 +13,40 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav m-auto p-0">
 
+
                 @guest
+
                 @else
 
-
-                    <li class="nav-item">
-                        <a href="{{route('home')}}"
-                           class="nav-link {{Request::is('home') ? 'active border-3' : ''}}">
-                            <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-tachometer-alt"></i>
-                            </div>
-                            <span class="d-none d-md-block">داشبورد</span></a>
-                    </li>
+                    @if(Auth::user()->email_verified_at)
 
 
-                    <li class="nav-item">
-                        <a href="{{route('customer-orders.create')}}"
-                           class="nav-link {{Request::is('customer-orders/create') ? 'active border-3' : ''}}">
-                            <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-plus"></i>
-                            </div>
-                            <span class="d-none d-md-block">ثبت سفارش</span></a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{route('home')}}"
+                               class="nav-link {{Request::is('home') ? 'active border-3' : ''}}">
+                                <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-tachometer-alt"></i>
+                                </div>
+                                <span class="d-none d-md-block">داشبورد</span></a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('customer-orders.index')}}"
-                           class="nav-link {{Request::is('customer-orders') ? 'active border-3' : ''}}">
-                            <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-open"></i>
-                            </div>
-                            <span class="d-none d-md-block">سفارش های من</span></a>
-                    </li>
 
+                        <li class="nav-item">
+                            <a href="{{route('customer-orders.create')}}"
+                               class="nav-link {{Request::is('customer-orders/create') ? 'active border-3' : ''}}">
+                                <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-plus"></i>
+                                </div>
+                                <span class="d-none d-md-block">ثبت سفارش</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('customer-orders.index')}}"
+                               class="nav-link {{Request::is('customer-orders') ? 'active border-3' : ''}}">
+                                <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-open"></i>
+                                </div>
+                                <span class="d-none d-md-block">سفارش های من</span></a>
+                        </li>
+
+                    @endif
                 @endguest
             </ul>
 

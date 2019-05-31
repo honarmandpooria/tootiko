@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerOrderRequest;
+use App\Mail\OrderSubmited;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -56,15 +56,20 @@ class OrderController extends Controller
 //        save file
 //        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
 
-        $ext= $request->file('translation_file')->getClientOriginalExtension();
+        $ext = $request->file('translation_file')->getClientOriginalExtension();
         $hash = Str::random(40);
-        $path = $request->file('translation_file')->storeAs('public/translation-files',$hash .'.'.$ext);
+        $path = $request->file('translation_file')->storeAs('public/translation-files', $hash . '.' . $ext);
 
 //        save file path in db
         $input['translation_file'] = $path;
 
 
-        Auth::user()->orders()->create($input);
+        $order = Auth::user()->orders()->create($input);
+
+//        send email to user and admin
+        $order_id = $order->id;
+        Mail::to($request->user())->send(new OrderSubmited($order_id));
+
         return redirect('/customer-orders');
 
 
@@ -76,9 +81,12 @@ class OrderController extends Controller
      * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+
+        $order = Order::findOrFail($id);
+        return view('app.customer.order.show')->with('order', $order);
+
     }
 
     /**
@@ -90,8 +98,8 @@ class OrderController extends Controller
     public function edit($id)
     {
 
-        $order = Order::findOrFail($id);
-        return view('app.customer.order.edit')->with('order',$order);
+//        $order = Order::findOrFail($id);
+//        return view('app.customer.order.edit')->with('order',$order);
 
 
     }

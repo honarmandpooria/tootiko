@@ -8,7 +8,33 @@
             <div class="card mb-4 border border-danger">
                 <div class="card-header bg-light">
 
-                    @include('inc.order.header')
+                    <div class="">
+
+                        <div dir="rtl" class="row">
+
+
+                            <div class="col-md-4">
+                                شماره سفارش:
+
+                                <span class="persian-num">
+            {{$order->id}}
+</span>
+                            </div>
+
+                            <div class="col-md-4">
+
+
+                            </div>
+
+                            <div class="col-md-4">
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
 
                 </div>
                 <div class="card-body">

@@ -6,8 +6,23 @@
         @foreach($orders as $order)
 
             <div class="card mb-4 shadow">
-                <div class="card-header {{$order->status_id == 1 ? 'bg-success text-white' : ($order->status_id ==2 ? 'bg-warning' : 'bg-light')}}">
-                    @include('inc.order.header')
+                <div
+                    class="card-header {{$order->status_id == 1 ? 'bg-success text-white' : ($order->status_id ==2 ? 'bg-warning' : 'bg-light')}}">
+                    <div class="">
+
+
+                        شماره سفارش:
+
+                        <span class="persian-num">
+            {{$order->id}}
+</span>
+
+                        <a class="float-left text-white" href="{{route('customer-orders.show',$order->id)}}"><i
+                                class="fas fa-eye"></i></a>
+
+
+                    </div>
+
                 </div>
                 <div class="card-body">
 
@@ -19,7 +34,6 @@
 
                     <div dir="rtl" class="row">
                         <div class="col-md-6 order-md-2">
-
 
 
                         </div>
@@ -38,7 +52,7 @@
                                         onclick="event.preventDefault();
                                             document.getElementById('payment-form{{$order->id}}').submit();">
                                     <i class="fas fa-money-check mx-2"></i>
-                                   پرداخت مبلغ و شروع فرایند ترجمه
+                                    پرداخت مبلغ و شروع فرایند ترجمه
                                 </button>
 
 
