@@ -18,10 +18,6 @@ Route::get('/prices', function () {
     return view('prices');
 })->name('prices');
 
-Route::get('/my-orders', function () {
-    return view('app.my-orders');
-})->name('my-orders');
-
 
 // App Routes
 
