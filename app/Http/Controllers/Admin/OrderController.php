@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -87,8 +88,16 @@ class OrderController extends Controller
 
         if ($request->translated_file) {
             // save file
-            $path = Storage::putFile('public/translated-files', $request->file('translated_file'));
+//            $path = Storage::putFile('public/translated-files', $request->file('translated_file'));
+//            $input['translated_file'] = $path;
+
+            $file = $request->file('translated_file');
+            $ext = $file->getClientOriginalExtension();
+            $hash = Str::random(40);
+            $path = $file->move('translated-files', $hash . '.' . $ext);
             $input['translated_file'] = $path;
+
+
             $input['status_id'] = 4;
 
             Mail::to($order->user->email)->send(new OrderTranslated($order));
