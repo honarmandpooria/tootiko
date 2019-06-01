@@ -84,7 +84,7 @@
         @if($order->status_id == 4)
 
 
-            <a download="فایل ترجمه شده" href="{{Storage::url($order->translated_file)}}"
+            <a download="فایل ترجمه شده" href="{{asset($order->translated_file)}}"
                class="btn btn-success">
                 <i class="fas fa-download mx-2"></i>
                 دانلود فایل ترجمه شده</a>
