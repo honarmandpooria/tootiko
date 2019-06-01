@@ -1,4 +1,4 @@
-<nav dir="rtl" class="navbar navbar-expand navbar-dark bg-primary shadow-sm">
+<nav dir="rtl" class="navbar navbar-expand navbar-dark bg-primary shadow-sm fixed-top">
     <div class="container">
         <a class="navbar-brand ml-auto d-none d-md-block" href="{{ url('/') }}">
             طوطیکو
@@ -10,6 +10,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav m-auto p-0">
 
@@ -49,17 +51,17 @@
                     @endif
                 @endguest
             </ul>
-
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">ورود</a>
+                        <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-key mx-2"></i>ورود</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">ثبت نام</a>
+                            <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-pencil-alt mx-2"></i>ثبت
+                                نام</a>
                         </li>
                     @endif
                 @else
@@ -88,6 +90,8 @@
                     </li>
                 @endguest
             </ul>
+
+
         </div>
     </div>
 </nav>
