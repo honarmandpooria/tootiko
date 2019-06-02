@@ -17,6 +17,9 @@ Route::get('/', function () {
 Route::get('/prices', function () {
     return view('prices');
 })->name('prices');
+Route::get('/file-upload-test', function () {
+    return view('file-upload-test');
+})->name('/file-upload-test');
 
 
 // App Routes
@@ -53,5 +56,22 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/transactions', 'Admin\TransactionController');
 
 });
+
+
+
+
+// test upload progress bar
+
+
+Route::post('/file-upload-test-post', 'FileUploadController@upload' )->name('upload-file');
+
+
+
+
+
+
+
+
+
 
 
