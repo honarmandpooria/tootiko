@@ -18,13 +18,13 @@ class FileUploadController extends Controller
         $hash = Str::random(40);
         $path = $file->move('test', $hash . '.' . $ext);
         $input['test_file'] = $path;
-/*
+
         File::create($input);
 
 
-        return redirect()->back()->with('Success', 'file Added');
-
-        return response('success');*/
+//        return redirect()->back()->with('Success', 'file Added');
+//
+//        return response('success');
 
 
     }
