@@ -43,9 +43,11 @@ class TranslateFileController extends Controller
         $ext = $file->getClientOriginalExtension();
         $hash = Str::random(40);
         $path = $file->move('t-files', $hash . '.' . $ext);
-        $input['translation_file'] = $path;
+        $input['translate_file'] = $path;
 
-        TranslateFile::create($input);
+        $file = TranslateFile::create($input);
+
+        session(['translate_file_id' => $file->id]);
 
 
     }

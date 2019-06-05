@@ -68,6 +68,14 @@ Route::post('/file-upload-test-post', 'FileUploadController@upload' )->name('upl
 
 
 
+// real upload progress bar
+
+
+Route::post('/translate-file', 'TranslateFileController@store' )->name('translate-file');
+
+
+
+
 
 
 

@@ -84,14 +84,14 @@
 
 @section('scripts')
 
-    <script>
-        $('#file-upload').on('change', function () {
-            //get the file name
-            var fileName = $(this).val();
-            //replace the "Choose a file" label
-            $(this).next('.custom-file-label').html('<span class="text-success d-xm-block d-sm-none">انتخاب شد!</span><span class="text-success d-none d-sm-block">فایل شما با موفقیت انتخاب شد!</span>');
-        })
-    </script>
+    {{--    <script>--}}
+    {{--        $('#file-upload').on('change', function () {--}}
+    {{--            //get the file name--}}
+    {{--            var fileName = $(this).val();--}}
+    {{--            //replace the "Choose a file" label--}}
+    {{--            $(this).next('.custom-file-label').html('<span class="text-success d-xm-block d-sm-none">انتخاب شد!</span><span class="text-success d-none d-sm-block">فایل شما با موفقیت انتخاب شد!</span>');--}}
+    {{--        })--}}
+    {{--    </script>--}}
 
 
     {{--    TEST UPLOAD PROGRESS BAR--}}
@@ -102,10 +102,7 @@
         $(document).ready(function () {
 
 
-            $('form').on('submit', function () {
-                event.preventDefault();
-                var formData = new FormData($(this)[0]);
-
+            $('#file-upload').on('change', function () {
 
                 $.ajaxSetup({
                     headers: {
@@ -114,7 +111,15 @@
                 });
 
 
+
+                var data = new FormData();
+                data.append('test_file', $('input[type=file]')[0].files[0]);
+                data.append('_token', "{{ csrf_token() }}");
+
                 $.ajax({
+
+
+
 
                     xhr: function () {
                         var xhr = new window.XMLHttpRequest();
@@ -125,24 +130,28 @@
 
                                 var percent = Math.round(e.loaded / e.total * 100);
 
-                                $('.progress').removeAttr('class','d-none');
-                                $('.progress-bar').attr('aria-valuenow', percent).css('width',percent + '%').text(percent + '%');
+                                $('.progress').removeAttr('class', 'd-none');
+                                $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
                             }
 
                         });
 
                         return xhr;
                     },
-                    type: 'POST',
+
+
                     url: '{{route('upload-file')}}',
-                    data: formData,
+                    type: 'POST',
+                    data: data,
+                    enctype: 'multipart/form-data',
                     contentType: false,
                     processData: false,
-
                     success: function () {
                         $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
-                    }
+                    },
+                    error: function () {
 
+                    }
 
                 })
 
@@ -153,7 +162,31 @@
 
     </script>
 
+{{--
 
+    <script>
+        $("#file-upload").change(function (e) {
+            var data = new FormData();
+            data.append('test_file', $('input[type=file]')[0].files[0]);
+            data.append('_token', "{{ csrf_token() }}");
+            $.ajax({
+                url: '{{route('upload-file')}}',
+                type: 'POST',
+                data: data,
+                enctype: 'multipart/form-data',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+
+                },
+                error: function () {
+
+                }
+            });
+        });
+    </script>
+
+--}}
 
 
 

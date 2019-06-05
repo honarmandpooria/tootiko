@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('words')->nullable();
             $table->unsignedInteger('operation_id');
             $table->unsignedInteger('category_id');
-            $table->string('translation_file');
+            $table->unsignedInteger('translate_file_id');
             $table->string('translated_file')->nullable();
             $table->string('quality_id');
             $table->unsignedInteger('is_secret');

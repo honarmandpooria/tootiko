@@ -24,7 +24,7 @@ class CustomerOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'translation_file' => 'required|file|mimes:pdf,doc,docx,zip,rar,jpg,png,jpeg,mp4,mp3,txt|max:40000',
+//            'translation_file' => 'required|mimes:pak,pdf,doc,docx,zip,rar,jpg,png,jpeg,mp4,mp3,txt|max:40000',
             'operation_id' => 'required|exists:operations,id',
             'category_id' => 'required|exists:categories,id',
             'quality_id' => 'required|exists:qualities,id',

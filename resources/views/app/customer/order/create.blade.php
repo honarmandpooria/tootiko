@@ -19,9 +19,18 @@
                             لطفا مواردی که با رنگ قرمز مشخص شده اند را تصحیح کنید.
                         </div>
 
+
+{{--                    USE THIS FOR DEBUG--}}
+                     {{--   <div dir="rtl" class="alert alert-danger" role="alert">
+                            @foreach($errors-> all() as $error)
+                                {{$error}}
+                                <br>
+                            @endforeach
+                        </div>
+--}}
                     @endif
 
-                    <form novalidate method="POST" enctype="multipart/form-data"
+                    <form novalidate method="POST"
                           action="{{route('customer-orders.store')}}">
                         @csrf
 
@@ -109,6 +118,14 @@
                         </div>
                         <p dir="rtl" class="blockquote-footer mt-2">در صورتی که <span class="text-danger"> بیش از یک فایل</span>
                             برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
+
+
+                        <div dir="rtl" class="progress d-none my-2">
+                            <div class="progress-bar " role="progressbar" style="" aria-valuenow="25"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+
+                        <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
 
 
                         <hr class=" border-primary my-5">
@@ -249,14 +266,114 @@
 
 @section('scripts')
 
+    {{--    <script>--}}
+    {{--        $('#file-upload').on('change', function () {--}}
+    {{--            //get the file name--}}
+    {{--            var fileName = $(this).val();--}}
+    {{--            //replace the "Choose a file" label--}}
+    {{--            $(this).next('.custom-file-label').html('<span class="text-success d-xm-block d-sm-none">انتخاب شد!</span><span class="text-success d-none d-sm-block">فایل شما با موفقیت انتخاب شد!</span>');--}}
+    {{--        })--}}
+    {{--    </script>--}}
+
+
+
+    {{--    Upload File With Ajax--}}
+
+
     <script>
-        $('#file-upload').on('change', function () {
-            //get the file name
-            var fileName = $(this).val();
-            //replace the "Choose a file" label
-            $(this).next('.custom-file-label').html('<span class="text-success d-xm-block d-sm-none">انتخاب شد!</span><span class="text-success d-none d-sm-block">فایل شما با موفقیت انتخاب شد!</span>');
+
+        $(document).ready(function () {
+
+
+            $('#file-upload').on('change', function () {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+
+                var data = new FormData();
+                data.append('translation_file', $('input[type=file]')[0].files[0]);
+                data.append('_token', "{{ csrf_token() }}");
+
+
+                $.ajax({
+
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+
+                        xhr.upload.addEventListener('progress', function (e) {
+
+                            if (e.lengthComputable) {
+
+                                var percent = Math.round(e.loaded / e.total * 100);
+
+                                $('.progress').removeAttr('class', 'd-none');
+                                $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
+                            }
+
+                        });
+
+                        return xhr;
+                    },
+                    url: '{{route('translate-file')}}',
+                    type: 'POST',
+                    data: data,
+                    enctype: 'multipart/form-data',
+                    contentType: false,
+                    processData: false,
+
+                    success: function () {
+                        $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
+                        $('#file-upload').hide();
+                        $('.custom-file-label').hide();
+                    }
+                    ,
+                    error: function () {
+
+                    }
+
+
+                })
+
+
+            })
+
         })
+
     </script>
+
+
+
+
+    {{--
+
+        <script>
+            $("#file-upload").change(function (e) {
+                var data = new FormData();
+                data.append('translation_file', $('input[type=file]')[0].files[0]);
+                data.append('_token', "{{ csrf_token() }}");
+                $.ajax({
+                    url: '{{route('translate-file')}}',
+                    type: 'POST',
+                    data: data,
+                    enctype: 'multipart/form-data',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+        </script>
+
+
+    --}}
 
 
 @endsection

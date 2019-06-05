@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-4 col-sm-6 my-2">
         <a download="فایل مبدا {{$order->id}}"
-           href="{{asset($order->translation_file)}}"
+           href="{{asset($order->translateFile->translate_file)}}"
            class="btn  btn-outline-primary"><i
                 class="fas fa-download mx-2"></i>دانلود فایل مبدا</a>
     </div>
