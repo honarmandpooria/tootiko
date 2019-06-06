@@ -1,5 +1,76 @@
 @extends('layouts.app')
 
+
+@section('styles')
+
+    <style>
+        .files input {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
+        }
+
+        .files input:focus {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            border: 1px solid #92b0b3;
+        }
+
+        .files {
+            position: relative
+        }
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 110px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .color input {
+            background-color: #f1f1f1;
+        }
+
+        .files:before {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            content: "فایل خود را داخل کادر رها کنید، یا از دکمه بالا استفاده کنید و فایل را انتخاب کنید.";
+            display: block;
+            margin: 0 auto;
+            color: gray;
+            font-weight: 300;
+            text-transform: capitalize;
+            text-align: center;
+        }
+    </style>
+
+
+
+
+@endsection
+
+
 @section('content')
 
 
@@ -20,17 +91,17 @@
                         </div>
 
 
-{{--                    USE THIS FOR DEBUG--}}
-                     {{--   <div dir="rtl" class="alert alert-danger" role="alert">
-                            @foreach($errors-> all() as $error)
-                                {{$error}}
-                                <br>
-                            @endforeach
-                        </div>
---}}
+                        {{--                    USE THIS FOR DEBUG--}}
+                        {{--   <div dir="rtl" class="alert alert-danger" role="alert">
+                               @foreach($errors-> all() as $error)
+                                   {{$error}}
+                                   <br>
+                               @endforeach
+                           </div>
+   --}}
                     @endif
 
-                    <form novalidate method="POST"
+                    <form class="needs-validation" novalidate method="POST"
                           action="{{route('customer-orders.store')}}">
                         @csrf
 
@@ -42,7 +113,7 @@
                         <div dir="rtl" class="row">
 
                             <div class="form-group col-md-6">
-                                <select name="operation_id"
+                                <select name="operation_id" required
                                         class="custom-select {{$errors->has('operation_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
                                     <option value="">انتخاب زبان</option>
                                     <option value="1" {{(old("operation_id") == 1 ? "selected":"")}}>انگلیسی به فارسی
@@ -63,7 +134,7 @@
 
 
                             <div class="form-group col-md-6 ">
-                                <select name="category_id"
+                                <select name="category_id" required
                                         class="custom-select {{$errors->has('category_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
                                     <option value="">انتخاب زمینه</option>
                                     <option value="1" {{(old("category_id") == 1 ? "selected":"")}}>عمومی
@@ -75,7 +146,7 @@
                                 <div class="invalid-feedback">
                                     @if ($errors->has('category_id'))
 
-                                        {{$errors->first('category_id')}}
+                                        {{$errors->fir3st('category_id')}}
 
                                     @endif
 
@@ -96,12 +167,21 @@
                                 class="font-weight-bold text-primary">۲)</span>
                             انتخاب فایل ترجمه</h4>
 
+                        <div dir="rtl" class="progress d-none my-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="" aria-valuenow="25"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
 
-                        <div dir="rtl" class="custom-file">
+                        <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
+
+
+                        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #ccc;">
+                            <label for="file-upload"
+                                   class="custom-file-label text-left border-top-0 border-right-0 border-left-0 border-bottom">انتخاب فایل</label>
                             <input required id="file-upload" name="translation_file" type="file"
                                    class="custom-file-input {{$errors->has('translation_file') ? 'is-invalid': ($errors->all() ? 'is-invalid' : '')}}"
                                    style="cursor:pointer">
-                            <label for="file-upload" class="custom-file-label text-left">فایل ترجمه</label>
+
                             <div class="invalid-feedback">
 
 
@@ -110,23 +190,19 @@
                                     {{$errors->first('translation_file')}}
 
                                 @else
-                                    فایل موردنظر را دوباره انتخاب کنید.
+                                    فایلی که میخواهید ترجمه شود را انتخاب کنید.
 
                                 @endif
 
                             </div>
+
+
+                            <p id="file-tip" dir="rtl" class="blockquote-footer mt-2">در صورتی که <span
+                                    class="text-danger"> بیش از یک فایل</span>
+                                برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
+
+
                         </div>
-                        <p dir="rtl" class="blockquote-footer mt-2">در صورتی که <span class="text-danger"> بیش از یک فایل</span>
-                            برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
-
-
-                        <div dir="rtl" class="progress d-none my-2">
-                            <div class="progress-bar " role="progressbar" style="" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
-
 
                         <hr class=" border-primary my-5">
 
@@ -245,7 +321,7 @@
 
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary mt-4">ثبت سفارش</button>
+                            <button id="submit" type="submit" class="btn btn-primary mt-4">ثبت سفارش</button>
                         </div>
 
 
@@ -266,14 +342,14 @@
 
 @section('scripts')
 
-    {{--    <script>--}}
-    {{--        $('#file-upload').on('change', function () {--}}
-    {{--            //get the file name--}}
-    {{--            var fileName = $(this).val();--}}
-    {{--            //replace the "Choose a file" label--}}
-    {{--            $(this).next('.custom-file-label').html('<span class="text-success d-xm-block d-sm-none">انتخاب شد!</span><span class="text-success d-none d-sm-block">فایل شما با موفقیت انتخاب شد!</span>');--}}
-    {{--        })--}}
-    {{--    </script>--}}
+    <script>
+        $('#file-upload').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html('<span class="text-muted">fileName</span>');
+        })
+    </script>
 
 
 
@@ -286,7 +362,7 @@
 
 
             $('#file-upload').on('change', function () {
-
+                $('.custom-file').hide();
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -327,8 +403,6 @@
 
                     success: function () {
                         $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
-                        $('#file-upload').hide();
-                        $('.custom-file-label').hide();
                     }
                     ,
                     error: function () {
@@ -375,5 +449,49 @@
 
     --}}
 
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+
+        $(document).ready(function () {
+
+            $('.needs-validation').on('submit', function (e) {
+                window.setTimeout(function () {
+                    var errors = $('.was-validated :invalid');
+                    if (errors.length) {
+                        $('html, body').animate({scrollTop: errors.offset().top - 100}, 500);
+                    }
+                }, 0);
+            });
+        });
+
+    </script>
+
+
+
+    {{--    dropzone--}}
+
+    <script>
+
+
+    </script>
 
 @endsection
