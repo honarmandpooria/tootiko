@@ -5,7 +5,6 @@
 
     <style>
         .files input {
-            outline: 2px dashed #92b0b3;
             outline-offset: -10px;
             -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
             transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -16,11 +15,11 @@
         }
 
         .files input:focus {
-            outline: 2px dashed #92b0b3;
+            outline: 2px dashed black;
             outline-offset: -10px;
             -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
             transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            border: 1px solid #92b0b3;
+            border: 1px solid #cccccc;
         }
 
         .files {
@@ -189,7 +188,7 @@
                         <p id="file-tip" dir="rtl" class="blockquote-footer mt-2">در صورتی که <span
                                 class="text-danger"> بیش از یک فایل</span>
                             برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
-                        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #9c27b0;">
+                        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #cccc;">
                             <label for="file-upload"
                                    class="custom-file-label text-left m-3 mx-auto" style="max-width: 500px;">انتخاب
                                 فایل</label>
@@ -198,22 +197,20 @@
                             <div class="invalid-feedback">
 
 
-                                {{--@if ($errors->has('translation_file'))
+                                @if ($errors->has('translation_file'))
 
                                     {{$errors->first('translation_file')}}
 
                                 @else
                                     فایلی که میخواهید ترجمه شود را انتخاب کنید.
 
-                                @endif--}}
+                                @endif
 
                             </div>
 
 
-
-
-
                         </div>
+
 
                         <p id="form-errors" dir="rtl" class="text-danger"></p>
 
@@ -348,6 +345,31 @@
     </div>
 
 
+
+    {{--    file upload error modal--}}
+
+    <div id="file-upload-error" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div dir="rtl" class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">خطا</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p dir="rtl">در آپلود فایل با خطا رو برو شدیم، لطفا از نوع فایل و محتویات آن اطمینان حاصل کنید و سپس
+                        دوباره
+                        تلاش کنید یا با پشتیبانی تماس بگیرید.</p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 
@@ -367,76 +389,74 @@
     --}}
 
 
-        Upload File With Ajax
+    {{--        ارسال درخواست ایجکس برای ذخیره فایل --}}
 
 
-     <script>
+    <script>
 
-         $(document).ready(function () {
-
-
-             $('#file-upload').on('change', function () {
-
-                 if ($("#file-upload").valid() == true ) {
-                     $('.custom-file').hide();
-                     $.ajaxSetup({
-                         headers: {
-                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                         }
-                     });
+        $(document).ready(function () {
 
 
-                     var data = new FormData();
-                     data.append('translation_file', $('input[type=file]')[0].files[0]);
-                     data.append('_token', "{{ csrf_token() }}");
+            $('#file-upload').on('change', function () {
+
+                if ($("#file-upload").valid() == true) {
+                    $('.custom-file').hide();
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
 
 
-                     $.ajax({
-
-                         xhr: function () {
-                             var xhr = new window.XMLHttpRequest();
-
-                             xhr.upload.addEventListener('progress', function (e) {
-
-                                 if (e.lengthComputable) {
-
-                                     var percent = Math.round(e.loaded / e.total * 100);
-
-                                     $('.progress').removeAttr('class', 'd-none');
-                                     $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
-                                 }
-
-                             });
-
-                             return xhr;
-                         },
-                         url: '{{route('translate-file')}}',
-                         type: 'POST',
-                         data: data,
-                         enctype: 'multipart/form-data',
-                         contentType: false,
-                         processData: false,
-
-                         success: function () {
-                             $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
-                         }
-                         ,
-                         error: function (data) {
-                             var errors = data.responseJSON;
-                             console.log(errors);
-
-                         }
-
-                     })
-
-                 }
+                    var data = new FormData();
+                    data.append('translation_file', $('input[type=file]')[0].files[0]);
+                    data.append('_token', "{{ csrf_token() }}");
 
 
-             })
+                    $.ajax({
 
-         })
+                        xhr: function () {
+                            var xhr = new window.XMLHttpRequest();
 
-     </script>
+                            xhr.upload.addEventListener('progress', function (e) {
+
+                                if (e.lengthComputable) {
+
+                                    var percent = Math.round(e.loaded / e.total * 100);
+
+                                    $('.progress').removeAttr('class', 'd-none');
+                                    $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
+                                }
+
+                            });
+
+                            return xhr;
+                        },
+                        url: '{{route('translate-file')}}',
+                        type: 'POST',
+                        data: data,
+                        enctype: 'multipart/form-data',
+                        contentType: false,
+                        processData: false,
+
+                        success: function () {
+                            $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
+                            $('#file-tip').hide();
+                        },
+                        error: function () {
+                            $('#file-upload-error').modal('show');
+                        }
+
+                    })
+
+                }
+
+
+            })
+
+        })
+
+    </script>
 
 
     {{--<script>
@@ -533,7 +553,6 @@
             $('#file-upload').valid();
 
         });
-
 
 
     </script>
