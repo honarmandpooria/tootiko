@@ -432,7 +432,7 @@
 
                             return xhr;
                         },
-                        url: '{{route('translate-file')}}',
+                        url: '{{route('file-upload')}}',
                         type: 'POST',
                         data: data,
                         enctype: 'multipart/form-data',

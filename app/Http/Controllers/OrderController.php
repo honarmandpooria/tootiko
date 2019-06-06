@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerOrderRequest;
+use App\Http\Requests\TranslateFileRequest;
 use App\Mail\OrderSubmited;
 use App\Order;
-use App\TranslateFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -38,7 +38,7 @@ class OrderController extends Controller
 //        $this->authorize('create');
 
 
-        session()->forget('translate_file_id');
+        session()->forget('translate_file_path');
         return view('app.customer.order.create');
     }
 
@@ -84,12 +84,12 @@ class OrderController extends Controller
         $input['user_id'] = $user_id;
 
 
-        $translate_file_id = session()->get('translate_file_id');
-        $input['translate_file_id'] = $translate_file_id;
+        $translate_file_path = session()->get('translate_file_path');
+        $input['translation_file'] = $translate_file_path;
 
         //validate file exist
 
-        if ($translate_file_id) {
+        if ($translate_file_path) {
 
             Order::create($input);
 
@@ -169,5 +169,22 @@ class OrderController extends Controller
     function destroy(Order $order)
     {
         //
+    }
+
+
+    public function ajaxFileUpload(TranslateFileRequest $request)
+    {
+
+        $file = $request->file('translation_file');
+        $ext = $file->getClientOriginalExtension();
+        $hash = Str::random(40);
+        $file = $file->move('t-files', $hash . '.' . $ext);
+
+
+
+        $path = $file->getPathname();
+        session(['translate_file_path' => $path]);
+
+
     }
 }
