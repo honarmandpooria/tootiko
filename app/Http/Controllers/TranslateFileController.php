@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TranslateFileRequest;
 use App\TranslateFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -35,9 +36,8 @@ class TranslateFileController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TranslateFileRequest $request)
     {
-
 
         $file = $request->file('translation_file');
         $ext = $file->getClientOriginalExtension();

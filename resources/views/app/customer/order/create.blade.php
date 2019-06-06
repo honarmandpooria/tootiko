@@ -30,7 +30,7 @@
         .files:after {
             pointer-events: none;
             position: absolute;
-            top: 110px;
+            top: 130px;
             left: 0;
             width: 50px;
             right: 0;
@@ -55,16 +55,28 @@
             width: 100%;
             right: 0;
             height: 57px;
-            content: "فایل خود را داخل کادر رها کنید، یا از دکمه بالا استفاده کنید و فایل را انتخاب کنید.";
+            content: "فایل خود را داخل کادر رها کنید، یا از دکمه بالا (جستجو) استفاده کنید و فایل را انتخاب کنید.";
             display: block;
             margin: 0 auto;
+            padding: 0 3px;
             color: gray;
             font-weight: 300;
             text-transform: capitalize;
             text-align: center;
         }
+
+        /*.error.invalid-tooltip {
+            top: unset;
+        }*/
+
     </style>
 
+    <style>
+        .custom-file-label {
+            top: 0px;
+        }
+
+    </style>
 
 
 
@@ -146,7 +158,7 @@
                                 <div class="invalid-feedback">
                                     @if ($errors->has('category_id'))
 
-                                        {{$errors->fir3st('category_id')}}
+                                        {{$errors->first('category_id')}}
 
                                     @endif
 
@@ -174,35 +186,36 @@
 
                         <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
 
-
-                        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #ccc;">
+                        <p id="file-tip" dir="rtl" class="blockquote-footer mt-2">در صورتی که <span
+                                class="text-danger"> بیش از یک فایل</span>
+                            برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
+                        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #9c27b0;">
                             <label for="file-upload"
-                                   class="custom-file-label text-left border-top-0 border-right-0 border-left-0 border-bottom">انتخاب فایل</label>
+                                   class="custom-file-label text-left m-3 mx-auto" style="max-width: 500px;">انتخاب
+                                فایل</label>
                             <input required id="file-upload" name="translation_file" type="file"
-                                   class="custom-file-input {{$errors->has('translation_file') ? 'is-invalid': ($errors->all() ? 'is-invalid' : '')}}"
-                                   style="cursor:pointer">
-
+                                   class="custom-file-input {{$errors->has('translation_file') ? 'is-invalid': ($errors->all() ? 'is-invalid' : '')}}">
                             <div class="invalid-feedback">
 
 
-                                @if ($errors->has('translation_file'))
+                                {{--@if ($errors->has('translation_file'))
 
                                     {{$errors->first('translation_file')}}
 
                                 @else
                                     فایلی که میخواهید ترجمه شود را انتخاب کنید.
 
-                                @endif
+                                @endif--}}
 
                             </div>
 
 
-                            <p id="file-tip" dir="rtl" class="blockquote-footer mt-2">در صورتی که <span
-                                    class="text-danger"> بیش از یک فایل</span>
-                                برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
+
 
 
                         </div>
+
+                        <p id="form-errors" dir="rtl" class="text-danger"></p>
 
                         <hr class=" border-primary my-5">
 
@@ -275,14 +288,13 @@
                                 class="font-weight-bold text-primary">۵)</span>
                             مهلت ترجمه</h4>
                         <div dir="rtl" class="clearfix">
-                            <div class="form-group">
+                            <div class="form-group clearfix position-relative">
 
                                 <input type="number" name="remaining_days"
                                        value="{{old('remaining_days') ? old('remaining_days') : 7}}"
                                        class="form-control float-right {{$errors->has('remaining_days') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}"
                                        style="max-width: 100px">
-                                <span class="float-right mr-3 py-1">روز</span>
-                                <br>
+                                <span class="float-right mr-3 ml-5 py-1">روز</span>
 
                                 <div class="invalid-feedback">
 
@@ -342,115 +354,92 @@
 
 @section('scripts')
 
-    <script>
-        $('#file-upload').on('change', function () {
-            //get the file name
-            var fileName = $(this).val();
-            //replace the "Choose a file" label
-            $(this).next('.custom-file-label').html('<span class="text-muted">fileName</span>');
-        })
-    </script>
-
-
-
-    {{--    Upload File With Ajax--}}
-
-
-    <script>
-
-        $(document).ready(function () {
-
-
-            $('#file-upload').on('change', function () {
-                $('.custom-file').hide();
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-
-                var data = new FormData();
-                data.append('translation_file', $('input[type=file]')[0].files[0]);
-                data.append('_token', "{{ csrf_token() }}");
-
-
-                $.ajax({
-
-                    xhr: function () {
-                        var xhr = new window.XMLHttpRequest();
-
-                        xhr.upload.addEventListener('progress', function (e) {
-
-                            if (e.lengthComputable) {
-
-                                var percent = Math.round(e.loaded / e.total * 100);
-
-                                $('.progress').removeAttr('class', 'd-none');
-                                $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
-                            }
-
-                        });
-
-                        return xhr;
-                    },
-                    url: '{{route('translate-file')}}',
-                    type: 'POST',
-                    data: data,
-                    enctype: 'multipart/form-data',
-                    contentType: false,
-                    processData: false,
-
-                    success: function () {
-                        $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
-                    }
-                    ,
-                    error: function () {
-
-                    }
-
-
-                })
-
-
-            })
-
-        })
-
-    </script>
-
-
-
-
     {{--
-
         <script>
-            $("#file-upload").change(function (e) {
-                var data = new FormData();
-                data.append('translation_file', $('input[type=file]')[0].files[0]);
-                data.append('_token', "{{ csrf_token() }}");
-                $.ajax({
-                    url: '{{route('translate-file')}}',
-                    type: 'POST',
-                    data: data,
-                    enctype: 'multipart/form-data',
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-
-                    },
-                    error: function () {
-
-                    }
-                });
-            });
+            $('#file-upload').on('change', function () {
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html('<span class="text-muted">fileName</span>');
+            })
         </script>
-
 
     --}}
 
 
-    <script>
+        Upload File With Ajax
+
+
+     <script>
+
+         $(document).ready(function () {
+
+
+             $('#file-upload').on('change', function () {
+
+                 if ($("#file-upload").valid() == true ) {
+                     $('.custom-file').hide();
+                     $.ajaxSetup({
+                         headers: {
+                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                         }
+                     });
+
+
+                     var data = new FormData();
+                     data.append('translation_file', $('input[type=file]')[0].files[0]);
+                     data.append('_token', "{{ csrf_token() }}");
+
+
+                     $.ajax({
+
+                         xhr: function () {
+                             var xhr = new window.XMLHttpRequest();
+
+                             xhr.upload.addEventListener('progress', function (e) {
+
+                                 if (e.lengthComputable) {
+
+                                     var percent = Math.round(e.loaded / e.total * 100);
+
+                                     $('.progress').removeAttr('class', 'd-none');
+                                     $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
+                                 }
+
+                             });
+
+                             return xhr;
+                         },
+                         url: '{{route('translate-file')}}',
+                         type: 'POST',
+                         data: data,
+                         enctype: 'multipart/form-data',
+                         contentType: false,
+                         processData: false,
+
+                         success: function () {
+                             $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
+                         }
+                         ,
+                         error: function (data) {
+                             var errors = data.responseJSON;
+                             console.log(errors);
+
+                         }
+
+                     })
+
+                 }
+
+
+             })
+
+         })
+
+     </script>
+
+
+    {{--<script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
             'use strict';
@@ -471,27 +460,84 @@
         })();
 
 
+//jump to error
         $(document).ready(function () {
 
             $('.needs-validation').on('submit', function (e) {
                 window.setTimeout(function () {
-                    var errors = $('.was-validated :invalid');
+                    var errors = $('.error');
                     if (errors.length) {
                         $('html, body').animate({scrollTop: errors.offset().top - 100}, 500);
                     }
-                }, 0);
+                }, 200);
             });
         });
-
-    </script>
-
+    </script>--}}
 
 
-    {{--    dropzone--}}
+
+    {{--    jquery validation--}}
+
+    <script src="{{asset('js/jquery.validate.js')}}"></script>
+    <script src="{{asset('js/additional-methods.js')}}"></script>
+
 
     <script>
 
+        {{--تنظیم پیشفرض های ولیدیتور جی کوری--}}
+        jQuery.validator.setDefaults({
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-tooltip');
+                element.closest('.form-group').append(error);
+                element.closest('.custom-file').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid').addClass('is-valid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid').addClass('is-valid');
+            }
+        });
+
+
+        $(function () {
+            $('.needs-validation').validate({
+                rules: {
+                    remaining_days: {
+                        required: true,
+                        number: true,
+                        min: 2,
+                    },
+                    translation_file: {
+                        required: true,
+                        extension: "pdf|doc|docx|zip|rar|jpg|png|jpeg|mp4|mp3|txt",
+                    }
+                },
+                messages: {
+                    remaining_days: {
+                        required: 'لطفا یک تاریخ انتخاب کنید.',
+                        min: 'مهلت ترجمه باید بیشتر از ۲ روز باشد.'
+                    },
+                    translation_file: {
+                        required: 'لطفا یک فایل برای ترجمه انتخاب کنید.',
+                        extension: "فایل موردنظر باید یکی از انواع pdf|doc|docx|zip|rar|jpg|png|jpeg|mp4|mp3|txt باشد.",
+                    }
+                }
+            })
+        });
+
+
+        $('#file-upload').on('change', function () {
+
+            $('#file-upload').valid();
+
+        });
+
+
 
     </script>
+
+
 
 @endsection
