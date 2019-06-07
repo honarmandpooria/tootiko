@@ -17,7 +17,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{--    <link href="{{ asset('css/rtl-bootstrap.css') }}" rel="stylesheet">--}}
 
-    @yield('styles')
+    @stack('styles')
 
 </head>
 <body>
@@ -37,7 +37,8 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
-@yield('scripts')
+@stack('scripts')
+
 
 </body>
 </html>
