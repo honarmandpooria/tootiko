@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,14 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $orders = Auth::user()->orders;
+
+        return view('home')->with('orders',$orders);
     }
 
 
-    public function admin(){
+    public function admin()
+    {
 
         $orders = Order::all();
-        return view('app.admin.home')->with('orders',$orders);
+        return view('app.admin.home')->with('orders', $orders);
     }
 
 

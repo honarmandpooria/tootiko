@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/customer-orders', 'OrderController');
+    Route::get('/get-order-with-status/{status_id}', 'OrderController@showOrdersWithStatus')->name('get-order-with-status');
 
 
     // payment Routes

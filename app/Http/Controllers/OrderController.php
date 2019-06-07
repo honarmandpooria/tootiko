@@ -91,7 +91,7 @@ class OrderController extends Controller
 
         if ($translate_file_path) {
 
-            Order::create($input);
+            $order = Order::create($input);
 
         } else {
 
@@ -104,9 +104,10 @@ class OrderController extends Controller
 
 //        send email to user and admin
 
-//        Mail::to($request->user())->send(new OrderSubmited($order));
+        Mail::to($request->user())->send(new OrderSubmited($order));
+        Mail::to('honarmandpooria@gmail.com')->send(new OrderSubmited($order));
 
-        return redirect('/customer-orders');
+        return redirect('/customer-orders/'.$order->id);
 
 
     }
@@ -181,10 +182,18 @@ class OrderController extends Controller
         $file = $file->move('t-files', $hash . '.' . $ext);
 
 
-
         $path = $file->getPathname();
         session(['translate_file_path' => $path]);
 
+
+    }
+
+
+    public function showOrdersWithStatus($status_id)
+    {
+
+        $orders = Auth::user()->orders->where('status_id', $status_id);
+        return view('app.customer.order.index')->with('orders', $orders);
 
     }
 }

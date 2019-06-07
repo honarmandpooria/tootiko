@@ -45,7 +45,7 @@
                                class="nav-link {{Request::is('customer-orders') ? 'active border-3' : ''}}">
                                 <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-open"></i>
                                 </div>
-                                <span class="d-none d-md-block">سفارش های من</span></a>
+                                <span class="d-none d-md-block">ترجمه های من</span></a>
                         </li>
 
                     @endif

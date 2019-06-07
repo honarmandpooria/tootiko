@@ -45,7 +45,7 @@
         @endif
         <div class="card mb-4">
             <div class="card-header text-white bg-warning text-dark">
-                @include('inc.order.header')
+{{--                @include('inc.order.header')--}}
             </div>
             <div class="card-body">
 

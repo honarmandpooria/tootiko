@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
 
             'name' => 'مهسا',
             'role_id' => 3,
-            'email' => 'tyrant.71p@gmail.com',
+            'email' => 'honarmanddev@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('987654321A'), // secret
             'remember_token' => str_random(10),

@@ -120,7 +120,7 @@
 
                         <h4 dir="rtl" class="text-right mb-4 text-muted"><span
                                 class="font-weight-bold text-primary">۱)</span>
-                            انتخاب زبان و زمینه ترجمه</h4>
+                            انتخاب زبان و زمینه</h4>
                         <div dir="rtl" class="row">
 
                             <div class="form-group col-md-6">
