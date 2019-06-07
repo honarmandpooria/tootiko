@@ -59,6 +59,7 @@ class OrderController extends Controller
         $input['quality_id'] = $request->quality_id;
         $input['remaining_days'] = $request->remaining_days;
         $input['description'] = $request->description;
+        $input['translation_url'] = $request->translation_url;
 
 
         $input['status_id'] = 1;
@@ -89,7 +90,7 @@ class OrderController extends Controller
 
         //validate file exist
 
-        if ($translate_file_path) {
+        if ($translate_file_path || $request->translation_url) {
 
             $order = Order::create($input);
 
@@ -107,7 +108,7 @@ class OrderController extends Controller
         Mail::to($request->user())->send(new OrderSubmited($order));
         Mail::to('honarmandpooria@gmail.com')->send(new OrderSubmited($order));
 
-        return redirect('/customer-orders/'.$order->id);
+        return redirect('/customer-orders/' . $order->id);
 
 
     }

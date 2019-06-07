@@ -95,7 +95,7 @@
 
     <div class="col-md-4 col-sm-6 my-2">
 
-    <i class="fas fa-2x fa-file-signature"></i>
+        <i class="fas fa-2x fa-file-signature"></i>
 
         جزئیات فایل:
         <hr>
@@ -135,10 +135,22 @@
 
 
     <div class="col-md-4 col-sm-6 my-2">
-        <a download="فایل مبدا {{$order->id}}"
-           href="{{asset($order->translation_file)}}"
-           class="btn  btn-outline-primary"><i
-                class="fas fa-download mx-2"></i>فایل مبدا</a>
+
+        @if($order->translation_file)
+            <a download="فایل مبدا {{$order->id}}"
+               href="{{asset($order->translation_file)}}"
+               class="btn  btn-outline-primary"><i
+                    class="fas fa-download mx-2"></i>فایل مبدا</a>
+        @else
+            <a target="_blank"
+               href="{{$order->translation_url}}"
+               class="btn  btn-outline-primary"><i
+                    class="fas fa-download mx-2"></i>
+                لینک فایل مبدا</a>
+
+        @endif
+
+
     </div>
     <div class="col-md-4 col-sm-6 my-2">
 

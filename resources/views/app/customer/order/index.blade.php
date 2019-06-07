@@ -22,7 +22,7 @@
             @endforeach
 
         @else
-            <p dir="rtl">هنوز هیچ سفارش ترجمه ای ثبت نشده است.</p>
+            <p class="text-center" dir="rtl">هیچ سفارش ترجمه ای ثبت نشده است.</p>
             <a href="{{route('customer-orders.create')}}" class="btn btn-success btn-block shadow"><i
                     class="fas mx-2 fa-plus"></i>ثبت
                 سفارش ترجمه</a>

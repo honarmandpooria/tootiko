@@ -26,6 +26,7 @@ class CustomerOrderRequest extends FormRequest
         return [
 //            'translation_file' => 'required|mimes:pak,pdf,doc,docx,zip,rar,jpg,png,jpeg,mp4,mp3,txt|max:40000',
             'operation_id' => 'required|exists:operations,id',
+            'translation_url' => 'url',
             'category_id' => 'required|exists:categories,id',
             'quality_id' => 'required|exists:qualities,id',
             'is_secret' => 'required|in:0,1',

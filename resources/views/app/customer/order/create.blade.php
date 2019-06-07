@@ -64,9 +64,6 @@
             text-align: center;
         }
 
-        /*.error.invalid-tooltip {
-            top: unset;
-        }*/
 
     </style>
 
@@ -171,48 +168,11 @@
                         <hr class=" border-primary my-5">
 
 
-                        {{--upload file--}}
+                        {{--upload file or url--}}
 
 
-                        <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
-                                class="font-weight-bold text-primary">۲)</span>
-                            انتخاب فایل ترجمه</h4>
+                        @include('inc.order.create.file')
 
-                        <div dir="rtl" class="progress d-none my-2">
-                            <div class="progress-bar bg-success" role="progressbar" style="" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
-
-                        <p id="file-tip" dir="rtl" class="blockquote-footer mt-2">در صورتی که <span
-                                class="text-danger"> بیش از یک فایل</span>
-                            برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
-                        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #cccc;">
-                            <label for="file-upload"
-                                   class="custom-file-label text-left m-3 mx-auto" style="max-width: 500px;">انتخاب
-                                فایل</label>
-                            <input required id="file-upload" name="translation_file" type="file"
-                                   class="custom-file-input {{$errors->has('translation_file') ? 'is-invalid': ($errors->all() ? 'is-invalid' : '')}}">
-                            <div class="invalid-feedback">
-
-
-                                @if ($errors->has('translation_file'))
-
-                                    {{$errors->first('translation_file')}}
-
-                                @else
-                                    فایلی که میخواهید ترجمه شود را انتخاب کنید.
-
-                                @endif
-
-                            </div>
-
-
-                        </div>
-
-
-                        <p id="form-errors" dir="rtl" class="text-danger"></p>
 
                         <hr class=" border-primary my-5">
 
@@ -532,6 +492,10 @@
                     translation_file: {
                         required: true,
                         extension: "pdf|doc|docx|zip|rar|jpg|png|jpeg|mp4|mp3|txt",
+                    },
+                    translation_url: {
+                        required: true,
+                        url: true,
                     }
                 },
                 messages: {
@@ -540,8 +504,12 @@
                         min: 'مهلت ترجمه باید بیشتر از ۲ روز باشد.'
                     },
                     translation_file: {
-                        required: 'لطفا یک فایل برای ترجمه انتخاب کنید.',
+                        required: 'لطفا یک فایل برای ترجمه انتخاب کنید، یا درصورتی که لینک فایل را در اختیار دارید از بخش لینک استفاده کنید.',
                         extension: "فایل موردنظر باید یکی از انواع pdf|doc|docx|zip|rar|jpg|png|jpeg|mp4|mp3|txt باشد.",
+                    },
+                    translation_url: {
+                        required: 'لینک فایل را وارد کنید، یا از بخش آپلود فایل استفاده کنید.',
+                        url: 'آدرس فایل باید یک لینک معتبر باشد. به عنوان مثال: http://uploadboy.com/12345',
                     }
                 }
             })
