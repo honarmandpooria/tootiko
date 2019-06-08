@@ -4,7 +4,8 @@
 
 
 <form class="needs-validation" novalidate method="POST"
-      action="{{route('customer-orders.store')}}">
+@guest action="{{route('before-register.postStep1')}}"  @else action="{{route('customer-orders.store')}}"  @endguest
+>
     @csrf
 
     {{--language and category--}}

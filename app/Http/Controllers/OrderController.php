@@ -48,9 +48,11 @@ class OrderController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CustomerOrderRequest $request)
+    public function store(Request $request)
     {
 
+
+//        return 123;
         $input = [];
 
         $input['operation_id'] = $request->operation_id;
