@@ -28,7 +28,7 @@ $(function () {
             },
             translation_file: {
                 required: true,
-                extension: "pdf|doc|docx|zip|rar|jpg|png|jpeg|mp4|mp3|txt",
+                extension: "docx|doc|rtf|txt|bmp|jpg|JPG|png|jpeg|pdf|gif|html|htm|zip|rar|ppt|pptx|xls|xlsx|csv|flv|avi|mov|mp4|mpg|wmv|3gp|asf|mp3|wav|aif|mid|amr|act|aiff|aac|ogg|wma|m4a|wow|srt",
             },
             translation_url: {
                 required: true,
@@ -42,7 +42,7 @@ $(function () {
             },
             translation_file: {
                 required: 'لطفا یک فایل برای ترجمه انتخاب کنید، یا درصورتی که لینک فایل را در اختیار دارید از بخش لینک استفاده کنید.',
-                extension: "فایل موردنظر باید یکی از انواع pdf|doc|docx|zip|rar|jpg|png|jpeg|mp4|mp3|txt باشد.",
+                extension: "فایل موردنظر باید یکی از انواع docx, doc, rtf, txt, bmp, jpg, JPG, png, jpeg, pdf, gif, html, htm, zip, rar, ppt, pptx, xls, xlsx, csv, flv, avi, mov, mp4, mpg, wmv, 3gp, asf, mp3, wav, aif, mid, amr, act, aiff, aac, ogg, wma, m4a, wow, srt باشد.",
             },
             translation_url: {
                 required: 'لینک فایل را وارد کنید، یا از بخش آپلود فایل استفاده کنید.',

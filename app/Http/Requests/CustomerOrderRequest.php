@@ -26,7 +26,7 @@ class CustomerOrderRequest extends FormRequest
         return [
 //            'translation_file' => 'required|mimes:pak,pdf,doc,docx,zip,rar,jpg,png,jpeg,mp4,mp3,txt|max:40000',
             'operation_id' => 'required|exists:operations,id',
-            'translation_url' => 'url',
+            'translation_url' => 'url|nullable',
             'category_id' => 'required|exists:categories,id',
             'quality_id' => 'required|exists:qualities,id',
             'is_secret' => 'required|in:0,1',
@@ -39,9 +39,9 @@ class CustomerOrderRequest extends FormRequest
     public function messages()
     {
         return [
-            'translation_file.required' => 'انتخاب فایل برای انجام عملیات ترجمه ضروری است.',
-            'translation_file.mimes' => 'فایل باید یکی از انواع pdf,doc,docx,zip,rar,jpg,png,jpeg,mp4,mp3,txt باشد.',
-            'translation_file.max' => 'حداکثر سایز فایل ارسالی ۴۰ مگابایت است.',
+//            'translation_file.required' => 'انتخاب فایل برای انجام عملیات ترجمه ضروری است.',
+//            'translation_file.mimes' => 'فایل باید یکی از انواع pdf,doc,docx,zip,rar,jpg,png,jpeg,mp4,mp3,txt باشد.',
+//            'translation_file.max' => 'حداکثر سایز فایل ارسالی ۴۰ مگابایت است.',
 
 
             'operation_id.required' => 'زبان ترجمه نمیتواند خالی باشد.',

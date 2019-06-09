@@ -223,14 +223,14 @@
 @push('scripts')
 
 
-    {{--    jquery validation--}}
+{{--        jquery validation--}}
 
     <script src="{{asset('js/jquery.validate.js')}}"></script>
     <script src="{{asset('js/additional-methods.js')}}"></script>
     <script src="{{asset('js/form-custom-js.js')}}"></script>
 
 
-    {{--        ارسال درخواست ایجکس برای ذخیره فایل --}}
+{{--            ارسال درخواست ایجکس برای ذخیره فایل --}}
 
 
     <script>

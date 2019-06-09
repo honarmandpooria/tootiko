@@ -20,7 +20,7 @@
 
 </head>
 <body>
-<div id="app">
+<div>
 
 
     @include('inc.admin-navbar')

@@ -48,7 +48,7 @@ class OrderController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerOrderRequest $request)
     {
 
 
@@ -75,12 +75,12 @@ class OrderController extends Controller
 //        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
 
 
-//        $file = $request->file('translation_file');
-//        $ext = $file->getClientOriginalExtension();
-//        $hash = Str::random(40);
-//        $path = $file->move('translation-files', $hash . '.' . $ext);
-//        $input['translation_file'] = $path;
-//
+        $file = $request->file('translation_file');
+        $ext = $file->getClientOriginalExtension();
+        $hash = Str::random(40);
+        $path = $file->move('translation-files', $hash . '.' . $ext);
+        $input['translation_file'] = $path;
+
 
 
         $user_id = Auth::user()->id;
@@ -187,6 +187,7 @@ class OrderController extends Controller
 
         $path = $file->getPathname();
         session(['translate_file_path' => $path]);
+
 
 
     }
