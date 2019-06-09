@@ -56,13 +56,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 // Before Register
-Route::post('/before-register', 'OrderBeforeRegisterController@postStep1')->name('before-register.postStep1');
-Route::get('/register-fast', 'OrderBeforeRegisterController@createStep2')->name('before-register.createStep2');
-Route::post('/order/step2', 'OrderBeforeRegisterController@postStep2')->name('before-register.postStep2');
-Route::get('/profile-edit-fast', 'OrderBeforeRegisterController@createStep3')->name('before-register.createStep3');
-Route::post('/order/step3', 'OrderBeforeRegisterController@postStep3')->name('before-register.postStep3');
-
-
+Route::post('/before-register', 'OrderBeforeRegisterController@setOrderSession')->name('before-register.setOrderSession');
 
 
 // Ajax upload file

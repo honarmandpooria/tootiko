@@ -25,6 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        if (session()->get('order') && Auth::user()->email_verified_at){
+
+            $input = session()->get('order');
+            $input['user_id'] = Auth::user()->id;
+            Order::create($input);
+            session()->forget('order');
+
+        }
+
+
         $orders = Auth::user()->orders;
 
         return view('home')->with('orders',$orders);

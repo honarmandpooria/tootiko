@@ -75,11 +75,11 @@ class OrderController extends Controller
 //        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
 
 
-        $file = $request->file('translation_file');
-        $ext = $file->getClientOriginalExtension();
-        $hash = Str::random(40);
-        $path = $file->move('translation-files', $hash . '.' . $ext);
-        $input['translation_file'] = $path;
+//        $file = $request->file('translation_file');
+//        $ext = $file->getClientOriginalExtension();
+//        $hash = Str::random(40);
+//        $path = $file->move('translation-files', $hash . '.' . $ext);
+//        $input['translation_file'] = $path;
 
 
 
@@ -107,7 +107,7 @@ class OrderController extends Controller
 
 //        send email to user and admin
 
-        Mail::to($request->user())->send(new OrderSubmited($order));
+//        Mail::to($request->user())->send(new OrderSubmited($order));
         Mail::to('honarmandpooria@gmail.com')->send(new OrderSubmited($order));
 
         return redirect('/customer-orders/' . $order->id);
