@@ -20,12 +20,16 @@ Route::get('/prices', function () {
 
 // App Routes
 
-//Customer Routes
+// Customer Routes
 
 Auth::routes(['verify' => true]);
+Route::get('/login-register', function () {
+    return view('auth.login-and-register');
+})->name('login-register');
 
 
-//users auth and verified
+
+// Users auth and verified
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -56,18 +60,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 // Before Register
+
 Route::post('/before-register', 'OrderBeforeRegisterController@setOrderSession')->name('before-register.setOrderSession');
 
 
 // Ajax upload file
-
 
 Route::post('/translate-file', 'OrderController@ajaxFileUpload')->name('file-upload');
 Route::post('/order-before-register', 'OrderBeforeRegisterController@step1')->name('order-before-register');
 
 
 
-
+// Google Api Login
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 
 

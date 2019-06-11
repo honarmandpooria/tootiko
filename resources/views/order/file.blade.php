@@ -20,8 +20,8 @@
 
 
     {{--    upload file--}}
-    <div class="tab-pane fade show active bg-light border border-top-0 p-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
+    <div class="tab-pane fade show active bg-light border border-top-0 p-2" id="nav-home" role="tabpanel"
+         aria-labelledby="nav-home-tab">
 
 
         <p id="file-tip" dir="rtl" class="blockquote-footer pt-5">در صورتی که <span
@@ -66,7 +66,8 @@
     {{--    link--}}
 
 
-    <div class="tab-pane fade bg-light border-right border-left border-bottom rounded-bottom" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div class="tab-pane fade bg-light border-right border-left border-bottom rounded-bottom" id="nav-profile"
+         role="tabpanel" aria-labelledby="nav-profile-tab">
 
 
         <p class="blockquote-footer pt-5">می توانید از طریق سایت های اشتراک گذاری فایل مانند <a target="_blank"

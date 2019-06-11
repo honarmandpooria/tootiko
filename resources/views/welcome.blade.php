@@ -15,7 +15,7 @@
             {{--        form--}}
 
 
-            <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#translate-form-modal">ثبت سفارش ترجمه
+            <button class="btn btn-success btn-lg mt-3 rounded" data-toggle="modal" data-target="#translate-form-modal">ثبت سفارش ترجمه
             </button>
 
             <div class="modal  fade" id="translate-form-modal" tabindex="-1" role="dialog"

@@ -42,7 +42,7 @@ class OrderBeforeRegisterController extends Controller
 
         }
 
-        return redirect('/register');
+        return redirect('/login-register');
 
     }
 
