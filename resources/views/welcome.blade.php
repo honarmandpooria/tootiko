@@ -7,16 +7,16 @@
 
     <div class="d-flex align-items-center justify-content-center px-2"
          style="height: 100vh; background: url({{asset('images/hero-small.jpg')}}) no-repeat center center; background-size:cover !important">
-        <div class="text-center">
+        <div class="text-center" style="margin-top: -175px;">
+            <img class="mb-4" src="{{asset('images/Tootiko-Logo.png')}}" alt="Tootiko Logo">
             <h1 dir="rtl" class="text-muted font-weight-bold" style="font-size: 1.75rem;">سفارش آنلاین ترجمه از بهترین
                 اساتید و مترجمین</h1>
+            <button class="btn btn-success btn-lg mt-4 rounded shadow" data-toggle="modal" data-target="#translate-form-modal">ثبت سفارش ترجمه
+            </button>
 
 
             {{--        form--}}
 
-
-            <button class="btn btn-success btn-lg mt-3 rounded" data-toggle="modal" data-target="#translate-form-modal">ثبت سفارش ترجمه
-            </button>
 
             <div class="modal  fade" id="translate-form-modal" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
