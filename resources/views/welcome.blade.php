@@ -41,5 +41,44 @@
     </div>
 
 
+    <div class="container">
+
+        <h4 class="text-center text-primary my-5">راهنمای سفارش آسان و سریع ۴ مرحله ای</h4>
+
+        <div dir="rtl" class="row">
+            <div class="col-md-3 text-center">
+
+                <img src="{{asset('images/step1.png')}}" alt="">
+                <p class="text-center text-primary my-3">سفارش ترجمه ات رو ثبت کن</p>
+                <p class="text-center text-muted my-3 small">روی دکمه ثبت سفارش کلیک کن و فایل یا لینک ترجمه ات رو همراه با اطلاعات سفارش به ما بده</p>
+
+            </div>
+            <div class="col-md-3 text-center">
+
+                <img src="{{asset('images/step2.png')}}" alt="">
+                <p class="text-center text-primary my-3">منتظر شمارش کلمات و مترجم باش</p>
+                <p class="text-center text-muted my-3 small">چند دقیقه منتظر بمون تا کارشناسا کلمات رو شمارش کنن و همینطور یه مترجم مناسب با متن انتخاب کنن</p>
+
+            </div>
+            <div class="col-md-3 text-center">
+
+                <img src="{{asset('images/step3.png')}}" alt="">
+                <p class="text-center text-primary my-3">به راحتی پرداخت کن</p>
+                <p class="text-center text-muted my-3 small">به راحتی با هر کارت عضو شتابی، هزینه مترجم رو پرداخت کن</p>
+
+
+            </div>
+            <div class="col-md-3 text-center">
+
+                <img src="{{asset('images/step4.png')}}" alt="">
+                <p class="text-center text-primary my-3">فایل ترجمه ات رو تحویل بگیر</p>
+                <p class="text-center text-muted my-3 small">بعد از مهلتی که برای مترجم انتخاب کردی ، فایل ترجمه شده ات رو تحویل بگیر</p>
+
+
+            </div>
+        </div>
+    </div>
+
+
 
 @endsection
