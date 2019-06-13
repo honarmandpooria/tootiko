@@ -28,7 +28,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
                             <img src="{{asset('images/avatar.png')}}" alt="">
-
+                            <span class="d-none d-md-inline">{{Auth::user()->name}}</span>
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right text-right" style="overflow: hidden"
@@ -80,9 +80,9 @@
                         <li class="nav-item">
                             <a href="{{route('home')}}"
                                class="nav-link {{Request::is('home') ? 'active border-3' : ''}}">
-                                <div class="d-flex justify-content-center"><i class="fas fa-2x fa-tachometer-alt"></i>
+                                <div class="d-flex justify-content-center"><i class="fas fa-2x fa-folder"></i>
                                 </div>
-                                <span class="d-none d-md-block">داشبورد</span></a>
+                                <span class="d-none d-md-block">ترجمه های من</span></a>
                         </li>
 
 
@@ -94,14 +94,14 @@
                                 <span class="d-none d-md-block">ثبت سفارش</span></a>
                         </li>
 
-                        <li class="nav-item">
+             {{--           <li class="nav-item">
                             <a href="{{route('customer-orders.index')}}"
                                class="nav-link {{Request::is('customer-orders') ? 'active border-3' : ''}}">
                                 <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-open"></i>
                                 </div>
                                 <span class="d-none d-md-block">ترجمه های من</span></a>
                         </li>
-
+--}}
                     @endif
                 @endguest
             </ul>

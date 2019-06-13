@@ -14,29 +14,6 @@
             <button class="btn btn-success btn-lg mt-4 rounded shadow" data-toggle="modal" data-target="#translate-form-modal">ثبت سفارش ترجمه
             </button>
 
-
-            {{--        form--}}
-
-
-            <div class="modal  fade" id="translate-form-modal" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div dir="rtl" class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">سفارش جدید</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            @include('order.form')
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </div>
 
@@ -79,6 +56,40 @@
         </div>
     </div>
 
+
+{{--    footer--}}
+    <div class="d-flex align-items-end" style="height: 140px; background: url({{asset('images/repeat-1920-140.png')}})">
+
+        <p dir="rtl" class="text-left text-white small ml-3">تمامی حقوق این وبسایت برای <span class="text-primary">طوطیکو</span> محفوظ است. | ۱۳۹۸ ©</p>
+
+    </div>
+
+
+
+
+
+
+
+    {{--        form modal--}}
+
+
+    <div class="modal  fade" id="translate-form-modal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div dir="rtl" class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">سفارش جدید</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('order.form')
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 @endsection
