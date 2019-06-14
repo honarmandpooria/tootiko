@@ -17,6 +17,10 @@
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
+    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
+
+
+
     {{--    <link rel="stylesheet" href="{{ asset('css/rtl-bootstrap.css') }}">--}}
 
     @stack('styles')
@@ -26,6 +30,7 @@
 
 
 @include('inc.navbar')
+
 
 @yield('content')
 

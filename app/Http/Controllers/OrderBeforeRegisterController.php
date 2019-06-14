@@ -42,7 +42,7 @@ class OrderBeforeRegisterController extends Controller
 
         }
 
-        return redirect('/login-register');
+        return redirect('/login-register')->with('success', ' سفارش شما ثبت شد! لطفا برای نهایی سازی سفارش وارد شوید یا ثبت نام کنید.');
 
     }
 

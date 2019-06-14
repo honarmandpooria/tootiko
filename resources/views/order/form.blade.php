@@ -201,7 +201,7 @@
 
 
     <div class="form-group">
-        <button id="submit" type="submit" class="btn btn-primary mt-4">ثبت سفارش</button>
+        <button id="submit" type="submit" class="btn btn-success mt-4 btn-block">ثبت و برآورد قیمت رایگان</button>
     </div>
 
 

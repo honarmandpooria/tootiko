@@ -263,6 +263,7 @@
         @endif
 
 
+        <hr>
         <h4 dir="rtl"><i class="fas fa-list m-3"></i>جزئیات سفارش</h4>
 
         @include('inc.order.customer-order')

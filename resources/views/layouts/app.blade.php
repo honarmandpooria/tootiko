@@ -15,6 +15,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
+
+
     {{--    <link href="{{ asset('css/rtl-bootstrap.css') }}" rel="stylesheet">--}}
 
     @stack('styles')

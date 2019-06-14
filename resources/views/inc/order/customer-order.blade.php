@@ -10,9 +10,6 @@
             {{$order->id}}
 </span>
 
-            <a class="float-left text-white" href="{{route('customer-orders.show',$order->id)}}"><i
-                    class="fas fa-eye"></i></a>
-
 
         </div>
 

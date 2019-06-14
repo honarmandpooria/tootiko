@@ -60,17 +60,19 @@ class PayController extends Controller
 
                 $order->update(['status_id' => 3]);
 
-                return redirect('/paid-success');
+                return redirect('/customer-orders/'.$order->id)->with('success',' مبلغ با موفقیت پرداخت شد و سفارش شما در حال ترجمه است!');
 
             } else {
 
-                return redirect('/paid-failure');
+                $order = $transaction->order;
+                return redirect('/customer-orders/'.$order->id)->with('error','پرداخت با موفقیت انجام نشد! لطفا دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.');
 
             }
 
         } else {
 
-            return redirect('/paid-failure');
+            $order = $transaction->order;
+            return redirect('/customer-orders/'.$order->id)->with('error','پرداخت با موفقیت انجام نشد! لطفا دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.');
 
         }
 

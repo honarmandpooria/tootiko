@@ -2,80 +2,39 @@
 
 @section('content')
     <div class="container">
+        <div class="mx-md-5">
+            <table dir="rtl" class="table table-hover mt-3">
+                <thead>
+                <tr>
+                    <th scope="col">سفارش</th>
+                    <th scope="col">زمان ثبت</th>
+                    <th scope="col">وضعیت</th>
+                    <th scope="col">مشاهده</th>
 
-        @foreach($orders as $order)
+                </tr>
+                </thead>
+                <tbody>
 
-            <div class="card mb-4 border border-danger">
-                <div class="card-header bg-light">
+                @foreach($orders as $order)
 
-                    <div class="">
+                    <tr class="{{$order->status_id == 1 ? 'table-primary' : ($order->status_id == 2 ? 'table-warning' : ($order->status_id == 3 ? 'table-success' : 'table-light'))}}">
+                        <th scope="row">{{$order->id}}</th>
+                        <td>{{$order->created_at->diffForHumans()}}</td>
+                        <td class="translate">{{$order->status->name}}</td>
+                        <td>
+                            <a href="{{route('admin-orders.edit',$order->id)}}"
+                               class="btn btn-warning rounded-circle shadow"><i class="fas fa-eye"></i></a>
+                        </td>
 
-                        <div dir="rtl" class="row">
+                    </tr>
 
-
-                            <div class="col-md-4">
-                                شماره سفارش:
-
-                                <span class="persian-num">
-            {{$order->id}}
-</span>
-                            </div>
-
-                            <div class="col-md-4">
-
-
-                            </div>
-
-                            <div class="col-md-4">
-
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="card-body">
-
-                    @include('inc.order.body')
+                @endforeach
 
 
-                </div>
-                <div class="card-footer bg-white">
+                </tbody>
+            </table>
+        </div>
 
-                    <div dir="rtl" class="row">
-
-
-                        <div class="col-md-6 order-md-1">
-
-                            <a href="{{route('admin-orders.edit', $order->id)}}" class="btn btn-warning">رسیدگی به سفارش</a>
-
-                        </div>
-
-
-                        @if ($order->status_id ==2)
-
-
-                            <div class="col-md-6 order-md-2">
-                                مبلغ پرداختی:
-                                <span class="persian-num">
-                                {{$order->transaction->price}}
-                                </span>
-                                تومان
-
-                            </div>
-
-
-                        @endif
-
-
-                    </div>
-                </div>
-            </div>
-
-        @endforeach
     </div>
 @endsection
 

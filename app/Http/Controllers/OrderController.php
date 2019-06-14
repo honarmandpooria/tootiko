@@ -110,7 +110,7 @@ class OrderController extends Controller
 //        Mail::to($request->user())->send(new OrderSubmited($order));
         Mail::to('honarmandpooria@gmail.com')->send(new OrderSubmited($order));
 
-        return redirect('/customer-orders/' . $order->id);
+        return redirect('/customer-orders/' . $order->id)->with('success','سفارش شما با موفقیت ثبت شد! لطفا منتظر بمانید، کارشناسان طوطیکو درحال بررسی سفارش هستند.');
 
 
     }
