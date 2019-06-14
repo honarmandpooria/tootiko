@@ -36,7 +36,7 @@ class HomeController extends Controller
         }
 
 
-        $orders = Auth::user()->orders;
+        $orders = Auth::user()->orders()->latest()->get();
 
         return view('home')->with('orders',$orders);
     }

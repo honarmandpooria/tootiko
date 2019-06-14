@@ -11,17 +11,32 @@ use nusoap_client;
 class PayController extends Controller
 {
 
-    public function order(Request $request, $id)
+    public function order(Request $request, $transaction_id, $quality_id)
     {
 
 
         $MerchantID = '416137cc-2f9e-11e9-9245-005056a205be';
         $Authority = $request->get('Authority');
 
-        $transaction = Transaction::findOrFail($id);
+        $transaction = Transaction::findOrFail($transaction_id);
 
         //ما در اینجا مبلغ مورد نظر را بصورت دستی نوشتیم اما در پروژه های واقعی باید از دیتابیس بخوانیم
-        $Amount = $transaction->price;
+
+        if ($quality_id == 1) {
+
+            $Amount = $transaction->quality_1_price;
+
+        } elseif ($quality_id == 2) {
+
+            $Amount = $transaction->quality_2_price;
+
+        } elseif ($quality_id == 3) {
+
+            $Amount = $transaction->quality_3_price;
+
+        }
+
+
         if ($request->get('Status') == 'OK') {
 //            $client = new nusoap_client('https://www.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
             $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
@@ -39,21 +54,24 @@ class PayController extends Controller
 
             if ($result['Status'] == 100) {
 
-                $transaction->update(['isPaid' => 1]);
+                $transaction->update(['isPaid' => 1, 'quality_id' => $quality_id]);
 
                 $order = $transaction->order;
 
                 $order->update(['status_id' => 3]);
 
-
                 return redirect('/paid-success');
 
-
             } else {
+
                 return redirect('/paid-failure');
+
             }
+
         } else {
+
             return redirect('/paid-failure');
+
         }
 
 
@@ -66,10 +84,25 @@ class PayController extends Controller
 //        get transaction
         $transaction = Transaction::findOrFail($request->transaction_id);
 
-        $CallbackURL = url('/order/' . $transaction->id); // Required
+//        get price
+        if ($request->quality_id == 1) {
+
+            $Amount = $transaction->quality_1_price;
+
+        } elseif ($request->quality_id == 2) {
+
+            $Amount = $transaction->quality_2_price;
+
+        } elseif ($request->quality_id == 3) {
+
+            $Amount = $transaction->quality_3_price;
+
+        }
+
+        $CallbackURL = url('/order/' . $transaction->id . '/' . $request->quality_id); // Required
 //        send user to zarinpal
         $order = new zarinpal();
-        $res = $order->pay($transaction->price, $transaction->order->user->email, "0912111111", $CallbackURL);
+        $res = $order->pay($Amount, $transaction->order->user->email, "0912111111", $CallbackURL);
 //        return redirect('https://www.zarinpal.com/pg/StartPay/' . $res);
         return redirect('https://sandbox.zarinpal.com/pg/StartPay/' . $res);
 

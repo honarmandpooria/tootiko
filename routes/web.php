@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', 'WelcomeController@welcome')->name('welcome');
+
+
 Route::get('/prices', function () {
     return view('prices');
 })->name('prices');
@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     // payment Routes
-    Route::get('order/{id}', 'PayController@order');
+    Route::get('order/{transaction_id}/{quality_id}', 'PayController@order');
     Route::post('payment', 'PayController@addOrder')->name('payment');
     Route::get('paid-success', 'PayController@paid')->name('paid-success');
     Route::get('paid-failure', 'PayController@failed')->name('paid-failure');

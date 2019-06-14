@@ -15,21 +15,25 @@
 
                     <form method="post" action="{{route('transactions.store')}}" enctype="multipart/form-data">
                         @csrf
-                        <p>ایجاد صورت حساب با توجه به تعداد کلمات و کیفیت درخواستی
+                        <p>ایجاد صورت حساب با توجه به تعداد کلمات
 
-                            <span class="persian-num">
-                            {{$order->words * ($order->quality->price_factor) * ($order->operation->price_factor)}}
-                            </span>
-                            تومان شده است.
-
+                            به صورت زیر محاسبه شده است:
                         </p>
                         <input name="order_id" type="hidden" value="{{$order->id}}">
 
                         <div class="form-group">
-                            <label for="custom_price">تغییر قیمت انتخابی</label>
-                            <input style="width: 200px;" id="custom_price" name="price" type="number"
-                                   class="form-control"
-                                   value="{{$order->words * ($order->quality->price_factor) * ($order->operation->price_factor)}}">
+                            <label for="custom_price">انتخاب قیمت برای کیفیت های عالی - خوب - معمولی به ترتیب </label>
+                            <input style="width: 200px;" id="custom_price" name="quality_1_price" type="number"
+                                   class="form-control mb-2"
+                                   value="{{$order->words * ($qualities[0]->price_factor) * ($order->operation->price_factor)}}">
+
+                            <input style="width: 200px;" id="custom_price" name="quality_2_price" type="number"
+                                   class="form-control mb-2"
+                                   value="{{$order->words * ($qualities[1]->price_factor) * ($order->operation->price_factor)}}">
+
+                            <input style="width: 200px;" id="custom_price" name="quality_3_price" type="number"
+                                   class="form-control mb-2"
+                                   value="{{$order->words * ($qualities[2]->price_factor) * ($order->operation->price_factor)}}">
 
 
                         </div>
@@ -45,7 +49,7 @@
         @endif
         <div class="card mb-4">
             <div class="card-header text-white bg-warning text-dark">
-{{--                @include('inc.order.header')--}}
+                {{--                @include('inc.order.header')--}}
             </div>
             <div class="card-body">
 

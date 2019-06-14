@@ -65,7 +65,7 @@
 
                             <hr class="border-danger">
 
-                            <p class="text-center">ورود به روش قدیمی؛</p>
+                            <p class="text-center mt-2">ورود به روش قدیمی؛</p>
 
 
 

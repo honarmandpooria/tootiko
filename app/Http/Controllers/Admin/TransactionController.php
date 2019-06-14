@@ -48,12 +48,13 @@ class TransactionController extends Controller
 
 
 
-        //calculate price
-        $price = $request->price;
+        //get price
 
 
         $transaction = [];
-        $transaction['price'] = $price;
+        $transaction['quality_1_price'] = $request->quality_1_price;
+        $transaction['quality_2_price'] = $request->quality_2_price;
+        $transaction['quality_3_price'] = $request->quality_3_price;
 
 
         $order->transaction()->create($transaction);

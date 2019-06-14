@@ -57,8 +57,8 @@ class OrderController extends Controller
 
         $input['operation_id'] = $request->operation_id;
         $input['category_id'] = $request->category_id;
-        $input['is_secret'] = $request->is_secret;
-        $input['quality_id'] = $request->quality_id;
+//        $input['is_secret'] = $request->is_secret;
+//        $input['quality_id'] = $request->quality_id;
         $input['remaining_days'] = $request->remaining_days;
         $input['description'] = $request->description;
         $input['translation_url'] = $request->translation_url;
@@ -196,7 +196,7 @@ class OrderController extends Controller
     public function showOrdersWithStatus($status_id)
     {
 
-        $orders = Auth::user()->orders->where('status_id', $status_id);
+        $orders = Auth::user()->orders()->latest()->where('status_id', $status_id)->get();
         return view('app.customer.order.index')->with('orders', $orders);
 
     }

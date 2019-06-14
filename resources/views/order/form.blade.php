@@ -73,6 +73,7 @@
 
     {{--quality radio--}}
 
+{{--
 
     <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
             class="font-weight-bold text-primary">۳)</span>
@@ -100,13 +101,15 @@
 
 
     <hr class=" border-primary my-5">
+--}}
 
 
     {{--Access Rights--}}
+{{--
 
 
     <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
-            class="font-weight-bold text-primary">۴)</span>
+            class="font-weight-bold text-primary">۳)</span>
         انتخاب حق دسترسی</h4>
 
     <div dir="rtl" class="text-center">
@@ -132,13 +135,14 @@
             class="text-success">مترجمین مورد اعتماد طوطیکو</span>
         انجام خواهد شد.</p>
     <hr class=" border-primary my-5">
+--}}
 
 
     {{--Time--}}
 
 
     <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
-            class="font-weight-bold text-primary">۵)</span>
+            class="font-weight-bold text-primary">۳)</span>
         مهلت ترجمه</h4>
     <div dir="rtl" class="clearfix">
         <div class="form-group clearfix position-relative">
@@ -170,7 +174,7 @@
 
 
     <h4 dir="rtl" class=" text-right mb-4 text-muted mb-0"><span
-            class="font-weight-bold text-primary">۶)</span>
+            class="font-weight-bold text-primary">۴)</span>
         توضیحات
         <span class="small">(اختیاری)</span>
 

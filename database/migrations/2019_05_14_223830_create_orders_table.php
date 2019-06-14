@@ -23,8 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('translation_file')->nullable();
             $table->string('translation_url')->nullable();
             $table->string('translated_file')->nullable();
-            $table->string('quality_id');
-            $table->unsignedInteger('is_secret');
+//            $table->unsignedInteger('is_secret');
             $table->unsignedInteger('remaining_days');
             $table->longText('description')->nullable();
             $table->timestamps();

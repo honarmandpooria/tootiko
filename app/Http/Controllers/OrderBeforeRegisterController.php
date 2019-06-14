@@ -15,8 +15,8 @@ class OrderBeforeRegisterController extends Controller
 
         $input['operation_id'] = $request->operation_id;
         $input['category_id'] = $request->category_id;
-        $input['is_secret'] = $request->is_secret;
-        $input['quality_id'] = $request->quality_id;
+//        $input['is_secret'] = $request->is_secret;
+//        $input['quality_id'] = $request->quality_id;
         $input['remaining_days'] = $request->remaining_days;
         $input['description'] = $request->description;
         $input['translation_url'] = $request->translation_url;

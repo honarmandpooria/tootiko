@@ -28,8 +28,8 @@ class CustomerOrderRequest extends FormRequest
             'operation_id' => 'required|exists:operations,id',
             'translation_url' => 'url|nullable',
             'category_id' => 'required|exists:categories,id',
-            'quality_id' => 'required|exists:qualities,id',
-            'is_secret' => 'required|in:0,1',
+//            'quality_id' => 'required|exists:qualities,id',
+//            'is_secret' => 'required|in:0,1',
             'remaining_days' => 'required|integer|min:2|max:150',
         ];
 

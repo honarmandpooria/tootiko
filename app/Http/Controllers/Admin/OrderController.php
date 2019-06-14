@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\AdminOrderRequest;
 use App\Mail\OrderTranslated;
 use App\Order;
+use App\Quality;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -67,8 +68,9 @@ class OrderController extends Controller
 
         $order = Order::findOrFail($id);
 
+        $qualities = Quality::all();
 
-        return view('app.admin.order.edit')->with('order', $order);
+        return view('app.admin.order.edit')->with(['order' => $order, 'qualities' => $qualities]);
 
     }
 

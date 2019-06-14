@@ -68,8 +68,12 @@
             <br>
 
             <i class="fas fa-poll"></i>
-            کیفیت ترجمه:
-            {{$order->quality->name}}
+            کیفیت درخواستی:
+            @if($order->transaction)
+                {{$order->transaction->quality_id == 1 ? 'عالی' : ($order->transaction->quality_id == 2 ? 'خوب' : 'معمولی')}}
+                @else
+                -
+            @endif
             <br>
 
             <i class="fas fa-calendar-check"></i>

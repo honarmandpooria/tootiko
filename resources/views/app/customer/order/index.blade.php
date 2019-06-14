@@ -3,23 +3,40 @@
 
 
 
-@section('styles')
-
-    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
-
-@endsection
-
 
 @section('content')
     <div class="container">
 
 
         @if(count($orders))
-            @foreach($orders as $order)
+            <table dir="rtl" class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">سفارش</th>
+                    <th scope="col">زمان</th>
+                    <th scope="col">مشاهده</th>
 
-                @include('inc.order.customer-order')
+                </tr>
+                </thead>
+                <tbody>
 
-            @endforeach
+                @foreach($orders as $order)
+
+                    <tr>
+                        <th scope="row">{{$order->id}}</th>
+                        <td class="translate">{{$order->created_at->diffForHumans()}}</td>
+                        <td>
+                            <a href="{{route('customer-orders.show',$order->id)}}" class="btn btn-info rounded-circle shadow"><i class="fas fa-eye text-white"></i></a>
+                        </td>
+
+                    </tr>
+
+                @endforeach
+
+
+
+                </tbody>
+            </table>
 
         @else
 {{--            <p class="text-center" dir="rtl">هیچ سفارش ترجمه ای ثبت نشده است.</p>--}}
@@ -32,42 +49,3 @@
     </div>
 @endsection
 
-
-@section('scripts')
-
-
-    <script>
-
-
-        function doAnimation(id, animName, duration, delay) {
-            var el = document.getElementById(id);
-            var timer;
-
-            function addClass() {
-                el.classList.add(animName);
-            }
-
-            function removeClass() {
-                el.classList.remove(animName);
-            }
-
-            setInterval(function () {
-                clearTimeout(timer);
-                addClass();
-                timer = setTimeout(removeClass, duration);
-            }, duration + delay);
-        }
-
-        doAnimation('payment', 'flash', 1000, 3000);
-
-
-        $('#payment').hover(function () {
-            $(this).toggleClass('animated');
-        })
-
-
-    </script>
-
-
-
-@endsection

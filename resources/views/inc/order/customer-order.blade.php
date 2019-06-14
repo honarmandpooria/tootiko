@@ -34,7 +34,7 @@
 
 
                 @if ($order->status_id ==2)
-                    مبلغ پرداختی:
+                   {{-- مبلغ پرداختی:
                     <span class="persian-num">
                                 {{$order->transaction->price}}
                                 </span>
@@ -56,7 +56,7 @@
                         <input type="hidden" name="transaction_id" value="{{$order->transaction->id}}">
 
                     </form>
-
+--}}
 
                 @endif
 
