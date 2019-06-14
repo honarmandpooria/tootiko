@@ -1,13 +1,13 @@
 <div class="card mb-4 shadow">
     <div
         class="card-header {{$order->status_id == 1 ? 'bg-primary text-white' : ($order->status_id ==2 ? 'bg-info text-white' : ($order->status_id ==3 ? 'bg-success text-white' : 'bg-light'))}}">
-        <div class="">
+        <div dir="rtl" class="">
 
 
-            شماره سفارش:
+            کد سفارش:
 
-            <span class="persian-num">
-            {{$order->id}}
+            <span>
+            {{$order->code}}
 </span>
 
 
@@ -40,13 +40,13 @@
 
                     <button id="payment" class="btn p-3  btn-success shadow-sm animated"
                             onclick="event.preventDefault();
-                                document.getElementById('payment-form{{$order->id}}').submit();">
+                                document.getElementById('payment-form{{$order->code}}').submit();">
                         <i class="fas fa-money-check mx-2"></i>
                         پرداخت مبلغ و شروع فرایند ترجمه
                     </button>
 
 
-                    <form id="payment-form{{$order->id}}" method="post"
+                    <form id="payment-form{{$order->code}}" method="post"
                           action="{{route('payment')}}">
                         @csrf
 

@@ -141,7 +141,7 @@
     <div class="col-md-4 col-sm-6 my-2">
 
         @if($order->translation_file)
-            <a download="فایل مبدا {{$order->id}}"
+            <a download="فایل مبدا {{$order->code}}"
                href="{{asset($order->translation_file)}}"
                class="btn  btn-outline-primary"><i
                     class="fas fa-download mx-2"></i>فایل مبدا</a>

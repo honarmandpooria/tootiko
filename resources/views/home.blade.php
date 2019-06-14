@@ -24,15 +24,15 @@
                         </span>
                         </div>
 
-                       {{-- <div class="card-body bg-light rounded-bottom text-center">
+                        {{-- <div class="card-body bg-light rounded-bottom text-center">
 
-                            <a href="{{route('get-order-with-status',2)}}" class="text-info">
-                                <i class="fas fa-eye"></i>
-                                مشاهده
-                            </a>
+                             <a href="{{route('get-order-with-status',2)}}" class="text-info">
+                                 <i class="fas fa-eye"></i>
+                                 مشاهده
+                             </a>
 
 
-                        </div>--}}
+                         </div>--}}
                     </div>
 
 
@@ -53,15 +53,15 @@
                         </span>
                         </div>
 
-                   {{--     <div class="card-body bg-light rounded-bottom text-center">
+                        {{--     <div class="card-body bg-light rounded-bottom text-center">
 
-                            <a href="{{route('get-order-with-status',1)}}">
-                                <i class="fas fa-eye"></i>
-                                مشاهده
-                            </a>
+                                 <a href="{{route('get-order-with-status',1)}}">
+                                     <i class="fas fa-eye"></i>
+                                     مشاهده
+                                 </a>
 
 
-                        </div>--}}
+                             </div>--}}
                     </div>
 
 
@@ -83,15 +83,15 @@
                         </span>
                         </div>
 
-                      {{--  <div class="card-body bg-light rounded-bottom text-center">
+                        {{--  <div class="card-body bg-light rounded-bottom text-center">
 
-                            <a href="{{route('get-order-with-status',3)}}" class="text-success">
-                                <i class="fas fa-eye"></i>
-                                مشاهده
-                            </a>
+                              <a href="{{route('get-order-with-status',3)}}" class="text-success">
+                                  <i class="fas fa-eye"></i>
+                                  مشاهده
+                              </a>
 
 
-                        </div>--}}
+                          </div>--}}
                     </div>
 
 
@@ -111,16 +111,16 @@
                             {{count($orders->where('status_id',4))}}
                         </span>
                         </div>
-{{--
-                        <div class="card-body bg-white rounded-bottom text-center">
+                        {{--
+                                                <div class="card-body bg-white rounded-bottom text-center">
 
-                            <a href="{{route('get-order-with-status',4)}}" class="text-dark">
-                                <i class="fas fa-eye"></i>
-                                مشاهده
-                            </a>
+                                                    <a href="{{route('get-order-with-status',4)}}" class="text-dark">
+                                                        <i class="fas fa-eye"></i>
+                                                        مشاهده
+                                                    </a>
 
 
-                        </div>--}}
+                                                </div>--}}
                     </div>
 
 
@@ -131,43 +131,7 @@
         </div>
 
 
-        @if(Auth::user()->orders())
-
-            <hr>
-
-            <h4 class="mt-5 pb-0" dir="rtl"><i class="fas fa-list mx-3"></i>لیست ترجمه های من</h4>
-
-            <div class="mx-md-5">
-                <table dir="rtl" class="table table-hover mt-3">
-                    <thead>
-                    <tr>
-                        <th scope="col">سفارش</th>
-                        <th scope="col">وضعیت</th>
-                        <th scope="col">مشاهده</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    @foreach($orders as $order)
-
-                        <tr class="{{$order->status_id == 1 ? 'table-primary' : ($order->status_id == 2 ? 'table-warning' : ($order->status_id == 3 ? 'table-success' : 'table-light'))}}">
-                            <th scope="row">{{$order->id}}</th>
-                            <td class="translate">{{$order->status->name}}</td>
-                            <td>
-                                <a href="{{route('customer-orders.show',$order->id)}}"
-                                   class="btn btn-info rounded-circle shadow"><i class="fas fa-eye text-white"></i></a>
-                            </td>
-
-                        </tr>
-
-                    @endforeach
-
-
-                    </tbody>
-                </table>
-            </div>
-        @endif
+        @include('inc.order.table')
 
     </div>
 

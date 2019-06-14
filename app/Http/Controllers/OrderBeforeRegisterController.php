@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerOrderRequest;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Str;
 
 class OrderBeforeRegisterController extends Controller
 {
@@ -20,6 +21,7 @@ class OrderBeforeRegisterController extends Controller
         $input['remaining_days'] = $request->remaining_days;
         $input['description'] = $request->description;
         $input['translation_url'] = $request->translation_url;
+        $input['code'] = $hash = Str::random(6);
         $input['status_id'] = 1;
 
 //        this will check the incoming file type based on its content!

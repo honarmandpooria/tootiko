@@ -18,7 +18,7 @@
                 @foreach($orders as $order)
 
                     <tr class="{{$order->status_id == 1 ? 'table-primary' : ($order->status_id == 2 ? 'table-warning' : ($order->status_id == 3 ? 'table-success' : 'table-light'))}}">
-                        <th scope="row">{{$order->id}}</th>
+                        <th scope="row">{{$order->code}}</th>
                         <td>{{$order->created_at->diffForHumans()}}</td>
                         <td class="translate">{{$order->status->name}}</td>
                         <td>
