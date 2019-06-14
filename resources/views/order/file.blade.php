@@ -21,12 +21,8 @@
 
     {{--    upload file--}}
     <div class="tab-pane fade show active bg-light border border-top-0 p-2" id="nav-home" role="tabpanel"
-         aria-labelledby="nav-home-tab">
-
-
-        <p id="file-tip" dir="rtl" class="blockquote-footer pt-5">در صورتی که <span
-                class="text-danger"> بیش از یک فایل</span>
-            برای ترجمه دارید، آنها را به صورت زیپ در بیاورید و سپس فایل زیپ را آپلود کنید.</p>
+         aria-labelledby="nav-home-tab"
+         >
 
 
         <div dir="rtl" class="progress d-none mb-2 ">
@@ -36,12 +32,16 @@
 
         <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
 
-        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #9c27b0;">
+        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #9c27b0;" data-toggle="tooltip" data-placement="bottom" title="فایل خود را در کادر حاشیه دار بکشید و رها کنید یا از دکمه جستجو استفاده کنید. همچنین درصورتی که لینک فایل را در اختیار دارید از بخش «ارسال لینک» استفاده کنید">
             <label for="file-upload"
                    class="custom-file-label text-left m-3 mx-auto" style="max-width: 500px;">انتخاب
                 فایل</label>
             <input required id="file-upload" name="translation_file" type="file"
                    class="custom-file-input {{$errors->has('translation_file') ? 'is-invalid': ($errors->all() ? 'is-invalid' : '')}}">
+
+
+
+
             <div class="invalid-feedback">
 
 
@@ -59,8 +59,8 @@
 
         </div>
 
-
     </div>
+
 
 
     {{--    link--}}

@@ -1,10 +1,24 @@
 @push('styles')
     <link rel="stylesheet" href="{{asset('css/form-custom-styles.css')}}">
+
+    <style>
+        .tooltip-inner {
+            max-width: 300px;
+            padding: 0.25rem 0.5rem;
+            color: #fff;
+            text-align: center;
+            background-color: #38c172;
+            border-radius: 22px;
+        }
+    </style>
 @endpush
 
 
 <form class="needs-validation" novalidate method="POST"
-@guest action="{{route('before-register.setOrderSession')}}"  @else action="{{route('customer-orders.store')}}"  @endguest>
+      @guest action="{{route('before-register.setOrderSession')}}"
+      @else action="{{route('customer-orders.store')}}" @endguest>
+
+
 
     @csrf
 
@@ -18,7 +32,7 @@
         <div class="form-group col-md-6">
             <select name="operation_id" required
                     class="custom-select {{$errors->has('operation_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
-                <option value="">انتخاب زبان</option>
+                <option value="">نوع ترجمه</option>
                 <option value="1" {{(old("operation_id") == 1 ? "selected":"")}}>انگلیسی به فارسی
                 </option>
                 <option value="2" {{(old("operation_id") == 2 ? "selected":"")}}>فارسی به انگلیسی
@@ -57,9 +71,38 @@
 
         </div>
 
+        <div class="form-group col-md-6 ">
+            <div dir="rtl" class="clearfix mr-3" >
+
+                <div class="form-group clearfix position-relative" >
+
+                    <label for="remaining_days">مهلت ترجمه (روز):</label>
+                    <input data-toggle="tooltip" data-placement="bottom" title="چند روز برای انجام ترجمه مهلت دارید؟"
+                        id="remaining_days" type="number" name="remaining_days"
+                           value="{{old('remaining_days') ? old('remaining_days') : 7}}"
+                           class="form-control {{$errors->has('remaining_days') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}"
+                           style="max-width: 100px">
+
+
+                    <div class="invalid-feedback">
+
+
+                        @if ($errors->has('remaining_days'))
+
+                            {{$errors->first('remaining_days')}}
+
+                        @endif
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
 
     </div>
-
     <hr class=" border-primary my-5">
 
 
@@ -73,108 +116,76 @@
 
     {{--quality radio--}}
 
-{{--
+    {{--
 
-    <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
-            class="font-weight-bold text-primary">۳)</span>
-        انتخاب کیفیت نهایی</h4>
-    <div dir="rtl" class="text-center">
-        <div class="custom-control form-control-lg custom-radio custom-control-inline">
-            <input type="radio" name="quality_id" value="1" id="radio1"
-                   class="custom-control-input {{$errors->all() ? 'is-valid' : ''}}">
-            <label for="radio1" class="custom-control-label">کیفیت معمولی</label>
+        <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
+                class="font-weight-bold text-primary">۳)</span>
+            انتخاب کیفیت نهایی</h4>
+        <div dir="rtl" class="text-center">
+            <div class="custom-control form-control-lg custom-radio custom-control-inline">
+                <input type="radio" name="quality_id" value="1" id="radio1"
+                       class="custom-control-input {{$errors->all() ? 'is-valid' : ''}}">
+                <label for="radio1" class="custom-control-label">کیفیت معمولی</label>
+            </div>
+
+            <div class="custom-control form-control-lg custom-radio custom-control-inline">
+                <input type="radio" name="quality_id" value="2" id="radio2"
+                       class="custom-control-input {{$errors->all() ? 'is-valid' : ''}}" checked>
+                <label for="radio2" class="custom-control-label">کیفیت خوب</label>
+            </div>
+
+            <div class="custom-control form-control-lg custom-radio custom-control-inline">
+                <input type="radio" name="quality_id" value="3" id="radio3"
+                       class="custom-control-input {{$errors->all() ? 'is-valid' : ''}}">
+                <label for="radio3" class="custom-control-label">کیفیت عالی</label>
+            </div>
+
         </div>
 
-        <div class="custom-control form-control-lg custom-radio custom-control-inline">
-            <input type="radio" name="quality_id" value="2" id="radio2"
-                   class="custom-control-input {{$errors->all() ? 'is-valid' : ''}}" checked>
-            <label for="radio2" class="custom-control-label">کیفیت خوب</label>
-        </div>
 
-        <div class="custom-control form-control-lg custom-radio custom-control-inline">
-            <input type="radio" name="quality_id" value="3" id="radio3"
-                   class="custom-control-input {{$errors->all() ? 'is-valid' : ''}}">
-            <label for="radio3" class="custom-control-label">کیفیت عالی</label>
-        </div>
-
-    </div>
-
-
-    <hr class=" border-primary my-5">
---}}
+        <hr class=" border-primary my-5">
+    --}}
 
 
     {{--Access Rights--}}
-{{--
+    {{--
 
 
-    <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
-            class="font-weight-bold text-primary">۳)</span>
-        انتخاب حق دسترسی</h4>
+        <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
+                class="font-weight-bold text-primary">۳)</span>
+            انتخاب حق دسترسی</h4>
 
-    <div dir="rtl" class="text-center">
-        <div class="custom-control custom-radio form-control-lg custom-control-inline">
-            <input type="radio" name="is_secret" value="0" id="radio4"
-                   class="custom-control-input {{$errors->has('is_secret') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}"
-                   checked>
-            <label for="radio4" class="custom-control-label">آزاد</label>
-        </div>
-
-        <div class="custom-control custom-radio form-control-lg custom-control-inline">
-            <input type="radio" name="is_secret" value="1" id="radio5"
-                   class="custom-control-input {{$errors->has('is_secret') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
-            <label for="radio5" class="custom-control-label">محرمانه</label>
-        </div>
-
-
-    </div>
-
-    <p dir="rtl" class="blockquote-footer mt-2 mb-0">این بخش مربوط به کسانی است که میخواهند متن
-        ترجمه آن ها فاش نشود. </p>
-    <p dir="rtl" class="blockquote-footer">این نوع ترجمه فقط توسط <span
-            class="text-success">مترجمین مورد اعتماد طوطیکو</span>
-        انجام خواهد شد.</p>
-    <hr class=" border-primary my-5">
---}}
-
-
-    {{--Time--}}
-
-
-    <h4 dir="rtl" class=" text-right mb-4 text-muted"><span
-            class="font-weight-bold text-primary">۳)</span>
-        مهلت ترجمه</h4>
-    <div dir="rtl" class="clearfix">
-        <div class="form-group clearfix position-relative">
-
-            <input type="number" name="remaining_days"
-                   value="{{old('remaining_days') ? old('remaining_days') : 7}}"
-                   class="form-control float-right {{$errors->has('remaining_days') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}"
-                   style="max-width: 100px">
-            <span class="float-right mr-3 ml-5 py-1">روز</span>
-
-            <div class="invalid-feedback">
-
-
-                @if ($errors->has('remaining_days'))
-
-                    {{$errors->first('remaining_days')}}
-
-                @endif
-
+        <div dir="rtl" class="text-center">
+            <div class="custom-control custom-radio form-control-lg custom-control-inline">
+                <input type="radio" name="is_secret" value="0" id="radio4"
+                       class="custom-control-input {{$errors->has('is_secret') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}"
+                       checked>
+                <label for="radio4" class="custom-control-label">آزاد</label>
             </div>
+
+            <div class="custom-control custom-radio form-control-lg custom-control-inline">
+                <input type="radio" name="is_secret" value="1" id="radio5"
+                       class="custom-control-input {{$errors->has('is_secret') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
+                <label for="radio5" class="custom-control-label">محرمانه</label>
+            </div>
+
+
         </div>
 
-
-    </div>
-    <hr class="border-primary my-5">
+        <p dir="rtl" class="blockquote-footer mt-2 mb-0">این بخش مربوط به کسانی است که میخواهند متن
+            ترجمه آن ها فاش نشود. </p>
+        <p dir="rtl" class="blockquote-footer">این نوع ترجمه فقط توسط <span
+                class="text-success">مترجمین مورد اعتماد طوطیکو</span>
+            انجام خواهد شد.</p>
+        <hr class=" border-primary my-5">
+    --}}
 
 
     {{--Description--}}
 
 
     <h4 dir="rtl" class=" text-right mb-4 text-muted mb-0"><span
-            class="font-weight-bold text-primary">۴)</span>
+            class="font-weight-bold text-primary">۳)</span>
         توضیحات
         <span class="small">(اختیاری)</span>
 
@@ -227,14 +238,14 @@
 @push('scripts')
 
 
-{{--        jquery validation--}}
+    {{--        jquery validation--}}
 
     <script src="{{asset('js/jquery.validate.js')}}"></script>
     <script src="{{asset('js/additional-methods.js')}}"></script>
     <script src="{{asset('js/form-custom-js.js')}}"></script>
 
 
-{{--            ارسال درخواست ایجکس برای ذخیره فایل --}}
+    {{--            ارسال درخواست ایجکس برای ذخیره فایل --}}
 
 
     <script>
@@ -301,6 +312,13 @@
 
         })
 
+
+
+
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 
 
