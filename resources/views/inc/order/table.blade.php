@@ -6,7 +6,7 @@
     <table dir="rtl" class="table table-hover mt-3">
         <thead>
         <tr>
-            <th scope="col">کد سفارش</th>
+            <th scope="col">زمان ثبت</th>
             <th scope="col">وضعیت</th>
             <th scope="col">مشاهده</th>
 
@@ -17,7 +17,7 @@
             @foreach($orders as $order)
 
                 <tr class="{{$order->status_id == 1 ? 'table-primary' : ($order->status_id == 2 ? 'table-warning' : ($order->status_id == 3 ? 'table-success' : 'table-light'))}}">
-                    <th scope="row">{{$order->code}}</th>
+                    <td>{{$order->created_at->diffForHumans()}}</td>
                     <td class="translate">{{$order->status->name}}</td>
                     <td>
                         <a href="{{route('customer-orders.show',$order->id)}}"
