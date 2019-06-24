@@ -16,10 +16,10 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('welcome') }}"><i class="fas fa-home mx-2"></i>خانه</a>
+                        <a class="nav-link {{Request::is('/') ? 'active border-3' : ''}}" href="{{ route('welcome') }}"><i class="fas fa-home mx-2"></i>خانه</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login-register') }}"><i class="fas fa-key mx-2"></i>ورود | ثبت نام</a>
+                        <a class="nav-link {{Request::is('login-register') ? 'active border-3' : ''}}" href="{{ route('login-register') }}"><i class="fas fa-key mx-2"></i>ورود | ثبت نام</a>
                     </li>
 
                 @else
