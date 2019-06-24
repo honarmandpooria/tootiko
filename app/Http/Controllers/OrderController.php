@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 
@@ -87,8 +88,9 @@ class OrderController extends Controller
         $user_id = Auth::user()->id;
         $input['user_id'] = $user_id;
 
-
         $translate_file_path = session()->get('translate_file_path');
+
+
         $input['translation_file'] = $translate_file_path;
 
         //validate file exist
@@ -109,7 +111,7 @@ class OrderController extends Controller
 //        send email to user and admin
 
 //        Mail::to($request->user())->send(new OrderSubmited($order));
-        Mail::to('honarmandpooria@gmail.com')->send(new OrderSubmited($order));
+//        Mail::to('honarmandpooria@gmail.com')->send(new OrderSubmited($order));
 
         return redirect('/customer-orders/' . $order->id)->with('success','سفارش شما با موفقیت ثبت شد! لطفا منتظر بمانید، کارشناسان طوطیکو درحال بررسی سفارش هستند.');
 
@@ -180,16 +182,16 @@ class OrderController extends Controller
     public function ajaxFileUpload(TranslateFileRequest $request)
     {
 
-        $file = $request->file('translation_file');
-        $ext = $file->getClientOriginalExtension();
-        $hash = Str::random(40);
-        $file = $file->move('t-files', $hash . '.' . $ext);
+//        $file = $request->file('translation_file');
+//        $ext = $file->getClientOriginalExtension();
+//        $hash = Str::random(40);
+//        $file = $file->move('t-files', $hash . '.' . $ext);
 
+//        save file
+        $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
 
-        $path = $file->getPathname();
+//        $path = $file->getPathname();
         session(['translate_file_path' => $path]);
-
-
 
     }
 
