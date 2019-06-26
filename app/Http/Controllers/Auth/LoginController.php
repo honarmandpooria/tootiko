@@ -42,7 +42,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-
     }
 
 
@@ -61,11 +60,14 @@ class LoginController extends Controller
     /**
      * Obtain the user information from google.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request)
     {
 
+
+        session()->put('state', $request->input('state'));
         $userSocial = Socialite::driver('google')->user();
         $findUser = User::where('email', $userSocial->email)->first();
 
@@ -91,7 +93,6 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-
 
         if (Auth::user()->role->id == 1 && Auth::check() && Auth::user()->role->name == 'boss') {
 
