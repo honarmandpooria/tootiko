@@ -46,8 +46,8 @@ return [
 
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'client_id' => '869337821640-94bn2h46r1to5sa7rs9t63v8o9odmd75.apps.googleusercontent.com',
+        'client_secret' => 'MwRaA9rsaGwaZYHkPhb_nnHH',
         'redirect' => 'http://tootiko.com/login/google/callback',
     ],
 
