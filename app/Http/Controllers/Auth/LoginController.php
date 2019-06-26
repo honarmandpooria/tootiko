@@ -67,7 +67,6 @@ class LoginController extends Controller
     {
 
 
-        session()->put('state', $request->input('state'));
         $userSocial = Socialite::driver('google')->user();
         $findUser = User::where('email', $userSocial->email)->first();
 
