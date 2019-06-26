@@ -24,6 +24,7 @@
     {{--    <link rel="stylesheet" href="{{ asset('css/rtl-bootstrap.css') }}">--}}
 
     @stack('styles')
+    <meta name="google-site-verification" content="o0Xco_SisHJ_4RrLylGYcCa_hRSEwZiB71mK44wzXFM" />
 
 </head>
 <body>

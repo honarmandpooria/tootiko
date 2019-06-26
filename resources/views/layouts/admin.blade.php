@@ -17,6 +17,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{--    <link href="{{ asset('css/rtl-bootstrap.css') }}" rel="stylesheet">--}}
     @stack('styles')
+    <meta name="google-site-verification" content="o0Xco_SisHJ_4RrLylGYcCa_hRSEwZiB71mK44wzXFM" />
 
 </head>
 <body>

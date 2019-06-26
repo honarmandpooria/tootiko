@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Order;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -67,7 +66,7 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
 
-        $userSocial = Socialite::with('google')->user();
+        $userSocial = Socialite::driver('google')->user();
         $findUser = User::where('email', $userSocial->email)->first();
 
         if ($findUser) {
