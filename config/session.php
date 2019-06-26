@@ -153,7 +153,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', 'tootiko.com'),
+    'domain' => env('SESSION_DOMAIN', 'www.tootiko.com'),
 
     /*
     |--------------------------------------------------------------------------
