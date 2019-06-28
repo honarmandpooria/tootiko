@@ -128,5 +128,6 @@ class OrderController extends Controller
     public function destroy($id)
     {
         Order::findOrFail($id)->delete();
+        return redirect('/admin-orders')->with('success','سفارش با موفقیت حذف شد.');
     }
 }

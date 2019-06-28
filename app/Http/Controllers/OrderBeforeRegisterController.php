@@ -27,12 +27,12 @@ class OrderBeforeRegisterController extends Controller
 //        this will check the incoming file type based on its content!
 //        dd($request->file('translation_file')->getMimeType());
 
-        $translate_file_path = session()->get('translate_file_path');
-        $input['translation_file'] = $translate_file_path;
+        $file_id = session()->get('file_id');
+        $input['file_id'] = $file_id;
 
         //validate file exist
 
-        if ($translate_file_path || $request->translation_url) {
+        if ($file_id || $request->translation_url) {
 
             session(['order' => $input]);
 

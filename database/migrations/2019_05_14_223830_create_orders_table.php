@@ -22,11 +22,13 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('operation_id');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('file_id')->nullable();
+            $table->string('translation_url')->nullable();
             $table->string('translated_file')->nullable();
 //            $table->unsignedInteger('is_secret');
             $table->unsignedInteger('remaining_days');
             $table->longText('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
