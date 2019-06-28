@@ -38,8 +38,8 @@ class PayController extends Controller
 
 
         if ($request->get('Status') == 'OK') {
-//            $client = new nusoap_client('https://www.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-            $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+            $client = new nusoap_client('https://www.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+//            $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
             $client->soap_defencoding = 'UTF-8';
 
             //در خط زیر یک درخواست به زرین پال ارسال می کنیم تا از صحت پرداخت کاربر مطمئن شویم
@@ -105,8 +105,8 @@ class PayController extends Controller
 //        send user to zarinpal
         $order = new zarinpal();
         $res = $order->pay($Amount, $transaction->order->user->email, "0912111111", $CallbackURL);
-//        return redirect('https://www.zarinpal.com/pg/StartPay/' . $res);
-        return redirect('https://sandbox.zarinpal.com/pg/StartPay/' . $res);
+        return redirect('https://www.zarinpal.com/pg/StartPay/' . $res);
+//        return redirect('https://sandbox.zarinpal.com/pg/StartPay/' . $res);
 
 
     }
