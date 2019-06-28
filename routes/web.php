@@ -28,7 +28,6 @@ Route::get('/login-register', function () {
 })->name('login-register');
 
 
-
 // Users auth and verified
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -53,7 +52,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/admin-home', 'HomeController@admin')->name('admin-home');
+
+
+//     orders + trash and restore orders
     Route::resource('/admin-orders', 'Admin\OrderController');
+    Route::get('/trashed-orders', 'Admin\OrderController@trashed')->name('trashed-orders');
+    Route::put('/restore-order/{admin_order}', 'Admin\OrderController@restore')->name('restore-order');
+
     Route::resource('/transactions', 'Admin\TransactionController');
     Route::resource('/files', 'Admin\FileController');
 
@@ -69,7 +74,6 @@ Route::post('/before-register', 'OrderBeforeRegisterController@setOrderSession')
 
 Route::post('/translate-file', 'OrderController@ajaxFileUpload')->name('file-upload');
 Route::post('/order-before-register', 'OrderBeforeRegisterController@step1')->name('order-before-register');
-
 
 
 // Google Api Login

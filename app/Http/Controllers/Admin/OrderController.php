@@ -128,6 +128,23 @@ class OrderController extends Controller
     public function destroy($id)
     {
         Order::findOrFail($id)->delete();
-        return redirect('/admin-orders')->with('success','سفارش با موفقیت حذف شد.');
+        return redirect('/admin-orders')->with('success', 'سفارش با موفقیت حذف شد.');
+    }
+
+    public function trashed()
+    {
+        $orders = Order::onlyTrashed()->get();
+        return view('app.admin.order.trashed')->with('orders', $orders);
+
+    }
+
+    public function restore($id)
+    {
+
+        $order = Order::withTrashed()->findOrFail($id);
+        $order->restore();
+        return redirect('/admin-orders')->with('success', 'سفارش با موفقیت بازیابی شد!');
+
+
     }
 }

@@ -123,12 +123,36 @@
 
         </div>
 
-        <form method="post" action="{{route('admin-orders.destroy', $order->id)}}">
-            @method('delete')
-            <button class="btn btn-danger my-3" type="submit">حذف سفارش</button>
 
-            @csrf
-        </form>
+        <button class="btn btn-danger float-left my-3" data-toggle="modal" data-target="#delete"><i
+                class="fas fa-times mx-2"></i>حذف سفارش
+        </button>
+
 
     </div>
+
+    <div class="modal" id="delete" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div dir="rtl" class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLongTitle">آیا از حذف این سفارش مطمئن هستید؟</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route('admin-orders.destroy', $order->id)}}">
+                        @method('delete')
+                        <button dir="rtl" class="btn btn-warning my-3" type="submit">بله مطمئن هستم، سفارش را حذف کن.
+                        </button>
+
+                        @csrf
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 @endsection
