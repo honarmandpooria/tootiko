@@ -19,10 +19,6 @@
     </style>
 
 
-    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
-
-
-
 @endpush
 
 @section('content')
