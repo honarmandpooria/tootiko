@@ -42,10 +42,10 @@
 
 
                     <li class="nav-item">
-                        <a href="{{route('transactions.index')}}"
-                           class="nav-link {{Request::is('/') ? 'active border-3' : ''}}">
-                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-clipboard-list"></i></div>
-                            <span class="d-none d-md-block">فایل ها</span>
+                        <a href="{{route('files.index')}}"
+                           class="nav-link {{Request::is('files') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-upload"></i></div>
+                            <span class="d-none d-md-block">آپلودها</span>
                         </a>
                     </li>
 

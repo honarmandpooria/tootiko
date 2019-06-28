@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\File;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -14,7 +16,8 @@ class FileController extends Controller
      */
     public function index()
     {
-        //
+        $files = File::latest()->paginate();
+        return view('app.admin.file.index')->with('files', $files);
     }
 
     /**
@@ -30,7 +33,7 @@ class FileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,10 +44,10 @@ class FileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\File  $file
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(File $file)
+    public function show($id)
     {
         //
     }
@@ -52,10 +55,10 @@ class FileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\File  $file
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(File $file)
+    public function edit($id)
     {
         //
     }
@@ -63,11 +66,11 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\File  $file
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, File $file)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,11 +78,14 @@ class FileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\File  $file
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(File $file)
+    public function destroy($id)
     {
-        //
+        $file = File::findOrFail($id);
+        Storage::delete($file->file);
+        File::destroy($id);
+        return redirect()->back()->with('success','فایل حذف شد');
     }
 }
