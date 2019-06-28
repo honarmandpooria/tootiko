@@ -4,7 +4,7 @@
     <div class="container">
         <div class="mx-md-5">
             <a href="{{route('trashed-orders')}}"
-               class="btn btn-info shadow"><i class="fas fa-eye mx-2"></i> نمایش سفارش های حذف شده </a>
+               class="btn btn-info shadow"><i class="fas fa-trash mx-2"></i> زباله دان </a>
             <table dir="rtl" class="table table-hover mt-3">
                 <thead>
                 <tr>

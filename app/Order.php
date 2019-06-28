@@ -46,4 +46,23 @@ class Order extends Model
         return $this->belongsTo(File::class);
     }
 
+
+
+    public static function boot ()
+    {
+        parent::boot();
+
+        self::deleting(function (Order $order) {
+
+            $order->transaction->delete();
+
+        });
+        self::restoring(function (Order $order) {
+
+            $order->transaction()->withTrashed()->first()->restore();
+
+        });
+    }
+
+
 }

@@ -9,7 +9,7 @@
                     <th scope="col">فایل</th>
                     <th scope="col">زمان آپلود</th>
                     <th scope="col">عملیات</th>
-                    <th scope="col">مشاهده</th>
+                    <th scope="col">نوع فایل</th>
 
                 </tr>
                 </thead>
@@ -30,7 +30,11 @@
                                 <a class="btn btn-primary" href="{{route('admin-orders.edit',$file->order->id)}}">مشاهده
                                     سفارش</a>
 
-                            @else
+                            @elseif($file->order()->withTrashed()->first())
+
+                                سفارش مربوط به این فایل هنوز در زباله دان است.
+
+                                @else
 
                                 <form method="post" action="{{route('files.destroy', $file->id)}}">
                                     @csrf
@@ -44,6 +48,8 @@
 
                         </td>
                         <td>
+
+                            <p>{{Storage::mimeType($file->file)}}</p>
 
                         </td>
 

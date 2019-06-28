@@ -22,6 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger('quality_3_price');
             $table->unsignedInteger('isPaid')->default('0');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
