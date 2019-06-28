@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Http\Requests\CustomerOrderRequest;
 use App\Http\Requests\TranslateFileRequest;
 use App\Mail\OrderSubmited;
@@ -39,7 +40,7 @@ class OrderController extends Controller
 //        $this->authorize('create');
 
 
-        session()->forget('translate_file_path');
+        session()->forget('file_id');
         return view('app.customer.order.create');
     }
 
@@ -58,11 +59,9 @@ class OrderController extends Controller
 
         $input['operation_id'] = $request->operation_id;
         $input['category_id'] = $request->category_id;
-//        $input['is_secret'] = $request->is_secret;
-//        $input['quality_id'] = $request->quality_id;
         $input['remaining_days'] = $request->remaining_days;
         $input['description'] = $request->description;
-        $input['translation_url'] = $request->translation_url;
+//        $input['translation_url'] = $request->translation_url;
         $input['code'] = $hash = Str::random(6);
 
 
@@ -88,14 +87,14 @@ class OrderController extends Controller
         $user_id = Auth::user()->id;
         $input['user_id'] = $user_id;
 
-        $translate_file_path = session()->get('translate_file_path');
+        $file_id = session()->get('file_id');
 
 
-        $input['translation_file'] = $translate_file_path;
+        $input['file_id'] = $file_id;
 
         //validate file exist
 
-        if ($translate_file_path || $request->translation_url) {
+        if ($file_id || $request->translation_url) {
 
             $order = Order::create($input);
 
@@ -189,9 +188,12 @@ class OrderController extends Controller
 
 //        save file
         $path = Storage::putFile('public/translation-files', $request->file('translation_file'));
+        $input = [];
+        $input['file']= $path;
+        $file = File::create($input);
 
 //        $path = $file->getPathname();
-        session(['translate_file_path' => $path]);
+        session(['file_id' => $file->id]);
 
     }
 

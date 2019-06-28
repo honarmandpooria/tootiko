@@ -71,7 +71,7 @@
             کیفیت درخواستی:
             @if($order->transaction)
                 {{$order->transaction->quality_id == 1 ? 'عالی' : ($order->transaction->quality_id == 2 ? 'خوب' : 'معمولی')}}
-                @else
+            @else
                 -
             @endif
             <br>
@@ -140,9 +140,9 @@
 
     <div class="col-md-4 col-sm-6 my-2">
 
-        @if($order->translation_file)
+        @if($order->file_id)
             <a download="فایل مبدا {{$order->code}}"
-               href="{{Storage::url($order->translation_file)}}"
+               href="{{Storage::url($order->file->file)}}"
                class="btn  btn-outline-primary"><i
                     class="fas fa-download mx-2"></i>فایل مبدا</a>
         @else

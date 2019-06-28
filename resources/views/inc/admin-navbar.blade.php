@@ -40,6 +40,15 @@
                         </a>
                     </li>
 
+
+                    <li class="nav-item">
+                        <a href="{{route('transactions.index')}}"
+                           class="nav-link {{Request::is('/') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-clipboard-list"></i></div>
+                            <span class="d-none d-md-block">فایل ها</span>
+                        </a>
+                    </li>
+
                 @endguest
             </ul>
 

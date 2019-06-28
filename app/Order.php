@@ -39,9 +39,9 @@ class Order extends Model
         return $this->hasOne(Transaction::class);
     }
 
-    public function translateFile()
+    public function file()
     {
-        return $this->belongsTo(TranslateFile::class);
+        return $this->belongsTo(File::class);
     }
 
 }

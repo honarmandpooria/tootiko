@@ -118,9 +118,17 @@
 
                 </div>
                 <button class="btn btn-warning my-3" type="submit">ثبت تغییرات</button>
+
             </form>
+
         </div>
 
+        <form method="post" action="{{route('admin-orders.destroy', $order->id)}}">
+            @method('delete')
+            <button class="btn btn-danger my-3" type="submit">حذف سفارش</button>
+
+            @csrf
+        </form>
 
     </div>
 @endsection

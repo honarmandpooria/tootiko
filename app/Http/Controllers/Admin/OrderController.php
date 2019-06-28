@@ -54,6 +54,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+        return 'this is show method';
 
     }
 
@@ -126,6 +127,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Order::findOrFail($id)->delete();
     }
 }
