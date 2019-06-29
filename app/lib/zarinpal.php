@@ -13,7 +13,7 @@ class zarinpal
 
     public function __construct()
     {
-        $this->MerchantID = "416137cc-2f9e-11e9-9245-005056a205be";
+        $this->MerchantID = "c5830bd8-9a6b-11e9-a53b-000c29344814";
     }
 
     public function pay($Amount, $Email, $Mobile,$CallbackURL)

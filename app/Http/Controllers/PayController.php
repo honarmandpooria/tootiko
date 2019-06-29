@@ -15,7 +15,7 @@ class PayController extends Controller
     {
 
 
-        $MerchantID = '416137cc-2f9e-11e9-9245-005056a205be';
+        $MerchantID = 'c5830bd8-9a6b-11e9-a53b-000c29344814';
         $Authority = $request->get('Authority');
 
         $transaction = Transaction::findOrFail($transaction_id);
