@@ -29,7 +29,8 @@
     @else
         @if(count(Auth::user()->orders->where('status_id',2)) == 1)
 
-            <div dir="rtl" class="alert text-center alert-warning position-fixed rounded-0 d-block animated bounceInRight shadow"
+            <div dir="rtl"
+                 class="alert text-center alert-warning position-fixed rounded-0 d-block animated bounceInRight shadow"
                  style="top: 74px; width: 100%; z-index:1000;" role="alert">
                 <i class="fas fa-bell"></i>
                 <span class="d-none d-md-inline-block">تبریک! آماده سازی سفارش انجام شد!</span>
@@ -115,6 +116,153 @@
         </div>
     </div>
 
+
+
+
+    {{--==========    price plans ========--}}
+    <h4 class="text-center text-muted mt-5">تعرفه خدمات</h4>
+    <div class="container">
+        <hr>
+        <div dir="rtl" class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm" style="transform: scale(0.90);">
+
+                    <div class="card-header text-center bg-info text-white">کیفیت معمولی</div>
+                    <div class="card-body">
+
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <span>مترجم عمومی و تازه کار</span>
+                        <hr>
+
+                        <i class="fas fa-check text-success"></i>
+                        <span>گارانتی کیفیت</span>
+                        <hr>
+
+
+                        <i class="fas fa-times text-danger"></i>
+                        <span>دیکشنری واژگان تخصصی</span>
+                        <hr>
+
+
+                        <i class="fas fa-times text-danger"></i>
+                        <span>بازخوانی و ویراست</span>
+                        <hr>
+
+
+                    </div>
+                    <div class="card-footer text-center ">
+
+
+                        <div class="text-success">
+                            قیمت:
+                            <span class="persian-num ">
+                                20
+                                </span>
+                            تومان / کلمه
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 ">
+                <div class="card shadow-lg">
+
+                    <div class="card-header bg-success text-white text-center">کیفیت خوب</div>
+                    <div class="card-body">
+
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <span>مترجم تخصصی و مرتبط</span>
+                        <hr>
+
+
+                        <i class="fas fa-check text-success"></i>
+                        <span>گارانتی کیفیت</span>
+                        <hr>
+
+
+                        <i class="fas fa-check text-success"></i>
+                        <span>دیکشنری واژگان تخصصی</span>
+                        <hr>
+
+
+                        <i class="fas fa-times text-danger"></i>
+                        <span>بازخوانی و ویراست</span>
+                        <hr>
+
+
+                    </div>
+                    <div class="card-footer text-center">
+
+
+                        <div class="text-success">
+                            قیمت:
+                            <span class="persian-num ">
+                                25
+                                </span>
+                            تومان / کلمه
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow" style="transform: scale(0.90);">
+                    <div class="card-header bg-warning text-center">کیفیت عالی</div>
+                    <div class="card-body">
+
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <span>مترجم برگزیده طوطیکو</span>
+                        <hr>
+
+
+                        <i class="fas fa-check text-success"></i>
+                        <span>گارانتی کیفیت</span>
+                        <hr>
+
+
+                        <i class="fas fa-check text-success"></i>
+                        <span>دیکشنری واژگان تخصصی</span>
+                        <hr>
+
+
+                        <i class="fas fa-check text-success"></i>
+                        <span>بازخوانی و ویراست</span>
+                        <hr>
+
+
+                    </div>
+                    <div class="card-footer text-center">
+
+
+                        <div class="text-success">
+                            قیمت:
+                            <span class="persian-num ">
+                                30
+                                </span>
+                            تومان / کلمه
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{--    footer--}}
     <div class="d-flex align-items-end" style="height: 140px; background: url({{asset('images/repeat-1920-140.png')}})">
