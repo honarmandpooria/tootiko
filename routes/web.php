@@ -41,11 +41,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/get-order-with-status/{status_id}', 'OrderController@showOrdersWithStatus')->name('get-order-with-status');
 
 
-    // payment Routes
+    // old payment Routes
 //    Route::get('order/{transaction_id}/{quality_id}', 'PayController@order');
 //    Route::post('payment', 'PayController@addOrder')->name('payment');
 //    Route::get('paid-success', 'PayController@paid')->name('paid-success');
 //    Route::get('paid-failure', 'PayController@failed')->name('paid-failure');
+
+
+    // new payment Routes
+    Route::get('order/{transaction_id}/{quality_id}', 'ShetabitController@order');
+    Route::post('payment', 'ShetabitController@addOrder')->name('payment');
+    Route::get('paid-success', 'ShetabitController@paid')->name('paid-success');
+    Route::get('paid-failure', 'ShetabitController@failed')->name('paid-failure');
 
 
 });
