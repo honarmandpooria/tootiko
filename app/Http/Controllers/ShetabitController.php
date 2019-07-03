@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Transaction;
 use Illuminate\Http\Request;
 use nusoap_client;
+use Shetabit\Payment\Exceptions\InvalidPaymentException;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Payment\Invoice;
 
@@ -29,13 +30,7 @@ class ShetabitController extends Controller
     public function order(Request $request, $transaction_id, $quality_id)
     {
 
-
-        $MerchantID = 'c5830bd8-9a6b-11e9-a53b-000c29344814';
-        $Authority = $request->get('Authority');
-
         $transaction = Transaction::findOrFail($transaction_id);
-
-        //ما در اینجا مبلغ مورد نظر را بصورت دستی نوشتیم اما در پروژه های واقعی باید از دیتابیس بخوانیم
 
         if ($quality_id == 1) {
 
@@ -51,49 +46,34 @@ class ShetabitController extends Controller
 
         }
 
+        $zarinTransactionId = session()->get('zarinTransactionId');
 
-        if ($request->get('Status') == 'OK') {
-//            $client = new nusoap_client('https://www.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-            $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-            $client->soap_defencoding = 'UTF-8';
 
-            //در خط زیر یک درخواست به زرین پال ارسال می کنیم تا از صحت پرداخت کاربر مطمئن شویم
-            $result = $client->call('PaymentVerification', [
-                [
-                    //این مقادیر را به سایت زرین پال برای دریافت تاییدیه نهایی ارسال می کنیم
-                    'MerchantID' => $MerchantID,
-                    'Authority' => $Authority,
-                    'Amount' => $Amount,
-                ],
-            ]);
+        try {
 
-            if ($result['Status'] == 100) {
+            Payment::amount($Amount)->transactionId($zarinTransactionId)->verify();
+            $transaction->update(['isPaid' => 1, 'quality_id' => $quality_id]);
 
-                $transaction->update(['isPaid' => 1, 'quality_id' => $quality_id]);
+            $order = $transaction->order;
 
-                $order = $transaction->order;
+            $order->update(['status_id' => 3]);
 
-                $order->update(['status_id' => 3]);
+            return redirect('/customer-orders/' . $order->id)->with('success', ' مبلغ با موفقیت پرداخت شد و سفارش شما در حال ترجمه است!');
 
-                return redirect('/customer-orders/'.$order->id)->with('success',' مبلغ با موفقیت پرداخت شد و سفارش شما در حال ترجمه است!');
 
-            } else {
-
-                $order = $transaction->order;
-                return redirect('/customer-orders/'.$order->id)->with('error','پرداخت با موفقیت انجام نشد! لطفا دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.');
-
-            }
-
-        } else {
+        } catch (InvalidPaymentException $exception) {
+            /**
+             * when payment is not verified , it throw an exception.
+             * we can catch the excetion to handle invalid payments.
+             * getMessage method, returns a suitable message that can be used in user interface.
+             **/
 
             $order = $transaction->order;
             return redirect('/customer-orders/'.$order->id)->with('error','پرداخت با موفقیت انجام نشد! لطفا دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.');
 
         }
 
-
     }
-
 
     public function addOrder(Request $request)
     {
@@ -121,7 +101,9 @@ class ShetabitController extends Controller
         $invoice = new Invoice;
         $invoice->amount($Amount);
 
-        return Payment::callbackUrl($CallbackURL)->purchase($invoice, function ($driver, $transactionId) {
+        return Payment::callbackUrl($CallbackURL)->purchase($invoice, function ($driver, $zarinTransactionId) {
+
+            session(['zarinTransactionId' => $zarinTransactionId]);
 
         })->pay();
 
@@ -131,13 +113,12 @@ class ShetabitController extends Controller
 
     public function paid()
     {
-
+        return view('app.customer.order.paid-success');
     }
-
 
     public function failed()
     {
-
+        return view('app.customer.order.paid-failure');
     }
 
 
