@@ -91,13 +91,13 @@ class OrderController extends Controller
 
         if ($request->translated_file) {
             // save file
-//            $path = Storage::putFile('public/translated-files', $request->file('translated_file'));
-//            $input['translated_file'] = $path;
+            $path = Storage::putFile('public/translated-files', $request->file('translated_file'));
+            $input['translated_file'] = $path;
 
-            $file = $request->file('translated_file');
-            $ext = $file->getClientOriginalExtension();
-            $hash = Str::random(40);
-            $path = $file->move('translated-files', $hash . '.' . $ext);
+//            $file = $request->file('translated_file');
+//            $ext = $file->getClientOriginalExtension();
+//            $hash = Str::random(40);
+//            $path = $file->move('translated-files', $hash . '.' . $ext);
             $input['translated_file'] = $path;
 
 
