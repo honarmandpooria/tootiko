@@ -27,7 +27,7 @@ return [
             'apiPaymentUrl' => 'https://www.zarinpal.com/pg/StartPay/',
             'apiVerificationUrl' => 'https://www.zarinpal.com/pg/rest/WebGate/PaymentVerification.json',
             'merchantId' => 'c5830bd8-9a6b-11e9-a53b-000c29344814',
-            'callbackUrl' => 'http://tootiko.com/path/to',
+            'callbackUrl' => 'http://tootiko.test/callback',
             'description' => 'payment in '.config('app.name'),
         ],
         'irankish' => [
