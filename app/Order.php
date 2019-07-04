@@ -47,19 +47,22 @@ class Order extends Model
     }
 
 
-
-    public static function boot ()
+    public static function boot()
     {
         parent::boot();
 
         self::deleting(function (Order $order) {
 
-            $order->transaction->delete();
+            if ($order->transaction) {
+                $order->transaction->delete();
+            }
 
         });
         self::restoring(function (Order $order) {
 
-            $order->transaction()->withTrashed()->first()->restore();
+            if ($order->transaction) {
+                $order->transaction()->withTrashed()->first()->restore();
+            }
 
         });
     }
