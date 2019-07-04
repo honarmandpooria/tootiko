@@ -10,8 +10,8 @@
                 <div class="card-header">
                     <div dir="rtl" class="row">
                         <div class="col-md-4 order-md-2">
-                            شماره سفارش:
-                            {{$transaction->order_id}}
+                            کد سفارش:
+                            {{$transaction->order->code}}
 
                         </div>
                         <div class="col-md-4 order-md-2">
@@ -44,10 +44,24 @@
 
                         </div>
 
-                        <div class="col-md-4">
-                            هزینه:
+                        <div class="col-md-2">
+                            عالی:
                             <span class="persian-num">
-                                {{$transaction->price}}
+                                {{$transaction->quality_1_price}}
+                                </span>
+                        </div>
+
+                        <div class="col-md-2">
+                            متوسط:
+                            <span class="persian-num">
+                                {{$transaction->quality_2_price}}
+                                </span>
+                        </div>
+
+                        <div class="col-md-2">
+                            معمولی:
+                            <span class="persian-num">
+                                {{$transaction->quality_3_price}}
                                 </span>
                         </div>
 
