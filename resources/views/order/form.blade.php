@@ -436,7 +436,7 @@
                     return true;
                 } else {
                     e.preventDefault();
-                    $('#file-upload-invalid').text('لطفا صبر کنید تا فایل به طور کامل آپلود شود.')
+                    $('#file-upload-invalid').removeClass('d-none').text('لطفا صبر کنید تا فایل به طور کامل آپلود شود.')
                 }
             }
         }

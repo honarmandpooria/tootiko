@@ -61,7 +61,7 @@
 
         </div>
 
-        <p id="file-upload-invalid" class="text-danger blockquote-footer"></p>
+        <p id="file-upload-invalid" class="text-danger blockquote-footer d-none"></p>
 
 
     </div>
