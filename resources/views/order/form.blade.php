@@ -431,11 +431,13 @@
 
         function fileUpVal(e) {
 
-            if ($('#file-progress').hasClass('progressing') && $('#file-uploaded-text').hasClass('file-exist')) {
-                return true;
-            } else {
-                e.preventDefault();
-                $('#file-upload-invalid').text('لطفا صبر کنید تا فایل به طور کامل آپلود شود.')
+            if ($('#nav-home').hasClass('show')) {
+                if ($('#file-progress').hasClass('progressing') && $('#file-uploaded-text').hasClass('file-exist')) {
+                    return true;
+                } else {
+                    e.preventDefault();
+                    $('#file-upload-invalid').text('لطفا صبر کنید تا فایل به طور کامل آپلود شود.')
+                }
             }
         }
 
