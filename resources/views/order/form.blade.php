@@ -281,7 +281,7 @@
                                     var percent = Math.round(e.loaded / e.total * 100);
 
                                     $('.progress').removeAttr('class', 'd-none');
-                                    $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
+                                    $('.progress-bar').attr('aria-valuenow', percent).css('width', percent-1 + '%').text(percent-1 + '%');
                                 }
 
                             });
