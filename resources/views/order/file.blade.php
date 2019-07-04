@@ -25,12 +25,13 @@
          >
 
 
-        <div dir="rtl" class="progress d-none mb-2 ">
+        <div id="file-progress" dir="rtl" class="progress d-none mb-2">
             <div class="progress-bar bg-success mt-5" role="progressbar" style="" aria-valuenow="25"
                  aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
         <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
+        <p id="file_name" dir="rtl" class="text-success text-center my-2"></p>
 
         <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #9c27b0;" data-toggle="tooltip" data-placement="right" title="فایل خود را در کادر حاشیه دار بکشید و رها کنید یا از دکمه جستجو استفاده کنید. همچنین درصورتی که لینک فایل را در اختیار دارید از بخش «ارسال لینک» استفاده کنید">
             <label for="file-upload"
@@ -41,8 +42,8 @@
 
 
 
-
             <div class="invalid-feedback">
+
 
 
                 @if ($errors->has('translation_file'))
@@ -57,7 +58,11 @@
             </div>
 
 
+
         </div>
+
+        <p id="file-upload-invalid" class="text-danger blockquote-footer"></p>
+
 
     </div>
 

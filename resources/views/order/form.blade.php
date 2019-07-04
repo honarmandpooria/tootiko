@@ -14,10 +14,9 @@
 @endpush
 
 
-<form class="needs-validation" novalidate method="POST"
+<form id="order-form" class="needs-validation" novalidate method="POST"
       @guest action="{{route('before-register.setOrderSession')}}"
       @else action="{{route('customer-orders.store')}}" @endguest>
-
 
 
     @csrf
@@ -72,13 +71,13 @@
         </div>
 
         <div class="form-group col-md-6 ">
-            <div dir="rtl" class="clearfix mr-3" >
+            <div dir="rtl" class="clearfix mr-3">
 
-                <div class="form-group clearfix position-relative" >
+                <div class="form-group clearfix position-relative">
 
                     <label for="remaining_days">مهلت ترجمه (روز):</label>
                     <input data-toggle="tooltip" data-placement="bottom" title="چند روز برای انجام ترجمه مهلت دارید؟"
-                        id="remaining_days" type="number" name="remaining_days"
+                           id="remaining_days" type="number" name="remaining_days"
                            value="{{old('remaining_days') ? old('remaining_days') : 7}}"
                            class="form-control {{$errors->has('remaining_days') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}"
                            style="max-width: 100px">
@@ -201,7 +200,9 @@
 
 
     <div class="form-group">
-        <button id="submit" type="submit" class="btn btn-success mt-4 btn-block" onclick="submitForm(this);">ثبت و برآورد قیمت رایگان</button>
+        <button id="submit" type="submit" class="btn btn-success mt-4 btn-block" onclick="submitForm(this);">ثبت و
+            برآورد قیمت رایگان
+        </button>
     </div>
 
 
@@ -242,7 +243,7 @@
 
     <script src="{{asset('js/jquery.validate.js')}}"></script>
     <script src="{{asset('js/additional-methods.js')}}"></script>
-{{--    <script src="{{asset('js/form-custom-js.js')}}"></script>--}}
+    {{--    <script src="{{asset('js/form-custom-js.js')}}"></script>--}}
 
 
     {{--            ارسال درخواست ایجکس برای ذخیره فایل --}}
@@ -255,7 +256,12 @@
 
             $('#file-upload').on('change', function () {
 
+
                 if ($("#file-upload").valid() == true) {
+                    var fileName = $(this).get(0).files.item(0).name;
+                    $('#file_name').text(fileName);
+
+
                     $('.custom-file').hide();
                     $.ajaxSetup({
                         headers: {
@@ -280,8 +286,8 @@
 
                                     var percent = Math.round(e.loaded / e.total * 100);
 
-                                    $('.progress').removeAttr('class', 'd-none');
-                                    $('.progress-bar').attr('aria-valuenow', percent).css('width', percent-1 + '%').text(percent-1 + '%');
+                                    $('#file-progress').removeAttr('class', 'd-none').addClass('progressing');
+                                    $('.progress-bar').attr('aria-valuenow', percent).css('width', percent - 1 + '%').text(percent - 1 + '%');
                                 }
 
                             });
@@ -297,8 +303,10 @@
 
                         success: function () {
                             $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
+                            $('#file-uploaded-text').addClass('file-exist');
                             $('.progress-bar').css('width', '100%').text('100%');
                             $('#file-tip').hide();
+                            $('#file-upload-invalid').hide();
                         },
                         error: function () {
                             $('#file-upload-error').modal('show');
@@ -314,13 +322,9 @@
         });
 
 
-
-
-
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
-
 
 
     </script>
@@ -331,7 +335,7 @@
 
 
     <script>
-       /* تنظیم پیشفرض های ولیدیتور جی کوری*/
+        /* تنظیم پیشفرض های ولیدیتور جی کوری*/
 
         jQuery.validator.setDefaults({
             errorElement: 'span',
@@ -410,7 +414,7 @@
 
             $(this).on('submit', function () {
                 var isvalid = $(".needs-validation").valid();
-                if (isvalid) {
+                if (isvalid && $('#file-uploaded-text').hasClass('file-exist')) {
                     $("#submit").attr('disabled', 'disabled').html('<img src="/images/gifs/preloader-dark.gif" alt=""> <span>درحال ارسال</span>');
                 }
             });
@@ -425,8 +429,21 @@
 
         });
 
-    </script>
+        function fileUpVal(e) {
 
+            if ($('#file-progress').hasClass('progressing') && $('#file-uploaded-text').hasClass('file-exist')) {
+                return true;
+            } else {
+                e.preventDefault();
+                $('#file-upload-invalid').text('لطفا صبر کنید تا فایل به طور کامل آپلود شود.')
+            }
+        }
+
+
+        document.getElementById('order-form').addEventListener("submit", fileUpVal);
+
+
+    </script>
 
 
 @endpush
