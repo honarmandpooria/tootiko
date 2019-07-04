@@ -297,6 +297,7 @@
 
                         success: function () {
                             $('#file-uploaded-text').text('فایل شما با موفقیت آپلود شد.');
+                            $('.progress-bar').css('width', '100%').text('100%');
                             $('#file-tip').hide();
                         },
                         error: function () {
