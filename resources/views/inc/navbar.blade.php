@@ -9,10 +9,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse pr-sm-5 pr-md-0" id="navbarSupportedContent">
 
             <!-- Right Side Of Navbar -->
-            <ul dir="rtl" class="navbar-nav p-0">
+            <ul dir="rtl" class="navbar-nav p-0 @guest @else position-absolute @endguest">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -67,7 +67,7 @@
 
 
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav m-auto p-0">
+            <ul class="navbar-nav m-auto">
 
 
                 @guest
@@ -75,6 +75,7 @@
                 @else
 
                     @if(Auth::user()->email_verified_at)
+
 
 
                         <li class="nav-item">
