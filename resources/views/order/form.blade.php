@@ -102,7 +102,7 @@
 
 
     </div>
-    <hr class=" border-primary my-5">
+    <hr class=" border-success my-5">
 
 
     {{--upload file or url--}}
@@ -111,7 +111,7 @@
     @include('order.file')
 
 
-    <hr class=" border-primary my-5">
+    <hr class=" border-success my-5">
 
     {{--quality radio--}}
 

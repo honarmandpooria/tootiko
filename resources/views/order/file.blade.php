@@ -33,7 +33,7 @@
         <p id="file-uploaded-text" dir="rtl" class="text-success text-center my-2"></p>
         <p id="file_name" dir="rtl" class="text-success text-center my-2"></p>
 
-        <div dir="rtl" class="custom-file files" style="height: 200px; border: 3px dashed #9c27b0;" data-toggle="tooltip" data-placement="right" title="فایل خود را در کادر حاشیه دار بکشید و رها کنید یا از دکمه جستجو استفاده کنید. همچنین درصورتی که لینک فایل را در اختیار دارید از بخش «ارسال لینک» استفاده کنید">
+        <div dir="rtl" class="custom-file files" style="height: 200px; border: 2px dashed #9c27b0;" data-toggle="tooltip" data-placement="right" title="فایل خود را در کادر حاشیه دار بکشید و رها کنید یا از دکمه جستجو استفاده کنید. همچنین درصورتی که لینک فایل را در اختیار دارید از بخش «ارسال لینک» استفاده کنید">
             <label for="file-upload"
                    class="custom-file-label text-left m-3 mx-auto" style="max-width: 500px;">انتخاب
                 فایل</label>
