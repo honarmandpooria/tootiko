@@ -214,7 +214,7 @@
                                     <label for="email" class="col-md-4 col-form-label text-md-right">آدرس ایمیل</label>
 
                                     <div class="col-md-6">
-                                        <input dir="ltr" id="email" type="email"
+                                        <input dir="ltr" id="email2" type="email"
                                                class="form-control @error('email') is-invalid @enderror" name="email"
                                                value="{{ old('email') }}" required autocomplete="email">
 
@@ -230,7 +230,7 @@
                                     <label for="password" class="col-md-4 col-form-label text-md-right">رمز عبور</label>
 
                                     <div class="col-md-6">
-                                        <input dir="ltr" id="password" type="password"
+                                        <input dir="ltr" id="password2" type="password"
                                                class="form-control @error('password') is-invalid @enderror"
                                                name="password"
                                                required autocomplete="new-password">
