@@ -11,30 +11,34 @@
         <div dir="rtl" class="row mt-3">
 
 
-
             @if(count($orders->where('status_id',2)))
                 <div class="col-md-3 mb-2">
 
-                    <div class="card bg-warning border-warning shadow">
+                    <a class="text-dark" href="{{route('customer-orders.show',$orders->where('status_id',2)->first()->id)}}" style="text-decoration: none;">
+                        <div class="card bg-warning border-warning shadow">
 
-                        <div class="card-body">
-                            <i class="fas fa-money-check fa-2x ml-2"></i>
-                            در انتظار پرداخت:
-                            <span class="persian-num font-weight-bolder mx-3" style="font-size: 1.5rem;">
+                            <div class="card-body">
+
+
+                                <i class="fas fa-money-check fa-2x ml-2"></i>
+                                در انتظار پرداخت:
+                                <span class="persian-num font-weight-bolder mx-3" style="font-size: 1.5rem;">
                             {{count($orders->where('status_id',2))}}
                         </span>
+
+                            </div>
+
+                            {{-- <div class="card-body bg-light rounded-bottom text-center">
+
+                                 <a href="{{route('get-order-with-status',2)}}" class="text-info">
+                                     <i class="fas fa-eye"></i>
+                                     مشاهده
+                                 </a>
+
+
+                             </div>--}}
                         </div>
-
-                        {{-- <div class="card-body bg-light rounded-bottom text-center">
-
-                             <a href="{{route('get-order-with-status',2)}}" class="text-info">
-                                 <i class="fas fa-eye"></i>
-                                 مشاهده
-                             </a>
-
-
-                         </div>--}}
-                    </div>
+                    </a>
 
 
                 </div>
