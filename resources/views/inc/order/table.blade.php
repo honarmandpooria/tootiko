@@ -29,9 +29,10 @@
                         </td>
 
                     </tr>
+                @endforeach
                 </tbody>
             </table>
-            @endforeach
+
 
         @else
 
