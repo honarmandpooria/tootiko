@@ -29,33 +29,9 @@
             </div>
             <div class="col-md-6 order-md-2">
 
-
-                @if ($order->status_id ==2)
-                   {{-- مبلغ پرداختی:
-                    <span class="persian-num">
-                                {{$order->transaction->price}}
-                                </span>
-                    تومان
-
-
-                    <button id="payment" class="btn p-3  btn-success shadow-sm animated"
-                            onclick="event.preventDefault();
-                                document.getElementById('payment-form{{$order->code}}').submit();">
-                        <i class="fas fa-money-check mx-2"></i>
-                        پرداخت مبلغ و شروع فرایند ترجمه
-                    </button>
-
-
-                    <form id="payment-form{{$order->code}}" method="post"
-                          action="{{route('payment')}}">
-                        @csrf
-
-                        <input type="hidden" name="transaction_id" value="{{$order->transaction->id}}">
-
-                    </form>
---}}
-
-                @endif
+                <a data-toggle="tooltip" data-placement="bottom"
+                   title="آیا مشکلی در سفارش شما وجود دارد؟ با پشتیبانی طوطیکو درمیان بگذارید." class="btn btn-warning float-left" href="#"><i class="fas fa-headphones-alt mx-2"></i>درخواست
+                    پشتیبانی</a>
 
             </div>
         </div>

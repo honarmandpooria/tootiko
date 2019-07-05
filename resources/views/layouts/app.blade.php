@@ -23,6 +23,38 @@
     {{--    <link href="{{ asset('css/rtl-bootstrap.css') }}" rel="stylesheet">--}}
 
     <meta name="google-site-verification" content="o0Xco_SisHJ_4RrLylGYcCa_hRSEwZiB71mK44wzXFM"/>
+    <style>
+
+
+
+        .tooltip-inner {
+            direction: rtl;
+            max-width: 300px;
+            padding: 0.25rem 0.5rem;
+            color: #fff;
+            text-align: center;
+            background-color: #38c172;
+            border-radius: 22px;
+        }
+
+        .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+            border-bottom-color: #38c172;
+        }
+
+        .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+            border-top-color: #38c172;
+        }
+
+        .bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+            border-top-color: #38c172;
+        }
+
+        .bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+            border-top-color: #38c172;
+        }
+
+
+    </style>
     @stack('styles')
 
 </head>
@@ -43,6 +75,13 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
+<script>
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+
+</script>
 @stack('scripts')
 
 
