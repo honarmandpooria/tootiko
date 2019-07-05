@@ -16,10 +16,12 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link {{Request::is('/') ? 'active border-3' : ''}}" href="{{ route('welcome') }}"><i class="fas fa-home mx-2"></i>خانه</a>
+                        <a class="nav-link {{Request::is('/') ? 'active border-3' : ''}}" href="{{ route('welcome') }}"><i
+                                class="fas fa-home mx-2"></i>خانه</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{Request::is('login-register') ? 'active border-3' : ''}}" href="{{ route('login-register') }}"><i class="fas fa-key mx-2"></i>ورود | ثبت نام</a>
+                        <a class="nav-link {{Request::is('login-register') ? 'active border-3' : ''}}"
+                           href="{{ route('login-register') }}"><i class="fas fa-key mx-2"></i>ورود | ثبت نام</a>
                     </li>
 
                 @else
@@ -33,9 +35,16 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right text-right" style="overflow: hidden"
                              aria-labelledby="navbarDropdown">
+
                             <a class="dropdown-item"
                                href="{{Auth::user()->role_id==1 ? route('admin-home') : route('welcome')}}">
-                                صفحه اصلی
+                                @if(Auth::user()->role_id==1)
+                                    صفحه مدیریت
+                                    @else
+                                    صفحه اصلی
+                                @endif
+
+
                             </a>
                             <a class="dropdown-item"
                                href="{{Auth::user()->role_id==1 ? route('admin-home') : route('home')}}">
@@ -55,7 +64,6 @@
                     </li>
                 @endguest
             </ul>
-
 
 
             <!-- Left Side Of Navbar -->
@@ -94,14 +102,14 @@
                                 <span class="d-none d-md-block">ثبت سفارش</span></a>
                         </li>
 
-             {{--           <li class="nav-item">
-                            <a href="{{route('customer-orders.index')}}"
-                               class="nav-link {{Request::is('customer-orders') ? 'active border-3' : ''}}">
-                                <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-open"></i>
-                                </div>
-                                <span class="d-none d-md-block">ترجمه های من</span></a>
-                        </li>
---}}
+                        {{--           <li class="nav-item">
+                                       <a href="{{route('customer-orders.index')}}"
+                                          class="nav-link {{Request::is('customer-orders') ? 'active border-3' : ''}}">
+                                           <div class="d-flex justify-content-center"><i class=" fas fa-2x fa-folder-open"></i>
+                                           </div>
+                                           <span class="d-none d-md-block">ترجمه های من</span></a>
+                                   </li>
+           --}}
                     @endif
                 @endguest
             </ul>
@@ -112,9 +120,6 @@
 
 
 </nav>
-
-
-
 
 
 @include('inc.messages')

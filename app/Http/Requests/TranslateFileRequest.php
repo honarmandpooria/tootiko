@@ -24,7 +24,7 @@ class TranslateFileRequest extends FormRequest
     public function rules()
     {
         return [
-            'translation_file' => 'required|mimes:docx,doc,rtf,txt,bmp,jpg,JPG,png,jpeg,pdf,gif,html,htm,zip,rar,ppt,pptx,xls,xlsx,csv,flv,avi,mov,mp4,mpg,wmv,3gp,asf,mpga,mp3,wav,aif,mid,amr,act,aiff,aac,ogg,wma,m4a,wow,srt|max:52000',
+            'translation_file' => 'required|mimes:docx,image,doc,rtf,txt,bmp,jpg,png,jpeg,pdf,gif,html,htm,zip,rar,ppt,pptx,xls,xlsx,csv,flv,avi,mov,mp4,mpg,wmv,3gp,asf,mpga,mp3,wav,aif,mid,amr,act,aiff,aac,ogg,wma,m4a,wow,srt|max:52000',
         ];
     }
 
