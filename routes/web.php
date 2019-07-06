@@ -58,6 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // ticket routes
     Route::resource('customer/tickets', 'TicketController');
+    Route::resource('customer/tickets/messages', 'MessagesController');
 
 
 });

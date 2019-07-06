@@ -27,10 +27,19 @@
             </div>
             <div class="col-md-6 order-md-2">
 
-                <a data-toggle="tooltip" data-placement="bottom"
-                   title="آیا مشکلی در سفارش شما وجود دارد؟ با پشتیبانی طوطیکو درمیان بگذارید."
-                   class="btn btn-warning float-left" href="{{route('tickets.create')}}"><i class="fas fa-headphones-alt mx-2"></i>درخواست
-                    پشتیبانی</a>
+
+                <form method="post" action="{{route('tickets.store')}}">
+
+                    @csrf
+                    <button type="submit" data-toggle="tooltip" data-placement="bottom"
+                            title="آیا مشکلی در سفارش شما وجود دارد؟ با پشتیبانی طوطیکو درمیان بگذارید."
+                            class="btn btn-warning float-left"><i class="fas fa-headphones-alt mx-2"></i>درخواست
+                        پشتیبانی
+                    </button>
+
+                    <input type="hidden" name="code" value="{{$order->code}}">
+
+                </form>
 
             </div>
         </div>

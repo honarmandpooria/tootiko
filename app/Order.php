@@ -47,6 +47,12 @@ class Order extends Model
     }
 
 
+    public function ticket()
+    {
+        return $this->hasOne(Ticket::class);
+    }
+
+
     public static function boot()
     {
         parent::boot();

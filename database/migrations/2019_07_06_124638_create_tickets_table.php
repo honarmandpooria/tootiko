@@ -17,7 +17,6 @@ class CreateTicketsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('order_id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('ticket_status_id');
             $table->timestamps();
         });
     }

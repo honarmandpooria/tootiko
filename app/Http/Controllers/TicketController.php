@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -24,24 +26,34 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('app.customer.tickets.create');
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $code = $request->code;
+        $order = Order::where('code', $code)->first();
+        $user = Auth::user();
+
+        if ($order->user == $user) {
+            $input = [];
+            $input['user_id'] = $user->id;
+            $input['order_id']= $order->id;
+            $ticket = Ticket::create($input);
+            dd($ticket);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ticket  $ticket
+     * @param \App\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
     public function show(Ticket $ticket)
@@ -52,7 +64,7 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Ticket  $ticket
+     * @param \App\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
     public function edit(Ticket $ticket)
@@ -63,8 +75,8 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ticket  $ticket
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Ticket $ticket)
@@ -75,7 +87,7 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Ticket  $ticket
+     * @param \App\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
     public function destroy(Ticket $ticket)
