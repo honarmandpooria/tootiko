@@ -60,9 +60,7 @@ class Order extends Model
         });
         self::restoring(function (Order $order) {
 
-            if ($order->transaction) {
-                $order->transaction()->withTrashed()->first()->restore();
-            }
+            $order->transaction()->withTrashed()->first()->restore();
 
         });
     }
