@@ -11,7 +11,6 @@ class StatusesTableSeeder extends Seeder
      */
     public function run()
     {
-
         DB::table('statuses')->insert([
             'name'=>'در حال بررسی'
         ]);
@@ -24,7 +23,5 @@ class StatusesTableSeeder extends Seeder
         DB::table('statuses')->insert([
             'name'=>'تحویل داده شده'
         ]);
-
-
     }
 }

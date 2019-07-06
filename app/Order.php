@@ -59,9 +59,7 @@ class Order extends Model
 
         });
         self::restoring(function (Order $order) {
-
             $order->transaction()->withTrashed()->first()->restore();
-
         });
     }
 
