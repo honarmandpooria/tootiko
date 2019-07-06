@@ -26,7 +26,7 @@
                         <td>{{$ticket->created_at->diffForHumans()}}</td>
                         <td class="translate">#</td>
                         <td>
-                            <a href="{{route('admin-tickets.show',$ticket->order->id)}}"
+                            <a href="{{route('admin-tickets.show',$ticket->id)}}"
                                class="btn btn-warning rounded-circle shadow"><i class="fas fa-eye"></i></a>
                         </td>
 

@@ -19,6 +19,8 @@ class TicketPolicy
     public function viewAny(User $user)
     {
 
+        return $user->id === 1;
+
     }
 
     /**
@@ -41,7 +43,7 @@ class TicketPolicy
      */
     public function create(User $user)
     {
-        //
+
     }
 
     /**

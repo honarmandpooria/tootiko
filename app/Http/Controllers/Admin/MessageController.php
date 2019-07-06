@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Message;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -35,7 +38,24 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'message' => 'required',
+            'code' => 'required'
+        ]);
+
+        $input = [];
+
+        $user = Auth::user();
+        $input['user_id'] = $user->id;
+
+        $order = Order::where('code',$validatedData['code'])->first();
+        $input['ticket_id'] = $order->ticket->id;
+
+        $input['message']= $validatedData['message'];
+
+        Message::create($input);
+        return redirect()->back()->with('success','پیغام شما ثبت شد!');
     }
 
     /**

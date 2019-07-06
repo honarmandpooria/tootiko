@@ -50,7 +50,9 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = Ticket::findOrFail($id);
+        $messages = $ticket->messages()->latest()->get();
+        return view('app.admin.ticket.show')->with(['ticket'=>$ticket, 'messages'=>$messages]);
     }
 
     /**

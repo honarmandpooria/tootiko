@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 
 
@@ -54,7 +54,7 @@
                 <div class="card-header text-white rounded-0 {{$message->user_id === 1 ? 'bg-success' : 'bg-info'}}">
 
                     @if($message->user_id === 1)
-                      <span><i class="fas fa-headphones-alt ml-2"></i>پشتیبانی طوطیکو</span>
+                        <span><i class="fas fa-headphones-alt ml-2"></i>پشتیبانی طوطیکو</span>
                     @else
                         {{$ticket->user->name}}
                     @endif

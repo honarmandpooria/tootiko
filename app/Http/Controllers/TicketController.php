@@ -37,6 +37,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
+        return 123;
         $code = $request->code;
         $order = Order::where('code', $code)->first();
         $user = Auth::user();
