@@ -55,15 +55,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('paid-failure', 'ShetabitController@failed')->name('paid-failure');
 
 
-
     // ticket routes
     Route::resource('customer/tickets', 'TicketController');
     Route::resource('customer/tickets/messages', 'MessageController');
 
+    Route::resource('admin-tickets/messages', 'Admin\MessageController');
+
 
 });
-
-
 
 
 // shetabit Routes
@@ -85,9 +84,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/transactions', 'Admin\TransactionController');
     Route::resource('/files', 'Admin\FileController');
 
-//    tickets
+
+    //    tickets
     Route::resource('admin-tickets', 'Admin\TicketController');
-    Route::resource('admin-tickets/messages', 'Admin\MessageController');
+
 
 
 });
