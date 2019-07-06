@@ -28,18 +28,27 @@
             <div class="col-md-6 order-md-2">
 
 
-                <form method="post" action="{{route('tickets.store')}}">
-
-                    @csrf
-                    <button type="submit" data-toggle="tooltip" data-placement="bottom"
+                @if ($order->ticket)
+                    <a href="{{route('tickets.show',$order->ticket->id)}}" data-toggle="tooltip" data-placement="bottom"
                             title="آیا مشکلی در سفارش شما وجود دارد؟ با پشتیبانی طوطیکو درمیان بگذارید."
-                            class="btn btn-warning float-left"><i class="fas fa-headphones-alt mx-2"></i>درخواست
-                        پشتیبانی
-                    </button>
+                            class="btn btn-warning float-left"><i class="fas fa-headphones-alt mx-2"></i>پشتیبانی
+                    </a>
+                @else
+                    <form method="post" action="{{route('tickets.store')}}">
 
-                    <input type="hidden" name="code" value="{{$order->code}}">
+                        @csrf
+                        <button type="submit" data-toggle="tooltip" data-placement="bottom"
+                                title="آیا مشکلی در سفارش شما وجود دارد؟ با پشتیبانی طوطیکو درمیان بگذارید."
+                                class="btn btn-warning float-left"><i class="fas fa-headphones-alt mx-2"></i>درخواست
+                            پشتیبانی
+                        </button>
 
-                </form>
+                        <input type="hidden" name="code" value="{{$order->code}}">
+
+                    </form>
+
+                @endif
+
 
             </div>
         </div>
