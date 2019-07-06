@@ -55,6 +55,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('paid-failure', 'ShetabitController@failed')->name('paid-failure');
 
 
+
+    // ticket routes
+    Route::resource('customer/tickets', 'TicketController');
+
+
 });
 
 
