@@ -20,8 +20,6 @@
 
     </div>
     <div class="card-footer bg-light">
-
-
         <div dir="rtl" class="row">
             <div class="col-md-6 order-md-2">
 
@@ -30,13 +28,12 @@
             <div class="col-md-6 order-md-2">
 
                 <a data-toggle="tooltip" data-placement="bottom"
-                   title="آیا مشکلی در سفارش شما وجود دارد؟ با پشتیبانی طوطیکو درمیان بگذارید." class="btn btn-warning float-left" href="#"><i class="fas fa-headphones-alt mx-2"></i>درخواست
+                   title="آیا مشکلی در سفارش شما وجود دارد؟ با پشتیبانی طوطیکو درمیان بگذارید."
+                   class="btn btn-warning float-left" href="{{route('tickets.create')}}"><i class="fas fa-headphones-alt mx-2"></i>درخواست
                     پشتیبانی</a>
 
             </div>
         </div>
-
-
     </div>
 </div>
 
