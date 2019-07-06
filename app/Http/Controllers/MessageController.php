@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -30,18 +32,36 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'message' => 'required',
+            'code' => 'required'
+        ]);
+
+        $input = [];
+
+        $user = Auth::user();
+        $input['user_id'] = $user->id;
+
+        $order = Order::where('code',$validatedData['code'])->first();
+        $input['ticket_id'] = $order->ticket->id;
+
+        $input['message']= $validatedData['message'];
+
+        $message = Message::create($input);
+        dd($message);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Message  $message
+     * @param \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function show(Message $message)
@@ -52,7 +72,7 @@ class MessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Message  $message
+     * @param \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function edit(Message $message)
@@ -63,8 +83,8 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Message  $message
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Message $message)
@@ -75,7 +95,7 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Message  $message
+     * @param \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function destroy(Message $message)
