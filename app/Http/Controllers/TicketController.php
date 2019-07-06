@@ -46,7 +46,7 @@ class TicketController extends Controller
             $input['user_id'] = $user->id;
             $input['order_id']= $order->id;
             $ticket = Ticket::create($input);
-            dd($ticket);
+            return redirect('/customer/tickets/'.$ticket->id);
         }
     }
 

@@ -51,7 +51,7 @@
         @foreach($messages as $message)
 
             <div dir="rtl" class="card mb-2 rounded-0 {{Auth::user()->id === 1 ? 'mr-5' : 'ml-5'}}">
-                <div class="card-header text-white rounded-0 {{Auth::user()->id === 1 ? 'bg-success' : 'bg-light'}}">
+                <div class="card-header text-white rounded-0 {{Auth::user()->id === 1 ? 'bg-success' : 'bg-info'}}">
 
                     @if(Auth::user()->id === 1)
                       <span><i class="fas fa-headphones-alt ml-2"></i>پشتیبانی طوطیکو</span>
