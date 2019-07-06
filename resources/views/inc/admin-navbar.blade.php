@@ -49,6 +49,15 @@
                         </a>
                     </li>
 
+
+                    <li class="nav-item">
+                        <a href="{{route('admin-tickets.index')}}"
+                           class="nav-link {{Request::is('tickets') ? 'active border-3' : ''}}">
+                            <div class="d-flex justify-content-center"><i class="fas fa-2x fa-ticket-alt"></i></div>
+                            <span class="d-none d-md-block">تیکت</span>
+                        </a>
+                    </li>
+
                 @endguest
             </ul>
 

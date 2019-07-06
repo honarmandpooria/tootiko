@@ -67,7 +67,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 // shetabit Routes
-Route::get('pay','ShetabitController@pay')->name('pay');
+//Route::get('pay','ShetabitController@pay')->name('pay');
 
 
 //Admin Routes
@@ -84,6 +84,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/transactions', 'Admin\TransactionController');
     Route::resource('/files', 'Admin\FileController');
+
+//    tickets
+    Route::resource('admin-tickets', 'Admin\TicketController');
+    Route::resource('admin-tickets/messages', 'Admin\MessageController');
+
 
 });
 
