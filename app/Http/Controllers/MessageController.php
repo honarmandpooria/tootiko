@@ -53,8 +53,8 @@ class MessageController extends Controller
 
         $input['message']= $validatedData['message'];
 
-        $message = Message::create($input);
-        dd($message);
+        Message::create($input);
+        return redirect()->back()->with('success','پیغام شما ثبت شد!');
 
     }
 
