@@ -59,6 +59,7 @@ class TicketController extends Controller
     public function show(Ticket $ticket)
     {
         $messages = $ticket->messages()->latest()->get();
+        $this->authorize('view', $ticket);
         return view('app.customer.tickets.show')->with(['ticket'=>$ticket, 'messages'=>$messages]);
     }
 
