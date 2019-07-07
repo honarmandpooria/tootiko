@@ -70,7 +70,7 @@
             <i class="fas fa-poll"></i>
             کیفیت درخواستی:
             @if($order->transaction)
-                {{$order->transaction->quality_id == 1 ? 'عالی' : ($order->transaction->quality_id == 2 ? 'خوب' : 'معمولی')}}
+                {{$order->transaction->quality_id == 1 ? 'عالی' : ($order->transaction->quality_id == 2 ? 'خوب' : ($order->transaction->quality_id == 3 ? 'معمولی' : 'هنوز تعیین نشده'))}}
             @else
                 -
             @endif
@@ -170,4 +170,40 @@
         @endif
 
     </div>
+
+    @if($order->description && Auth::user()->id > 1)
+        <div class="col-md-4 col-sm-6 my-2">
+
+            <button data-toggle="modal" data-target="#description"
+                    class="btn btn-warning float-left">توضیحات
+            </button>
+
+
+            <div dir="rtl" class="modal fade" id="description">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">توضیحات</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <p>{{$order->description}}</p>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    @endif
+
+
 </div>

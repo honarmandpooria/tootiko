@@ -53,16 +53,19 @@
             </div>
             <div class="card-body">
 
+
+                <p>توضیحات مشتری: {{$order->description}}</p>
+
                 @include('inc.order.body')
 
 
             </div>
 
 
-            <div dir="rtl" class="card-footer">
+            <div dir="rtl" class="card-footer bg-white">
 
-                توضیحات مشتری:
-                {{$order->description}}
+
+
 
             </div>
         </div>
