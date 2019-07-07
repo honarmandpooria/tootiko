@@ -85,7 +85,6 @@ class OrderController extends Controller
     public function update(AdminOrderRequest $request, $id)
     {
 
-
         $input = $request->all();
         $order = Order::findOrFail($id);
 
@@ -114,7 +113,7 @@ class OrderController extends Controller
         $order->update($input);
 
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'سفارش با موفقیت آپدیت شد');
 
 
     }
@@ -144,6 +143,20 @@ class OrderController extends Controller
         $order = Order::withTrashed()->findOrFail($id);
         $order->restore();
         return redirect('/admin-orders')->with('success', 'سفارش با موفقیت بازیابی شد!');
+
+
+    }
+
+
+    public function updateDetails(Request $request, $id)
+    {
+        $input = $request->all();
+        $order = Order::findOrFail($id);
+
+        $order->update($input);
+
+
+        return redirect()->back()->with('success', 'جزئیات سفارش با موفقیت آپدیت شد');
 
 
     }

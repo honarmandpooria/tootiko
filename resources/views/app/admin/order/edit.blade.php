@@ -62,10 +62,51 @@
             </div>
 
 
-            <div dir="rtl" class="card-footer bg-white">
+            <div class="card-footer">
+
+                <button data-toggle="modal" data-target="#{{'text' . $order->id}}"
+                        class="btn btn-warning float-left"><i class="fas fa-edit"></i></button>
 
 
+                <div dir="rtl" class="modal fade" id="{{'text' . $order->id}}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="post" action="{{route('admin.order.detail.update',$order->id)}}">
+                            @csrf
+                            @method('put')
+                            <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">ویرایش سفارش</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
 
+                                <!-- Modal body -->
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+
+                                        <select name="operation_id" required
+                                                class="custom-select {{$errors->has('operation_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
+                                            <option value="">نوع ترجمه</option>
+                                            <option value="1" {{(old("operation_id") == 1 ? "selected":"")}}>انگلیسی به فارسی
+                                            </option>
+                                            <option value="2" {{(old("operation_id") == 2 ? "selected":"")}}>فارسی به انگلیسی
+                                            </option>
+                                        </select>
+
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-warning">ذخیره</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

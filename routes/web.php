@@ -76,6 +76,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 //     orders + trash and restore orders
     Route::resource('/admin-orders', 'Admin\OrderController');
+    Route::put('/admin-orders/details/{order_id}', 'Admin\OrderController@updateDetails')->name('admin.order.detail.update');
     Route::get('/trashed-orders', 'Admin\OrderController@trashed')->name('trashed-orders');
     Route::put('/restore-order/{admin_order}', 'Admin\OrderController@restore')->name('restore-order');
 
