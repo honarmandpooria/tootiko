@@ -26,6 +26,10 @@
                         <td>
                             <a href="{{route('customer-orders.show',$order->id)}}"
                                class="btn btn-info rounded-circle shadow"><i class="fas fa-eye text-white"></i></a>
+                            @if($order->ticket)
+                                <a href="{{route('tickets.show',$order->ticket->id)}}"
+                                   class="btn btn-warning shadow">پیام ها</a>
+                            @endif
                         </td>
 
                     </tr>
