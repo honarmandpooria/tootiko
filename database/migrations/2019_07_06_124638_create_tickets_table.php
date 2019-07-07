@@ -18,6 +18,7 @@ class CreateTicketsTable extends Migration
             $table->unsignedInteger('order_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

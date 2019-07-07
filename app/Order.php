@@ -63,9 +63,38 @@ class Order extends Model
                 $order->transaction->delete();
             }
 
+            if ($order->ticket) {
+                if ($order->ticket->messages()) {
+                    $messages = $order->ticket->messages()->get();
+                    foreach ($messages as $message) {
+                        $message->delete();
+                    }
+                }
+            }
+
+            if ($order->ticket) {
+                $order->ticket->delete();
+            }
+
         });
         self::restoring(function (Order $order) {
-            $order->transaction()->withTrashed()->first()->restore();
+            if ($order->transaction()->withTrashed()->first()) {
+                $order->transaction()->withTrashed()->first()->restore();
+            }
+            if ($order->ticket()->withTrashed()->first()) {
+                $order->ticket()->withTrashed()->first()->restore();
+            }
+            if ($order->ticket) {
+                if ($order->ticket()->withTrashed()->first()->messages()->withTrashed()->first()) {
+
+                    $messages = $order->ticket()->withTrashed()->first()->messages()->withTrashed()->get();
+                    foreach ($messages as $message) {
+                        $message->restore();
+                    }
+
+                }
+            }
+
         });
     }
 
