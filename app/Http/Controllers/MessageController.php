@@ -47,14 +47,13 @@ class MessageController extends Controller
         $user = Auth::user();
         $input['user_id'] = $user->id;
 
-        $order = Order::where('code',$validatedData['code'])->first();
+        $order = Order::where('code', $validatedData['code'])->first();
         $input['ticket_id'] = $order->ticket->id;
 
-        $input['message']= $validatedData['message'];
+        $input['message'] = $validatedData['message'];
 
         Message::create($input);
-        return redirect()->back()->with('success','پیغام شما ثبت شد!');
-
+        return redirect()->back()->with('success', 'پیغام شما ثبت شد!');
     }
 
     /**

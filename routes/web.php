@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/customer-orders', 'OrderController');
-    Route::get('/get-order-with-status/{status_id}', 'OrderController@showOrdersWithStatus')->name('get-order-with-status');
+//    Route::get('/get-order-with-status/{status_id}', 'OrderController@showOrdersWithStatus')->name('get-order-with-status');
 
 
     // old payment Routes
@@ -56,10 +56,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     // ticket routes
-    Route::resource('customer/tickets', 'TicketController');
-    Route::resource('customer/tickets/messages', 'MessageController');
-
-    Route::resource('admin-tickets/messages', 'Admin\MessageController');
+    Route::resource('tickets', 'TicketController');
+    Route::resource('messages', 'MessageController');
 
 
 });
@@ -85,9 +83,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/files', 'Admin\FileController');
 
 
-    //    tickets
+    //    admin tickets
     Route::resource('admin-tickets', 'Admin\TicketController');
-
+    Route::resource('admin-messages', 'Admin\MessageController');
 
 
 });
