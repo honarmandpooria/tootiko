@@ -88,7 +88,11 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        Message::findOrFail($id)->update($request->all());
+        return redirect()->back()->with('success', 'پیام با موفقیت ویرایش شد.');
+
+
     }
 
     /**
