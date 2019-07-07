@@ -100,7 +100,8 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $transaction->update($request->all());
+        return redirect()->back()->with('success','صورت حساب با موفقیت آپدیت شد');
     }
 
     /**

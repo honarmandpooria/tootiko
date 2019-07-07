@@ -62,10 +62,68 @@
                             معمولی:
                             <span class="persian-num">
                                 {{$transaction->quality_3_price}}
-                                </span>
+                            </span>
                         </div>
 
                     </div>
+                </div>
+
+                <div class="card-footer">
+
+                    <button data-toggle="modal" data-target="#{{'text' . $transaction->id}}"
+                            class="btn btn-warning float-left"><i class="fas fa-edit"></i></button>
+
+
+                    <div dir="rtl" class="modal fade" id="{{'text' . $transaction->id}}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form method="post" action="{{route('transactions.update',$transaction->id)}}">
+                                @csrf
+                                @method('put')
+                                <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">ویرایش صورت حساب</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="text{{$transaction->order->code}}"></label>
+                                            <div class="form-group">
+                                                <label for="custom_price">انتخاب قیمت برای کیفیت های عالی - خوب - معمولی
+                                                    به ترتیب </label>
+                                                <input style="width: 200px;" id="custom_price" name="quality_1_price"
+                                                       type="number"
+                                                       class="form-control mb-2"
+                                                       value="{{$transaction->quality_1_price}}">
+
+                                                <input style="width: 200px;" id="custom_price" name="quality_2_price"
+                                                       type="number"
+                                                       class="form-control mb-2"
+                                                       value="{{$transaction->quality_2_price}}">
+
+                                                <input style="width: 200px;" id="custom_price" name="quality_3_price"
+                                                       type="number"
+                                                       class="form-control mb-2"
+                                                       value="{{$transaction->quality_3_price}}">
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning">ذخیره</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
