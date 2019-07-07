@@ -37,7 +37,6 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        return 123;
         $code = $request->code;
         $order = Order::where('code', $code)->first();
         $user = Auth::user();
@@ -47,7 +46,7 @@ class TicketController extends Controller
             $input['user_id'] = $user->id;
             $input['order_id']= $order->id;
             $ticket = Ticket::create($input);
-            return redirect('/customer/tickets/'.$ticket->id);
+            return redirect('tickets/'.$ticket->id);
         }
     }
 

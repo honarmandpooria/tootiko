@@ -2,7 +2,7 @@
 
 @foreach($messages as $message)
 
-    <div dir="rtl" class="card mb-2 rounded-0 {{$message->user_id === 1 ? 'mr-5' : 'ml-5'}}">
+    <div dir="rtl" class="card mb-2 rounded-0">
         <div class="card-header text-white rounded-0 {{$message->user_id === 1 ? 'bg-success' : 'bg-info'}}">
 
             @if($message->user_id === 1)
