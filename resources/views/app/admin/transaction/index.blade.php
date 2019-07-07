@@ -10,9 +10,10 @@
                 <div class="card-header">
                     <div dir="rtl" class="row">
                         <div class="col-md-4 order-md-2">
-                            کد سفارش:
-                            {{$transaction->order->code}}
-
+                            <a href="{{route('admin-orders.edit',$transaction->order->id)}}">
+                                کد سفارش:
+                                {{$transaction->order->code}}
+                            </a>
                         </div>
                         <div class="col-md-4 order-md-2">
                             نام مشتری:
