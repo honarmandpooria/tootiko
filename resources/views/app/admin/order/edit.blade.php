@@ -85,14 +85,53 @@
 
                                     <div class="form-group">
 
-                                        <select name="operation_id" required
+                                        <select name="operation_id"
                                                 class="custom-select {{$errors->has('operation_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
                                             <option value="">نوع ترجمه</option>
-                                            <option value="1" {{(old("operation_id") == 1 ? "selected":"")}}>انگلیسی به فارسی
+                                            <option value="1" {{($order->operation_id == 1 ? "selected":"")}}>انگلیسی به
+                                                فارسی
                                             </option>
-                                            <option value="2" {{(old("operation_id") == 2 ? "selected":"")}}>فارسی به انگلیسی
+                                            <option value="2" {{($order->operation_id == 2 ? "selected":"")}}>فارسی به
+                                                انگلیسی
                                             </option>
                                         </select>
+
+
+                                    </div>
+
+                                    <div class="form-group col-md-6 ">
+                                        <select name="category_id"
+                                                class="custom-select {{$errors->has('category_id') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}">
+                                            <option value="">انتخاب زمینه</option>
+                                            <option value="1" {{$order->category_id == 1 ? "selected":""}}>عمومی
+                                            </option>
+                                            <option value="2" {{($order->category_id == 2 ? "selected":"")}}>مهندسی
+                                            </option>
+                                            <option value="3" {{($order->category_id == 3 ? "selected":"")}}>پزشکی
+                                            </option>
+                                            <option value="3" {{($order->category_id == 4 ? "selected":"")}}>انسانی
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @if ($errors->has('category_id'))
+
+                                                {{$errors->first('category_id')}}
+
+                                            @endif
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group clearfix position-relative">
+
+                                        <label for="remaining_days">مهلت ترجمه (روز):</label>
+                                        <input data-toggle="tooltip" data-placement="bottom"
+                                               title="چند روز برای انجام ترجمه مهلت دارید؟"
+                                               id="remaining_days" type="number" name="remaining_days"
+                                               value="{{$order->remaining_days}}"
+                                               class="form-control {{$errors->has('remaining_days') ? 'is-invalid': ($errors->all() ? 'is-valid' : '')}}"
+                                               style="max-width: 100px">
 
 
                                     </div>
